@@ -20,6 +20,8 @@
 	    <jsp:include page="partials/contentheader.jsp"></jsp:include>
 	    
 	    <section class="content">
+	    	
+	    	
 	    </section>
 	   
 	  
