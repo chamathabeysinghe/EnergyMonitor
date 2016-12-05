@@ -1,5 +1,7 @@
 package com.ceb;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ceb.database.DataAccess;
+import com.ceb.models.EnergyConsumption;
 import com.ceb.models.User;
 
 import org.springframework.ui.ModelMap;
@@ -30,7 +33,10 @@ public class WebController {
    public ModelAndView user() {
       return new ModelAndView("login", "command", new User());
    }
-   
+   @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+   public String dashboard() {
+      return "dashboard";
+   }
    @RequestMapping(value = "/postLogin", method = RequestMethod.POST)
    public String logUser(@ModelAttribute("SpringWeb")User user,ModelMap model) {
       model.addAttribute("name", user.getName());
@@ -38,7 +44,9 @@ public class WebController {
    }
    
    @RequestMapping(value="/usage",method=RequestMethod.GET)
-   public String consumerUsage(){
+   public String consumerUsage(ModelMap model){
+	   List<EnergyConsumption> usageRecords=EnergyConsumption.EnergyConsumptionDAO.getAllEnergyConsumptionRecords();
+	   model.addAttribute("usageList",usageRecords);
 	   return "consumerUsage";
    }
 }

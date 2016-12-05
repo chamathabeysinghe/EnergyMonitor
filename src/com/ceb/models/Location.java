@@ -20,6 +20,9 @@ public class Location {
 	public int getLocationID() {
 		return locationID;
 	}
+	public void setLocationID(int locationID){
+		this.locationID=locationID;
+	}
 	
 	
 	

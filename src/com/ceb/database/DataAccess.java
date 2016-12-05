@@ -18,17 +18,14 @@ public class DataAccess {
         dataSource.setPassword("");
         jdbcTemplate = new JdbcTemplate(dataSource);
         
-        String sql = "INSERT INTO contact (name, email, address, telephone)"
-                + " VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(sql, "sdf", "sdfd","dfsdfsd","sfsdfasdf");
         
 	}
 	
-	public static DataAccess getInstance(){
+	public static JdbcTemplate getInstance(){
 		if(instance==null){
 			instance=new DataAccess();
 		}
-		return instance;
+		return instance.jdbcTemplate;
 	}
 	
 }
