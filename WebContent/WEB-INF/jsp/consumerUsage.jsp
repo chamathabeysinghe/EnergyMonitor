@@ -34,6 +34,7 @@
 	    
 	    <section class="content">
 	    	<div class="row">
+	    	
        			 <div class="col-md-6">
 				          <!-- AREA CHART -->
 				          <div class="box box-primary">
@@ -59,6 +60,27 @@
         
      		 </div>
 	    	
+	    		<div class="col-md-12">
+		          <div class="box box-info">
+		            <div class="box-header with-border">
+		              <h3 class="box-title">Line Chart</h3>
+		
+		              <div class="box-tools pull-right">
+		                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+		                </button>
+		                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+		              </div>
+		            </div>
+		            <div class="box-body">
+		              <div class="chart">
+		                <canvas id="lineChart" style="height: 181px; width: 493px;" height="203" width="554"></canvas>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+	    	
+	    	</div>
+	    
 	    </section>
 	    
 	    
@@ -71,7 +93,16 @@
 
 	<jsp:include page="partials/scripts.jsp"></jsp:include>
 
-
+	
+	<!-- ChartJS 1.0.1 -->
+	<script src="resources/plugins/chartjs/Chart.min.js"></script>
+	<!-- FastClick -->
+	<script src="resources/plugins/fastclick/fastclick.js"></script>
+	<!-- AdminLTE App -->
+	<script src="resources/dist/js/app.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="resources/dist/js/demo.js"></script>
+	<script src="resources/chartjs/chart.js"></script>
 	
 </body>
 </html>
