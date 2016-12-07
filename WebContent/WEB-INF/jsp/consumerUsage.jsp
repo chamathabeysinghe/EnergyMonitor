@@ -21,6 +21,7 @@
 	    
 	    
 	    <section class="content-header">
+		      
 		      <h1>
 		        Consumer Name
 		        <small>Usage</small>
@@ -102,6 +103,19 @@
 	<script src="resources/dist/js/app.min.js"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="resources/dist/js/demo.js"></script>
+	<script type="text/javascript">
+	<%
+    	//String result = request.getParameter("usageList");
+		
+		
+		
+		Object value=request.getAttribute("usageList");
+		String result[]=(String[])value;
+		out.println("var dataSet="+result[1]+";");
+		out.println("var labelSet="+result[0]+";");
+		out.println("console.log(dataSet);");
+	%>
+	</script>
 	<script src="resources/chartjs/chart.js"></script>
 	
 </body>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ceb.database.DataAccess;
+import com.ceb.models.Bill;
 import com.ceb.models.EnergyConsumption;
 import com.ceb.models.User;
 
@@ -45,8 +46,8 @@ public class WebController {
    
    @RequestMapping(value="/usage",method=RequestMethod.GET)
    public String consumerUsage(ModelMap model){
-	   List<EnergyConsumption> usageRecords=EnergyConsumption.EnergyConsumptionDAO.getAllEnergyConsumptionRecords();
-	   model.addAttribute("usageList",usageRecords);
+	   String results[]=Bill.getUsageRepor(1);
+	   model.addAttribute("usageList",results);
 	   return "consumerUsage";
    }
 }

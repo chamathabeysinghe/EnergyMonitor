@@ -1,8 +1,5 @@
 package com.ceb.database;
 
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
@@ -17,8 +14,6 @@ public class DataAccess {
         dataSource.setUsername("root");
         dataSource.setPassword("");
         jdbcTemplate = new JdbcTemplate(dataSource);
-        
-        
 	}
 	
 	public static JdbcTemplate getInstance(){
@@ -27,5 +22,4 @@ public class DataAccess {
 		}
 		return instance.jdbcTemplate;
 	}
-	
 }
