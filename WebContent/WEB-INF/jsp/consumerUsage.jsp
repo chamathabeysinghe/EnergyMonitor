@@ -35,8 +35,9 @@
 	    
 	    <section class="content">
 	    	<div class="row">
-	    	
-       			 <div class="col-md-6">
+	    
+	    	<!-- Should figure out what is the error in this divc -->
+       			 <div class="col-md-6 hide">
 				          <!-- AREA CHART -->
 				          <div class="box box-primary">
 				            <div class="box-header with-border">
@@ -56,12 +57,21 @@
 				            <!-- /.box-body -->
 				          </div>
 				          <!-- /.box -->
-
-         
-        
      		 </div>
-	    	
+     		 
+     		 	
 	    		<div class="col-md-12">
+	    		
+	    		
+		    		<div class="form-group">
+	                  <select class="form-control selectpicker" data-style="btn-success">
+	                    <option>2016 Electricity Bills</option>
+	                    <option>2015 Electricity Bills</option>
+	                    <option>2014 Electricity Bills</option>
+	                    <option>2013 Electricity Bills</option>
+	                    <option>2012 Electricity Bills</option>
+	                  </select>
+	                </div>
 		          <div class="box box-info">
 		            <div class="box-header with-border">
 		              <h3 class="box-title">Line Chart</h3>

@@ -13,6 +13,7 @@ public class BillRowMapper implements RowMapper<Bill>{
 		b.setAmount(rs.getDouble("amount"));
 		b.setMonth(rs.getString("month"));
 		b.setUsage(rs.getDouble("usage"));
+		b.setYear(rs.getInt("year"));
 		return b;
 	}
 }
