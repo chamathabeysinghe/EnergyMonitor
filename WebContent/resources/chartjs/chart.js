@@ -1,7 +1,7 @@
 
-name();
+drawBillUsageCharts();
 
-function name() {
+function drawBillUsageCharts() {
 	console.log("MOTHER FUCKER3");
     /* ChartJS
      * -------

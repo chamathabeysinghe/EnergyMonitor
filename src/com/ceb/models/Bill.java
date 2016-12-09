@@ -46,7 +46,7 @@ public class Bill {
 	public void setYear(int year) {
 		this.year = year;
 	}
-	public static String[] getUsageRepor(int connectionID){
+	public static String[] getUsageRepor(int connectionID,int year){
 		
 		String monthList[]={"January","February","March","April","May","June","July","August","September","Octomber","November","December"};
 		
@@ -60,7 +60,7 @@ public class Bill {
 		String months="[";
 		String usage="[";
 		
-		for(Bill b:BillDAO.getBillsByConnection(connectionID)){
+		for(Bill b:BillDAO.getBillsByConnection(connectionID,year)){
 			//usageMap.put(b.getMonth(),b.getUsage());
 			usageArray.set(monthArray.indexOf(b.getMonth()), b.getUsage());
 			

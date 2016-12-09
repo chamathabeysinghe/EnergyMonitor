@@ -64,12 +64,12 @@
 	    		
 	    		
 		    		<div class="form-group">
-	                  <select class="form-control selectpicker" data-style="btn-success">
-	                    <option>2016 Electricity Bills</option>
-	                    <option>2015 Electricity Bills</option>
-	                    <option>2014 Electricity Bills</option>
-	                    <option>2013 Electricity Bills</option>
-	                    <option>2012 Electricity Bills</option>
+	                  <select id="billYearSelect" class="form-control selectpicker" data-style="btn-success" onchange='yearSelect()'>
+	                    <option value="2016">2016 Electricity Bills</option>
+	                    <option value="2015">2015 Electricity Bills</option>
+	                    <option value="2014">2014 Electricity Bills</option>
+	                    <option value="2013">2013 Electricity Bills</option>
+	                    <option value="2012">2012 Electricity Bills</option>
 	                  </select>
 	                </div>
 		          <div class="box box-info">
@@ -127,6 +127,7 @@
 	%>
 	</script>
 	<script src="resources/chartjs/chart.js"></script>
+	<script src="resources/controllers/customerusagecontroller.js"></script>
 	
 </body>
 </html>
