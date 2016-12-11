@@ -4,7 +4,6 @@ var lineChart;
 function drawBillUsageCharts() {
 	Chart.defaults.global.showTooltips = false;
 
-	console.log("MOTHER FUCKE	R234234");
     /* ChartJS
      * -------
      * Here we will create a few charts using ChartJS
@@ -20,7 +19,7 @@ function drawBillUsageCharts() {
     var areaChart = new Chart(areaChartCanvas);
 
     var areaChartData = {
-      labels: ["Januar123123y", "February", "March", "April", "May", "June", "July"],
+      labels: ["January", "February", "March", "April", "May", "June", "July"],
       datasets: [
         {
           label: "Electronics",

@@ -37,28 +37,6 @@
 	    	<div class="row">
 	    
 	    	<!-- Should figure out what is the error in this divc -->
-       			 <div class="col-md-6 hide">
-				          <!-- AREA CHART -->
-				          <div class="box box-primary">
-				            <div class="box-header with-border">
-				              <h3 class="box-title">Area Chart</h3>
-				
-				              <div class="box-tools pull-right">
-				                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-				                </button>
-				                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-				              </div>
-				            </div>
-				            <div class="box-body">
-				              <div class="chart">
-				                <canvas id="areaChart" style="height: 329px; width: 476px;" height="296" width="428"></canvas>
-				              </div>
-				            </div>
-				            <!-- /.box-body -->
-				          </div>
-				          <!-- /.box -->
-     		 </div>
-     		 
      		 	
 	    		<div class="col-md-6">
 
@@ -74,7 +52,7 @@
 		            </div>
 		            <div class="box-body">
 		              <div class="chart">
-		                <canvas id="lineChart" style="height: 181px; width: 493px;" height="203" width="554"></canvas>
+		                <canvas id="consumptionChart" style="height: 181px; width: 493px;" height="203" width="554"></canvas>
 		              </div>
 		            </div>
 		          </div>
@@ -96,19 +74,17 @@
 
 	
 	<!-- ChartJS 1.0.1 -->
+	
 	<script src="resources/plugins/chartjs/Chart.min.js"></script>
-	<!-- FastClick -->
-	<script src="resources/plugins/fastclick/fastclick.js"></script>
-	<!-- AdminLTE App -->
+	
+		<!-- AdminLTE App -->
 	<script src="resources/dist/js/app.min.js"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="resources/dist/js/demo.js"></script>
 	<script type="text/javascript">
 		<%
 		//String result = request.getParameter("usageList");
-		
-		
-		
+
 		Object value=request.getAttribute("usageList");
 		String result[]=(String[])value;
 		out.println("var dataSet="+result[1]+";");
