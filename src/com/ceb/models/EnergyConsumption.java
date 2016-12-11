@@ -1,7 +1,11 @@
 package com.ceb.models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.jdbc.core.RowMapper;
 
 import com.ceb.database.DataAccess;
 import com.ceb.database.EnergyConsumptionRowMapper;
@@ -10,16 +14,59 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class EnergyConsumption {
 	
-	private String timeStamp;
+	private int year;
+	private int month;
+	private int date;
+	private int hour;
+	private int minute;
+	private int second;
+	
 	private int usage;
 	private Location location;
 	private int recordID;
 	
-	public String getTimeStamp() {
-		return timeStamp;
+	
+	public int getYear() {
+		return year;
 	}
-	public void setTimeStamp(String timeStamp) {
-		this.timeStamp = timeStamp;
+	public void setYear(int year) {
+		this.year = year;
+	}
+	public int getMonth() {
+		return month;
+	}
+	public void setMonth(int month) {
+		this.month = month;
+	}
+	public int getHour() {
+		return hour;
+	}
+	public void setHour(int hour) {
+		this.hour = hour;
+	}
+	public int getMinute() {
+		return minute;
+	}
+	public void setMinute(int minute) {
+		this.minute = minute;
+	}
+	public int getSecond() {
+		return second;
+	}
+	public void setSecond(int second) {
+		this.second = second;
+	}
+	public Location getLocation() {
+		return location;
+	}
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+	public void setDate(int date) {
+		this.date = date;
+	}
+	public void setRecordID(int recordID) {
+		this.recordID = recordID;
 	}
 	public int getUsage() {
 		return usage;
@@ -36,13 +83,11 @@ public class EnergyConsumption {
 	public int getRecordID() {
 		return recordID;
 	}
-	public String getDate(){
-		throw new NotImplementedException();
+	public int getDate() {
+		return date;
 	}
-	private String getTime(){
-		throw new NotImplementedException();
-	}
-	
+
+
 	public static class EnergyConsumptionDAO{
 		public static List<EnergyConsumption> getAllEnergyConsumptionRecords(){
 			String sql="SELECT * FROM EnergyConsumption";
@@ -59,6 +104,34 @@ public class EnergyConsumption {
 			EnergyConsumption result=DataAccess.getInstance().queryForObject(sql,new Object[]{recordID},new EnergyConsumptionRowMapper());
 			return result;
 		}
+		public static String[] getEnergyConsumptionRecordByYear(){
+			String sql="SELECt sum(electricUsage) as yearUsage,year(timeStamp) as year from energyconsumption GROUP by year(timeStamp)";
+			List<String[]> results =
+				DataAccess.getInstance().query(sql, new RowMapper<String[]>(){
+					@Override
+					public String[] mapRow(ResultSet rs, int arg1) throws SQLException {
+						// TODO Auto-generated method stub
+						String[] result=new String[2];
+						
+						result[0]=String.valueOf(rs.getInt("year"));
+						result[1]=String.valueOf(rs.getDouble("yearUsage"));
+						
+						return result;
+					}
+					
+				});
+			String yearArray="[";
+			String usageArray="[";
+			for(String s[]:results){
+				yearArray+=s[0]+",";
+				usageArray+=s[1]+",";
+			}
+			yearArray+="]";
+			usageArray+="]";
+			
+			return new String[]{yearArray,usageArray};
+		}
+		
 //		public static List<EnergyConsumption> getEnergyConsumptionRecordsByTimeStamp(int locationID){
 //			String sql="SELECT * FROM EnergyConsumption WHERE locationID=?";
 //			List<EnergyConsumption> resultList=DataAccess.getInstance().query(sql,new Object[]{locationID},new EnergyConsumptionRowMapper());
