@@ -61,6 +61,14 @@ public class WebController {
 	   String results[]=Bill.getUsageRepor(1,intYear);
 	   return results[1];
    }
-	
+   
+   @RequestMapping(value="/consumption",method=RequestMethod.GET)
+   public String locationUsage(ModelMap model){
+	   
+	   String s[]=EnergyConsumption.EnergyConsumptionDAO.getEnergyConsumptionRecordByYear();
+	   model.addAttribute("usageList",s);
+	   return "electricConsumption";
+	   
+   }
 
 }
