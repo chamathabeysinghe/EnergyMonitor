@@ -1,5 +1,8 @@
 package com.ceb.models;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import com.ceb.database.BillRowMapper;
@@ -9,7 +12,7 @@ public class Bill {
 	
 	private double usage;
 	private String month;
-	private String year;
+	private int year;
 	private double amount;
 	private int connectionID;
 	public double getUsage() {
@@ -20,6 +23,9 @@ public class Bill {
 	}
 	public String getMonth() {
 		return month;
+	}
+	public int getYear() {
+		return year;
 	}
 	public void setMonth(String month) {
 		this.month = month;
@@ -37,14 +43,35 @@ public class Bill {
 		this.connectionID = connectionID;
 	}
 	
-	public static String[] getUsageRepor(int connectionID){
+	
+	public void setYear(int year) {
+		this.year = year;
+	}
+	public static String[] getUsageRepor(int connectionID,int year){
+		
+		String monthList[]={"January","February","March","April","May","June","July","August","September","Octomber","November","December"};
+		
+		ArrayList<String> monthArray=new ArrayList<>();
+		ArrayList<Double> usageArray=new ArrayList<>();
+		for(String month:monthList){
+			monthArray.add(month);
+			usageArray.add(0.0);
+		}
+		
 		String months="[";
 		String usage="[";
 		
-		for(Bill b:BillDAO.getBillsByConnection(connectionID)){
-			months+="'"+b.getMonth()+"',";
-			usage+=b.getUsage()+",";
+		for(Bill b:BillDAO.getBillsByConnection(connectionID,year)){
+			//usageMap.put(b.getMonth(),b.getUsage());
+			usageArray.set(monthArray.indexOf(b.getMonth()), b.getUsage());
+			
 		}
+		
+		for(String month:monthArray){
+			months+="'"+month+"',";
+			usage+=usageArray.get(monthArray.indexOf(month))+",";
+		}
+		
 		
 		usage+="]";
 		months+="]";
@@ -53,12 +80,7 @@ public class Bill {
 	
 	
 	
-	public String getYear() {
-		return year;
-	}
-	public void setYear(String year) {
-		this.year = year;
-	}
+	
 
 
 
@@ -71,6 +93,11 @@ public class Bill {
 		public static List<Bill> getBillsByConnection(int connectionID){
 			String sql="SELECT * FROM Bill WHERE connectionID=?";
 			List<Bill> resultList=DataAccess.getInstance().query(sql,new Object[]{connectionID},new BillRowMapper());
+			return resultList;
+		}
+		public static List<Bill> getBillsByConnection(int connectionID,int year){
+			String sql="SELECT * FROM Bill WHERE connectionID=? and year=?";
+			List<Bill> resultList=DataAccess.getInstance().query(sql,new Object[]{connectionID,year},new BillRowMapper());
 			return resultList;
 		}
 		public static Bill getBillByID(int billID){

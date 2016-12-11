@@ -23,7 +23,7 @@
 	    <section class="content-header">
 		      
 		      <h1>
-		        Consumer Name
+				Summary 
 		        <small>Usage</small>
 		      </h1>
 		      <ol class="breadcrumb">
@@ -60,18 +60,8 @@
      		 </div>
      		 
      		 	
-	    		<div class="col-md-12">
-	    		
-	    		
-		    		<div class="form-group">
-	                  <select id="billYearSelect" class="form-control selectpicker" data-style="btn-success" onchange='yearSelect()'>
-	                    <option value="2016">2016 Electricity Bills</option>
-	                    <option value="2015">2015 Electricity Bills</option>
-	                    <option value="2014">2014 Electricity Bills</option>
-	                    <option value="2013">2013 Electricity Bills</option>
-	                    <option value="2012">2012 Electricity Bills</option>
-	                  </select>
-	                </div>
+	    		<div class="col-md-6">
+
 		          <div class="box box-info">
 		            <div class="box-header with-border">
 		              <h3 class="box-title">Line Chart</h3>
@@ -114,8 +104,8 @@
 	<!-- AdminLTE for demo purposes -->
 	<script src="resources/dist/js/demo.js"></script>
 	<script type="text/javascript">
-	<%
-    	//String result = request.getParameter("usageList");
+		<%
+		//String result = request.getParameter("usageList");
 		
 		
 		
@@ -124,9 +114,12 @@
 		out.println("var dataSet="+result[1]+";");
 		out.println("var labelSet="+result[0]+";");
 		out.println("console.log(dataSet);");
-	%>
+		%>
+	
 	</script>
-	<script src="resources/chartjs/chart.js"></script>
+	
+	
+	<script src="resources/chartjs/consumptionChart.js"></script>
 	<script src="resources/controllers/customerusagecontroller.js"></script>
 	
 </body>

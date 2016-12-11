@@ -1,8 +1,10 @@
 
-name();
+drawBillUsageCharts();
+var lineChart;
+function drawBillUsageCharts() {
+	Chart.defaults.global.showTooltips = false;
 
-function name() {
-	console.log("MOTHER FUCKER3");
+	console.log("MOTHER FUCKE	R234234");
     /* ChartJS
      * -------
      * Here we will create a few charts using ChartJS
@@ -120,12 +122,9 @@ function name() {
     	};
     
     var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
-    var lineChart = new Chart(lineChartCanvas);
+    lineChart = new Chart(lineChartCanvas);
     var lineChartOptions = areaChartOptions;
     lineChartOptions.datasetFill = false;
     lineChart.Line(data, lineChartOptions);
-
-    
-
-    
   }
+

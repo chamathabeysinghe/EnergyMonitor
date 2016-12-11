@@ -67,7 +67,7 @@ public class BillController {
 		 	bill.setUsage(Double.parseDouble(result.get("usage")));
 		 	bill.setConnectionID(Integer.parseInt(result.get("connectionID")));
 		 	bill.setMonth(result.get("month"));
-		 	bill.setYear(result.get("year"));
+		 	bill.setYear(Integer.parseInt(result.get("year")));
 		 	
 		 	boolean b=BillDAO.addBill(bill);
 		 	if(b){

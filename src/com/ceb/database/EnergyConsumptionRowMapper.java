@@ -13,7 +13,6 @@ public class EnergyConsumptionRowMapper implements RowMapper<EnergyConsumption>{
 		Location l=new Location();
 		l.setLocationID(rs.getInt("locationID"));
 		e.setLocationID(l);
-		e.setTimeStamp(rs.getString("timeStamp"));
 		e.setUsage(rs.getInt("energyUsage"));
 		return e;
 	}
