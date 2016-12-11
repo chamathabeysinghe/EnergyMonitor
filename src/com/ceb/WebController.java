@@ -50,4 +50,13 @@ public class WebController {
 	   model.addAttribute("usageList",results);
 	   return "consumerUsage";
    }
+   
+   
+   
+//   Complaint and Request Handling
+   
+   @RequestMapping(value = "/make_complaint", method = RequestMethod.GET)
+   public String make_complaint() {
+      return "make_complaint";
+   }
 }
