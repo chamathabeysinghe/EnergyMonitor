@@ -108,6 +108,24 @@
 					</div>
 				</div>
 				
+				<!-- Input Complaint Type -->
+				<div class="form-group">
+					<label for="input_complaintType" class="col-sm-2 control-label">
+					  	Complaint Type
+					</label>
+					<div class="col-sm-10">
+						<select class="form-control" id="input_complaintType">
+						    <option>Electricity Bills</option>
+						    <option>Calculation of electricity consumption</option>
+						    <option>3Electricity tariff category you belong to</option>
+						    <option>Electricity meter</option>
+						    <option>Power lines going over your land</option>
+						    <option>Damage to your electrical equipment due to power fluctuations</option>
+						    <option>Other</option>
+						</select>
+					</div>
+				</div>
+				
 				<!-- Input Complaint Description -->
 				<div class="form-group"> 
 					<label for="input_description" class="col-sm-2 control-label">
