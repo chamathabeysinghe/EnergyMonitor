@@ -81,5 +81,9 @@ public class WebController {
    public String make_complaint() {
       return "make_complaint";
    }
+   @RequestMapping(value = "/change_request", method = RequestMethod.GET)
+   public String change_request() {
+      return "change_request";
+   }
 
 }
