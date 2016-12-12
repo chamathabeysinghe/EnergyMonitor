@@ -54,6 +54,7 @@ public class WebController {
 	   return "consumerUsage";
    }
    
+
    @RequestMapping(value="/ajaxBillYearChange",method=RequestMethod.POST,produces = "plain/text")
    @ResponseBody
    public String ajaxBillYearChange(@RequestBody String year){
@@ -69,6 +70,16 @@ public class WebController {
 	   model.addAttribute("usageList",s);
 	   return "electricConsumption";
 	   
+   }
+
+
+   
+   
+//   Complaint and Request Handling
+   
+   @RequestMapping(value = "/make_complaint", method = RequestMethod.GET)
+   public String make_complaint() {
+      return "make_complaint";
    }
 
 }
