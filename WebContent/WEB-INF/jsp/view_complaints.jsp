@@ -36,7 +36,73 @@
 </head>
 
 <body>
-<p>Hi</p>
+<div class="container-fluid" id="view_complaints_container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="page-header">
+				<h1>
+					Consumer Complaints and Requests
+				</h1>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<h3>
+						Consumer Complaints
+					</h3>
+					<div class="panel-group" id="panel-978814">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978814" href="#panel-element-63949">Complaint #1 - Subject</a>
+							</div>
+							<div id="panel-element-63949" class="panel-collapse collapse">
+								<div class="panel-body">
+									Content goes here...
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978814" href="#panel-element-613107">Complaint #2 - Subject</a>
+							</div>
+							<div id="panel-element-613107" class="panel-collapse collapse">
+								<div class="panel-body">
+									Content goes here...
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<h3>
+						Consumer Requests
+					</h3>
+					<div class="panel-group" id="panel-400133">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-400133" href="#panel-element-573195">Request #1 - Subject</a>
+							</div>
+							<div id="panel-element-573195" class="panel-collapse collapse">
+								<div class="panel-body">
+									Content goes here...
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-400133" href="#panel-element-587501">Request #2 - Subject</a>
+							</div>
+							<div id="panel-element-587501" class="panel-collapse collapse">
+								<div class="panel-body">
+									Content goes here...
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 
 <!-- jQuery 2.2.3 -->
