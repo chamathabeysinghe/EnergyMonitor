@@ -81,9 +81,14 @@ public class WebController {
    public String make_complaint() {
       return "make_complaint";
    }
+   @RequestMapping(value = "/view_complaints", method = RequestMethod.GET)
+   public String view_complaints() {
+      return "view_complaints";
+   }
    @RequestMapping(value = "/change_request", method = RequestMethod.GET)
    public String change_request() {
       return "change_request";
    }
+   
 
 }
