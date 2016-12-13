@@ -66,8 +66,15 @@ public class WebController {
    @RequestMapping(value="/consumption",method=RequestMethod.GET)
    public String locationUsage(ModelMap model){
 	   
-	   String s[]=EnergyConsumption.EnergyConsumptionDAO.getEnergyConsumptionRecordByYear();
-	   model.addAttribute("usageList",s);
+	   String totlaUsageByYear[]=EnergyConsumption.EnergyConsumptionDAO.getEnergyConsumptionRecordByYear();
+	   model.addAttribute("usageList",totlaUsageByYear);
+	   
+	   String totlaUsageByTime[]=EnergyConsumption.EnergyConsumptionDAO.getCountryEnergyConsumptionCategorizedByTime();
+	   model.addAttribute("usageListByTime",totlaUsageByTime);
+	   
+	   String totlaUsageByProvince[]=EnergyConsumption.EnergyConsumptionDAO.getCountryEnergyConsumptionCategorizedByProvince();
+	   model.addAttribute("usageListByProvince",totlaUsageByProvince);
+	   
 	   return "electricConsumption";
 	   
    }
