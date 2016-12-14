@@ -1,39 +1,108 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ page import="com.ceb.models.EnergyConsumption"%>
+<%@ page import="java.util.ArrayList"%>
+
+<!DOCTYPE html>
 <html>
 <head>
+<title>AdminLTE 2 | Make Complaint</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>AdminLTE 2 | Make Complaint</title>
-<!-- Tell the browser to be responsive to screen width -->
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport">
-<!-- Bootstrap 3.3.6 -->
-<link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<!-- Ionicons -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-<!-- Theme style -->
-<link rel="stylesheet" href="resources/dist/css/AdminLTE.min.css">
-<!-- iCheck -->
-<link rel="stylesheet" href="resources/plugins/iCheck/square/blue.css">
-
-
-
-<!--  Loading complaint_styling.css file  -->
-<link rel="stylesheet"  type="text/css" href="resources/css/complaints_styling.css">
-
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+<jsp:include page="partials/styles.jsp"></jsp:include>
 </head>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+
+		<jsp:include page="partials/header.jsp"></jsp:include>
+		<jsp:include page="partials/sidenav.jsp"></jsp:include>
+
+		<div class="content-wrapper">
+
+
+
+			<section class="content-header">
+
+				<h1>Complaint / Grievance Entry</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li class="active">Make Complaint</li>
+				</ol>
+				
+			</section>
+
+
+			<section class="content">
+				<div class="row">
+					<div class="col-md-8">
+						<div class="box box-danger">
+							<div class="box-header with-border">
+								<h3 class="box-title">Make Complaint</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+								<form role="form">
+
+									<!-- text input Subject -->
+									<div class="form-group">
+										<label>Subject</label> <input type="text" class="form-control"
+											placeholder="Enter ..." id="subject">
+									</div>
+
+									<!-- textarea input Complaint Description -->
+									<div class="form-group">
+										<label>Description</label>
+										<textarea class="form-control" id="description" rows="3">
+									</textarea>
+									</div>
+
+									<div class="box-footer">
+										<button type="submit" class="btn btn-primary">Submit</button>
+									</div>
+
+								</form>
+							</div>
+							<!-- /.box-body -->
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+		</div>
+
+		<jsp:include page="partials/footer.jsp"></jsp:include>
+
+		<jsp:include page="partials/controllsidebar.jsp"></jsp:include>
+	</div>
+
+	<jsp:include page="partials/scripts.jsp"></jsp:include>
+
+
+	<!-- ChartJS 1.0.1 -->
+	<script src="resources/plugins/chartjs/Chart.min.js"></script>
+	<!-- FastClick -->
+	<script src="resources/plugins/fastclick/fastclick.js"></script>
+	<!-- AdminLTE App -->
+	<script src="resources/dist/js/app.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="resources/dist/js/demo.js"></script>
+	<script type="text/javascript">
+		
+	<%//String result = request.getParameter("usageList");
+
+			Object value = request.getAttribute("usageList");
+			String result[] = (String[]) value;
+			out.println("var dataSet=" + result[1] + ";");
+			out.println("var labelSet=" + result[0] + ";");
+			out.println("console.log(dataSet);");%>
+		
+	</script>
+	<script src="resources/chartjs/chart.js"></script>
+	<script src="resources/controllers/customerusagecontroller.js"></script>
+
+</body>
+</html>
+<!-- 
 
 <body>
 	<div class="container-fluid" id="make_complaint_container"> 
@@ -48,7 +117,7 @@
 			</p><p>It is expected that you provide us with the details regarding your efforts to solve the problem locally before it became necessary to submit your grievence through this channel. </p>
 			<form class="form-horizontal" role="form">
 			
-			    <!-- Input Name -->
+			    Input Name
 				<div class="form-group"> 
 					<label for="input_name" class="col-sm-2 control-label">
 						Name
@@ -58,7 +127,7 @@
 					</div>
 				</div>
 				
-				<!-- Input Account No. -->
+				Input Account No.
 				<div class="form-group"> 
 					<label for="input_accountNo" class="col-sm-2 control-label">
 						Account No.
@@ -68,7 +137,7 @@
 					</div>
 				</div>
 				
-				<!-- Input Address -->
+				Input Address
 				<div class="form-group"> 
 					<label for="input_address" class="col-sm-2 control-label">
 						Address
@@ -78,7 +147,7 @@
 					</div>
 				</div>
 				
-				<!-- Input Email -->
+				Input Email
 				<div class="form-group"> 
 					<label for="input_email" class="col-sm-2 control-label">
 						Email
@@ -88,7 +157,7 @@
 					</div>
 				</div>
 				
-				<!-- Input Telephone Number -->
+				Input Telephone Number
 				<div class="form-group"> 
 					<label for="input_tel" class="col-sm-2 control-label">
 						Telephone Number
@@ -98,7 +167,7 @@
 					</div>
 				</div>
 				
-				<!-- Input Complaint Subject -->
+				Input Complaint Subject
 				<div class="form-group"> 
 					<label for="input_subject" class="col-sm-2 control-label">
 						Complaint Subject
@@ -108,7 +177,7 @@
 					</div>
 				</div>
 				
-				<!-- Input Complaint Type -->
+				Input Complaint Type
 				<div class="form-group">
 					<label for="input_complaintType" class="col-sm-2 control-label">
 					  	Complaint Type
@@ -126,7 +195,7 @@
 					</div>
 				</div>
 				
-				<!-- Input Complaint Description -->
+				Input Complaint Description
 				<div class="form-group"> 
 					<label for="input_description" class="col-sm-2 control-label">
 						Complaint Description
@@ -150,13 +219,14 @@
 </div>
 
 
-	<!-- jQuery 2.2.3 -->
+	jQuery 2.2.3
 	<script src="resources/plugins/jQuery/jquery-2.2.3.min.js"></script>
-	<!-- Bootstrap 3.3.6 -->
+	Bootstrap 3.3.6
 	<script src="resources/bootstrap/js/bootstrap.min.js"></script>
-	<!-- iCheck -->
+	iCheck
 	<script src="resources/plugins/iCheck/icheck.min.js"></script>
 	
 </body>
 </html>
 
+ -->
