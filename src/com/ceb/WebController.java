@@ -42,7 +42,7 @@ public class WebController {
    
    @RequestMapping(value = "/signup", method = RequestMethod.GET)
    public String signup() {
-      return "signup";
+	   return "signup";
    }
    
    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
