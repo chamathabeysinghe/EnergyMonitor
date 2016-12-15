@@ -33,18 +33,7 @@ function yearSelect(){
 		}
 	});
 	
-//	var url="/"
-//	$.ajax({
-//        method:'POST',
-//        url:url,
-//        data:{keyWords:keywords,filter:fiterString,_token:token}
-//    }).done(function(markup){
-//
-//        $('#search-results').html(markup);
-//        $('#all-results').hide();
-//        $('#search-results').show();
-//
-//    })
+
 	
 	
 }

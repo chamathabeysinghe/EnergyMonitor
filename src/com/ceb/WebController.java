@@ -1,5 +1,6 @@
 package com.ceb;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ import com.ceb.database.DataAccess;
 import com.ceb.models.Bill;
 import com.ceb.models.EnergyConsumption;
 import com.ceb.models.User;
+import com.google.gson.Gson;
+import com.mysql.cj.x.json.JsonArray;
 
 import org.springframework.ui.ModelMap;
 
@@ -63,6 +66,8 @@ public class WebController {
 	   return results[1];
    }
    
+      
+   
    @RequestMapping(value="/consumption",method=RequestMethod.GET)
    public String locationUsage(ModelMap model){
 	   
@@ -74,11 +79,24 @@ public class WebController {
 	   
 	   String totlaUsageByProvince[]=EnergyConsumption.EnergyConsumptionDAO.getCountryEnergyConsumptionCategorizedByProvince();
 	   model.addAttribute("usageListByProvince",totlaUsageByProvince);
-	   
 	   return "electricConsumption";
-	   
    }
+   
+   @RequestMapping(value="/ajaxConsumptionForProvince",method=RequestMethod.POST,produces = "plain/text")
+   @ResponseBody
+   public String ajaxConsumptionForProvince(@RequestBody String province){
+	   HashMap<String,String> resultsForTotalUsage=EnergyConsumption.EnergyConsumptionDAO.getEnergyConsumptionRecordByYearForProvince(province);
+	   HashMap<String,String> resultsForUsageByTime=EnergyConsumption.EnergyConsumptionDAO.getCountryEnergyConsumptionCategorizedByTimeForProvince(province);
+	   HashMap<String,HashMap<String,String>> l=new HashMap<String,HashMap<String,String>>();
+	   l.put("TotalUsage", resultsForTotalUsage);
+	   l.put("TimeUsage", resultsForUsageByTime);
+	   
+       Gson gson = new Gson();
+       String json = gson.toJson(l);
 
+	   return json;
+   }
+   
 
    
    

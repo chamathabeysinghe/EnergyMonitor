@@ -3,6 +3,7 @@ package com.ceb.models;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.jdbc.core.RowMapper;
@@ -104,6 +105,10 @@ public class EnergyConsumption {
 			EnergyConsumption result=DataAccess.getInstance().queryForObject(sql,new Object[]{recordID},new EnergyConsumptionRowMapper());
 			return result;
 		}
+		
+		/*
+		 * The code will handle data transactions for whole country
+		 */
 		public static String[] getEnergyConsumptionRecordByYear(){
 			String sql="SELECt sum(electricUsage) as yearUsage,year(timeStamp) as year from energyconsumption GROUP by year(timeStamp)";
 			List<String[]> results =
@@ -115,7 +120,6 @@ public class EnergyConsumption {
 						
 						result[0]=String.valueOf(rs.getInt("year"));
 						result[1]=String.valueOf(rs.getDouble("yearUsage"));
-						
 						return result;
 					}
 					
@@ -189,11 +193,68 @@ public class EnergyConsumption {
 
 		}
 		
-//		public static List<EnergyConsumption> getEnergyConsumptionRecordsByTimeStamp(int locationID){
-//			String sql="SELECT * FROM EnergyConsumption WHERE locationID=?";
-//			List<EnergyConsumption> resultList=DataAccess.getInstance().query(sql,new Object[]{locationID},new EnergyConsumptionRowMapper());
-//			return resultList;
-//		}
+		/*
+		 * The code will handle data transactions for whole specific province
+		 */
+		public static HashMap<String,String> getEnergyConsumptionRecordByYearForProvince(String province){
+			String sql="SELECt sum(electricUsage) as yearUsage,year(timeStamp) as year from energyconsumption,location where location.id=energyconsumption.locationID and location.province=? GROUP by year(timeStamp)";
+			List<String[]> results =
+				DataAccess.getInstance().query(sql,new Object[]{province}, new RowMapper<String[]>(){
+					@Override
+					public String[] mapRow(ResultSet rs, int arg1) throws SQLException {
+						// TODO Auto-generated method stub
+						String[] result=new String[2];
+						
+						result[0]=String.valueOf(rs.getInt("year"));
+						result[1]=String.valueOf(rs.getDouble("yearUsage"));
+						return result;
+					}
+					
+				});
+//			return results;
+//			String yearArray="[";
+//			String usageArray="[";
+			HashMap<String,String> l=new HashMap<String,String>();
+			for(String s[]:results){
+				l.put(s[0], s[1]);
+				
+				
+			}
+//			yearArray+="]";
+//			usageArray+="]";
+//			
+//			return new String[]{yearArray,usageArray};
+			return l;
+		}
+		
+		public static HashMap<String,String> getCountryEnergyConsumptionCategorizedByTimeForProvince(String province){
+			String sql="select sum(electricUsage) as totalUsage,if(hour(timeStamp)>6 and hour(timeStamp)<18,'Day','Night') as time from energyconsumption,location where location.id=energyconsumption.locationID and location.province=? GROUP By hour(timeStamp)>6 and hour(timeStamp)<18";
+			List<String[]> results =
+					DataAccess.getInstance().query(sql,new Object[]{province}, new RowMapper<String[]>(){
+						@Override
+						public String[] mapRow(ResultSet rs, int arg1) throws SQLException {
+							// TODO Auto-generated method stub
+							String[] result=new String[2];
+							
+							result[0]=String.valueOf(rs.getString("time"));
+							result[1]=String.valueOf(rs.getDouble("totalUsage"));			
+							return result;
+						}
+						
+					});
+//			return results;
+//			String timesArray="[";
+//			String usageArray="[";
+			HashMap<String,String> l=new HashMap<String,String>();
+
+			for(String s[]:results){
+				l.put(s[0], s[1]);
+			}
+//			timesArray+="]";
+//			usageArray+="]";
+//			return new String[]{timesArray,usageArray};
+			return l;
+		}
 		
 		
 	}
