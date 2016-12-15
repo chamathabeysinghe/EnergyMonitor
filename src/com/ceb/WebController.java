@@ -32,11 +32,19 @@ import org.springframework.ui.ModelMap;
 
 @Controller
 public class WebController {
+	
+	//login and sign up 
 
    @RequestMapping(value = "/login", method = RequestMethod.GET)
    public ModelAndView user() {
       return new ModelAndView("login", "command", new User());
    }
+   
+   @RequestMapping(value = "/signup", method = RequestMethod.GET)
+   public String signup() {
+	   return "signup";
+   }
+   
    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
    public String dashboard() {
       return "dashboard";
