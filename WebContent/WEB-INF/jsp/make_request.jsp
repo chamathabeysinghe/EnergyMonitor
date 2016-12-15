@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>AdminLTE 2 | Make Complaint</title>
+<title>AdminLTE 2 | Make Request</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <jsp:include page="partials/styles.jsp"></jsp:include>
@@ -22,12 +22,12 @@
 
 			<section class="content-header">
 
-				<h1>Complaint / Grievance Entry</h1>
+				<h1>Request Entry</h1>
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li class="active">Make Complaint</li>
+					<li class="active">Make Request</li>
 				</ol>
-				
+
 			</section>
 
 
@@ -36,11 +36,19 @@
 					<div class="col-md-8">
 						<div class="box box-danger">
 							<div class="box-header with-border">
-								<h3 class="box-title">Make Complaint</h3>
+								<h3 class="box-title">Make Request</h3>
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
 								<form role="form">
+
+									<!-- select Request Type -->
+									<div class="form-group">
+										<label>Request Type</label> <select class="form-control">
+											<option>Change Location</option>
+											<option>Change Ownership</option>
+										</select>
+									</div>
 
 									<!-- text input Subject -->
 									<div class="form-group">

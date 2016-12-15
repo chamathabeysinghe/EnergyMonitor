@@ -100,9 +100,9 @@ public class WebController {
    public String view_complaints() {
       return "view_complaints";
    }
-   @RequestMapping(value = "/change_request", method = RequestMethod.GET)
-   public String change_request() {
-      return "change_request";
+   @RequestMapping(value = "/make_request", method = RequestMethod.GET)
+   public String make_request() {
+      return "make_request";
    }
    
 
