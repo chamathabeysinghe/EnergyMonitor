@@ -31,9 +31,5 @@ function yearSelect(){
 		done : function(e) {
 			console.log("DONE");
 		}
-	});
-	
-
-	
-	
+	});	
 }
