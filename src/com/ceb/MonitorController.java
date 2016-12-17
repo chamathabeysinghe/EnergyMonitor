@@ -35,8 +35,8 @@ public class MonitorController {
 		model.addAttribute("changeConnection",ModelUtility.ModelUtilityDAO.getConnectionChangeCount());
 		model.addAttribute("customerCount",ModelUtility.ModelUtilityDAO.getCustomerCount());
 		
-		HttpSession session = request.getSession(false);
-		int id=(Integer)(session.getAttribute("userID"));
+//		HttpSession session = request.getSession(false);
+//		int id=(Integer)(session.getAttribute("userID"));
 		
 		return "admindashboard";
 	}
