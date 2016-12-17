@@ -33,12 +33,15 @@ public class MonitorController {
 	}
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String adminDashboard(ModelMap model) {
+	public String adminDashboard(ModelMap model,HttpServletRequest request) {
 		model.addAttribute("complaints",ModelUtility.ModelUtilityDAO.getComplainCount());
 		model.addAttribute("newConnection",ModelUtility.ModelUtilityDAO.getConnectionRequestCount());
 		model.addAttribute("changeConnection",ModelUtility.ModelUtilityDAO.getConnectionChangeCount());
 		model.addAttribute("customerCount",ModelUtility.ModelUtilityDAO.getCustomerCount());
-
+		
+		HttpSession session = request.getSession(false);
+		int id=(Integer)(session.getAttribute("userID"));
+		
 		return "admindashboard";
 	}
 
