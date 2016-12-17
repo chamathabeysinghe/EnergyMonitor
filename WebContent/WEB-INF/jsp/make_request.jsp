@@ -1,13 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.ceb.models.EnergyConsumption"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>AdminLTE 2 | Make Complaint</title>
+<title>AdminLTE 2 | Make Request</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <jsp:include page="partials/styles.jsp"></jsp:include>
@@ -24,12 +22,12 @@
 
 			<section class="content-header">
 
-				<h1>Complaint / Grievance Entry</h1>
+				<h1>Request Entry</h1>
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li class="active">Make Complaint</li>
+					<li class="active">Make Request</li>
 				</ol>
-				
+
 			</section>
 
 
@@ -38,20 +36,25 @@
 					<div class="col-md-8">
 						<div class="box box-danger">
 							<div class="box-header with-border">
-								<h3 class="box-title">Make Complaint</h3>
+								<h3 class="box-title">Make Request</h3>
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
-								<form:form method="post" action="make_complaint" modelAttribute="complaint">
+								<form role="form">
 
-									<!-- IMPORTANT: SUBJECT IS TAKEN AS COMPLAINTDETAILS -->
-									<!-- text input Subject --> 
+									<!-- select Request Type -->
 									<div class="form-group">
-										<label>Subject</label> 
-										<form:input type="text" class="form-control"
-											placeholder="Enter ..." id="complaintDetails" path="complaintDetails"/>
+										<label>Request Type</label> <select class="form-control">
+											<option>Change Location</option>
+											<option>Change Ownership</option>
+										</select>
 									</div>
-									<!-- / IMPORTANT: SUBJECT IS TAKEN AS COMPLAINTDETAILS -->
+
+									<!-- text input Subject -->
+									<div class="form-group">
+										<label>Subject</label> <input type="text" class="form-control"
+											placeholder="Enter ..." id="subject">
+									</div>
 
 									<!-- textarea input Complaint Description -->
 									<div class="form-group">
@@ -64,7 +67,7 @@
 										<button type="submit" class="btn btn-primary">Submit</button>
 									</div>
 
-								</form:form>
+								</form>
 							</div>
 							<!-- /.box-body -->
 						</div>
