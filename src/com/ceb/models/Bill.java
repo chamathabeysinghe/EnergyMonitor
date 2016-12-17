@@ -15,6 +15,7 @@ public class Bill {
 	private int year;
 	private double amount;
 	private int connectionID;
+	
 	public double getUsage() {
 		return usage;
 	}

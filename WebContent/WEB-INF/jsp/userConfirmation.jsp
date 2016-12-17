@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>New User</title>
+<title>confirmation</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <jsp:include page="partials/styles.jsp"></jsp:include>
@@ -22,12 +22,13 @@
 			<div class="box box-info">
 
 				<div class="box-header with-border">
-					<h3 class="box-title">Add New User</h3>
+					<h3 class="box-title">User Confirmation</h3>
 				</div>
 				<!-- /.box-header -->
 
 				<!-- form start -->
-				<form:form method="POST" action="/EnergyMonitor/addUser" class="form-horizontal">
+				<form:form method="POST" action="/energymonitor/addUser"
+					class="form-horizontal">
 
 					<div class="box-body">
 
@@ -103,7 +104,7 @@
 					<!-- /.box-body -->
 					<div class="box-footer">
 						<button type="submit" class="btn btn-default">Cancel</button>
-						<input type="submit" value="Submit"/>
+						<button type="submit" class="btn btn-info pull-right">Submit</button>
 					</div>
 					<!-- /.box-footer -->
 

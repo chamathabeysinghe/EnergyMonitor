@@ -41,8 +41,15 @@ public class WebController {
    }
    
    @RequestMapping(value = "/signup", method = RequestMethod.GET)
-   public String signup() {
-	   return "signup";
+   public ModelAndView signup() {
+	   return new ModelAndView("user", "command", new User());
+   }
+   
+   @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+   public String addUser(@ModelAttribute("SpringWeb")User user, 
+   ModelMap model) {
+      
+      return "userConfirmation";
    }
    
    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
@@ -51,7 +58,7 @@ public class WebController {
    }
    @RequestMapping(value = "/postLogin", method = RequestMethod.POST)
    public String logUser(@ModelAttribute("SpringWeb")User user,ModelMap model) {
-      model.addAttribute("name", user.getName());
+      model.addAttribute("name", user.getFirstName());
       return "dashboard";
    }
    
