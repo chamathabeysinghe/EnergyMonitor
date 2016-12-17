@@ -1,5 +1,6 @@
 package com.ceb;
 
+import java.util.Calendar;
 import java.util.HashMap;
 
 import org.springframework.stereotype.Controller;
@@ -57,10 +58,19 @@ public class MonitorController {
 		HashMap<String, HashMap<String, String>> l = new HashMap<String, HashMap<String, String>>();
 		l.put("TotalUsage", resultsForTotalUsage);
 		l.put("TimeUsage", resultsForUsageByTime);
-
+		
+		
+		
+		double intercept=EnergyConsumption.EnergyConsumptionDAO.getElectricConsumptionInterceptForYearByProvince(province);
+		double slope=EnergyConsumption.EnergyConsumptionDAO.getElectricConsumptionSlopeForYearByProvince(province);
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		HashMap<String,String> predictedConsumptionByYear=new HashMap<String,String>();
+		for(int i=year+1;i<year+6;i++){
+			predictedConsumptionByYear.put(String.valueOf(i), String.valueOf(i*slope+intercept));
+		}
+		l.put("PredictedUsage", predictedConsumptionByYear);
 		Gson gson = new Gson();
 		String json = gson.toJson(l);
-
 		return json;
 	}
 	

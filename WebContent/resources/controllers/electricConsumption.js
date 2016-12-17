@@ -5,11 +5,18 @@ var timeLabel=[]
 var timeData=[]
 var yearLabel=[]
 var yearData=[]
+
+var predictionLabel=[]
+var predictionData=[]
+
 function selectProvince(provincename){
+	console.log("REseting");
 	timeLabel=[];
 	timeData=[]
 	yearLabel=[]
 	yearData=[]
+	predictionLabel=[]
+	predictionData=[]
 	var province=provincename;
 	var data={};
 	data["province"]=province;
@@ -29,7 +36,7 @@ function selectProvince(provincename){
 			var jsonObj=JSON.parse(jsonStr);
 			var jsonTime=jsonObj.TimeUsage;
 			var jsonTotal=jsonObj.TotalUsage;
-			
+			var jsonPrediction=jsonObj.PredictedUsage;
 			
 			for(var j in jsonTime){
 				timeLabel.push(j)
@@ -41,11 +48,18 @@ function selectProvince(provincename){
 				yearLabel.push(j)
 				yearData.push(parseFloat(jsonTotal[j]))
 			}
-			console.log(yearLabel);
-			console.log(yearData);
+			console.log("PREDICTIONS RECEIVED ***sdfdfasd**   "+jsonPrediction);
+
+			for(var j in jsonPrediction){
+				predictionLabel.push(j);
+				predictionData.push(parseFloat(jsonPrediction[j]));
+			}
+			console.log(predictionLabel);
+			console.log(predictionData);
+			
 			drawConsumptionChartForProvince();
 			drawTimeChartForProvince();
-			
+			drawConsumptionChartForPrediction();
 		},
 		error : function(e) {
 			console.log("ERROR: ", e);
