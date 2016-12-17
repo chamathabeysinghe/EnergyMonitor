@@ -77,7 +77,7 @@
 		$.ajax({
 			type : "POST",
 			url : "/EnergyMonitor/saveBill",
-			data : {msg:JSON.stringify(search)},
+			data : {connectionID:search["connectionID"],month:search["month"],year:search["year"],usage:search["usage"],amount:search["amount"]},
 			dataType : 'text',
 			timeout : 100000,
 			success : function(data) {

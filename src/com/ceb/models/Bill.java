@@ -9,7 +9,7 @@ import com.ceb.database.BillRowMapper;
 import com.ceb.database.DataAccess;
 
 public class Bill {
-	
+	private int billID;
 	private double usage;
 	private String month;
 	private int year;
@@ -84,6 +84,19 @@ public class Bill {
 
 
 
+	public int getBillID() {
+		return billID;
+	}
+	public void setBillID(int billID) {
+		this.billID = billID;
+	}
+
+
+
+
+
+
+
 	public static class BillDAO{
 		public static List<Bill> getAllBills(){
 			String sql="SELECT * FROM Bill";
@@ -112,8 +125,8 @@ public class Bill {
 		}
 		public static boolean addBill(Bill bill){
 			
-			String sql="INSERT INTO bill VALUES(?,?,?,?)";
-			Object[] values={bill.getUsage(),bill.getMonth(),bill.getAmount(),bill.getConnectionID()};
+			String sql="INSERT INTO bill VALUES(null,?,?,?,?,?)";
+			Object[] values={bill.getUsage(),bill.getMonth(),bill.getAmount(),bill.getYear(),bill.getConnectionID()};
 			int result=DataAccess.getInstance().update(sql, values);
 			if(result>0){
 				return true;

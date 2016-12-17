@@ -18,6 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ceb.models.Bill;
 import com.ceb.models.Bill.BillDAO;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.mysql.cj.x.json.JsonArray;
 //import com.fasterxml.jackson.databind.ObjectMapper;
 
 
@@ -37,15 +42,19 @@ public class BillController {
 	   }
 
 	 @RequestMapping(value = "findBill", method = RequestMethod.POST, produces={"application/json"})
-		public Object[] findBill(HttpServletRequest req, ModelMap model) {
+		public @ResponseBody String findBill(HttpServletRequest req, ModelMap model) {
 		 	System.out.println(req.getParameter("connectionID"));
 		 	int connectionID=Integer.parseInt(req.getParameter("connectionID"));
 		 	int billID=Integer.parseInt(req.getParameter("billID"));
 		 	int year=Integer.parseInt(req.getParameter("year"));
 		 	int month=Integer.parseInt(req.getParameter("month"));
 		 	Object[] bills=BillDAO.getBill(billID, connectionID, year, month).toArray();
-		 	model.addAttribute("bills", bills);
-		 	return bills;
+//		 	ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+		 	String jasonArray="";
+		 	System.out.println(bills[0]);
+	//	 	Gson gson=new GsonBuilder().create();
+		   // String jsonArray=gson.toJson(sentences);
+		 	return jasonArray;
 		 	
 		 	
 		
@@ -53,21 +62,17 @@ public class BillController {
 		}
 	 @RequestMapping(value = "/saveBill", method = RequestMethod.POST)
 		public String saveBill(HttpServletRequest req) {
-		 HashMap<String,String> result =null;
-		 	String data=req.getParameter("msg");
-//		 	try {
-//				
-//				   result=new ObjectMapper().readValue(data, HashMap.class);
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+		 	int connectionID=Integer.parseInt(req.getParameter("connectionID"));
+		 	int year=Integer.parseInt(req.getParameter("year"));
+		 	String month=req.getParameter("month");
+		 	double usage=Double.parseDouble(req.getParameter("usage"));
+		 	double amount=Double.parseDouble(req.getParameter("amount"));
 		 	Bill bill =new Bill();
-		 	bill.setAmount(Double.parseDouble(result.get("amount")));
-		 	bill.setUsage(Double.parseDouble(result.get("usage")));
-		 	bill.setConnectionID(Integer.parseInt(result.get("connectionID")));
-		 	bill.setMonth(result.get("month"));
-		 	bill.setYear(Integer.parseInt(result.get("year")));
+		 	bill.setAmount(amount);
+		 	bill.setUsage(usage);
+		 	bill.setConnectionID(connectionID);
+		 	bill.setMonth(month);
+		 	bill.setYear(year);
 		 	
 		 	boolean b=BillDAO.addBill(bill);
 		 	if(b){
