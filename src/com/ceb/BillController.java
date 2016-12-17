@@ -30,7 +30,7 @@ import com.mysql.cj.x.json.JsonArray;
 //import com.google.gson.Gson;
 
 
-@Controller
+@RestController
 public class BillController {
 
 	@RequestMapping(value = "/addBill", method = RequestMethod.GET)
@@ -62,7 +62,7 @@ public class BillController {
 //
 //		}
 	 @RequestMapping(value = "findBill", method = RequestMethod.POST)
-		public  String findBill(HttpServletRequest req, ModelMap model) {
+		public  ModelAndView findBill(HttpServletRequest req, ModelMap model) {
 
 		 int billId = -1;
 		 int connectionID=-1;
@@ -84,13 +84,13 @@ public class BillController {
 		 	
 		 	List<Bill> bills=BillDAO.getBill(billId, connectionID, year, month);
 		 	model.addAttribute("billList",bills);
-		 	return "viewSearchResult";
+		 	return new ModelAndView("viewSearchResult");
 		 	
 		 	
 		
 
 		}
-	 @RequestMapping(value = "/saveBill", method = RequestMethod.POST)
+	 @RequestMapping(value = "/saveBill", method = RequestMethod.POST, produces={"plain/text"})
 		public String saveBill(HttpServletRequest req) {
 		 	int connectionID=Integer.parseInt(req.getParameter("connectionID"));
 		 	int year=Integer.parseInt(req.getParameter("year"));
