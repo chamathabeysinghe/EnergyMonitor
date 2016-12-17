@@ -107,9 +107,21 @@
 	    	</div>
 	    	
 	    	<br><br><br>
+	    	
+	    	
 	    	<!-- For the provisional view interfaces -->
-	    	<div class="row " id="provisionalView">
-	    		<div class="col-md-6">
+	    	<div class="row hide" id="provisionalView">
+					<section class="content-header">
+
+						<h1>
+							<span id="provinceSummary">Western</span>Province <small>Usage Statics</small>
+						</h1>
+						<br><br>
+						
+						
+					</section>
+
+					<div class="col-md-6">
 	    	
 		    		<div class="box box-info">
 			            <div class="box-header with-border">
@@ -230,6 +242,7 @@
 	</script>
 	<script type="text/javascript">
 		$(".province").on("click",function(e){
+			console.log("DFUCK");
 			e.preventDefault();
 			var province=$(this).data("province");
 			selectProvince(province)

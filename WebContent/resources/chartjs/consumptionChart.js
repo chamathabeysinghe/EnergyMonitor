@@ -133,7 +133,6 @@ function drawProvinceChart(){
     
     for(var i=0;i<dataSetByProvince.length;i++){
     	var colors=getRandomColor();
-    	console.log(colors);
     	var o={
                 value: dataSetByProvince[i],
                 color: colors,

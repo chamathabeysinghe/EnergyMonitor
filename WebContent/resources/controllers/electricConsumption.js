@@ -1,5 +1,3 @@
-console.log("CAM TO CONSUMPTION 233434we2 ")
-selectProvince("wer");
 
 var timeLabel=[]
 var timeData=[]
@@ -10,7 +8,11 @@ var predictionLabel=[]
 var predictionData=[]
 
 function selectProvince(provincename){
-	console.log("REseting");
+	$('#provisionalView').removeClass('hide');
+	$('#provinceSummary').text(provincename);
+	$('html, body').animate({ scrollTop: $('#provisionalView').offset().top }, 'slow');
+
+	console.log("FNAME IS SETTED "+provincename)
 	timeLabel=[];
 	timeData=[]
 	yearLabel=[]
@@ -30,8 +32,7 @@ function selectProvince(provincename){
 		timeout : 100000,
 		success : function(data) {
 			//$('#consumptionChartProvince')[0].scrollIntoView( true );
-
-			console.log("SUCCESS: ", data);
+			console.log("DFDF");
 			var jsonStr=data
 			var jsonObj=JSON.parse(jsonStr);
 			var jsonTime=jsonObj.TimeUsage;
@@ -48,14 +49,12 @@ function selectProvince(provincename){
 				yearLabel.push(j)
 				yearData.push(parseFloat(jsonTotal[j]))
 			}
-			console.log("PREDICTIONS RECEIVED ***sdfdfasd**   "+jsonPrediction);
 
 			for(var j in jsonPrediction){
 				predictionLabel.push(j);
 				predictionData.push(parseFloat(jsonPrediction[j]));
 			}
-			console.log(predictionLabel);
-			console.log(predictionData);
+			
 			
 			drawConsumptionChartForProvince();
 			drawTimeChartForProvince();
