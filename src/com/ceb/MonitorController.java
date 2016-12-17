@@ -22,11 +22,7 @@ import com.google.gson.Gson;
 public class MonitorController {
 
 	@RequestMapping(value = "/usage", method = RequestMethod.GET)
-	public String consumerUsage(ModelMap model,HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		session.setAttribute("userID", 1);
-		
-		
+	public String consumerUsage(ModelMap model,HttpServletRequest request) {		
 		String results[] = Bill.getUsageRepor(1, 2016);
 		model.addAttribute("usageList", results);
 		return "consumerUsage";
