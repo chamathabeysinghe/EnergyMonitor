@@ -271,14 +271,26 @@ public class EnergyConsumption {
 		
 		public static double getElectricConsumptionInterceptForYearByProvince(String province){
 			String sql="SELECT  electricUsageIntercept(?)";
-			double d=DataAccess.getInstance().queryForObject(sql,new Object[]{province}, Double.class);
+			double d=0;
+
+			try{
+				d=DataAccess.getInstance().queryForObject(sql,new Object[]{province}, Double.class);
+			}
+			catch(NullPointerException e){
+			}
 			
 			return d;
 		}
 		
 		public static double getElectricConsumptionSlopeForYearByProvince(String province){
 			String sql="SELECT  electricUsageSlope(?)";
-			double d=DataAccess.getInstance().queryForObject(sql,new Object[]{province}, Double.class);
+			double d=0;
+			try{
+				d=DataAccess.getInstance().queryForObject(sql,new Object[]{province}, Double.class);
+			}
+			catch(NullPointerException e){
+				
+			}
 			
 			return d;
 		}
