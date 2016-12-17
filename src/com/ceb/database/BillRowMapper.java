@@ -9,6 +9,7 @@ public class BillRowMapper implements RowMapper<Bill>{
 	
 	public Bill mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Bill b=new Bill();
+		b.setBillID(rs.getInt("id"));
 		b.setConnectionID(rs.getInt("connectionID"));
 		b.setAmount(rs.getDouble("amount"));
 		b.setMonth(rs.getString("month"));

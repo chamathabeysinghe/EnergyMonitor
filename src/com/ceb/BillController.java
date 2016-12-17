@@ -3,6 +3,7 @@ package com.ceb;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,10 +19,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ceb.models.Bill;
 import com.ceb.models.Bill.BillDAO;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+//import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.ObjectWriter;
+//import com.google.gson.Gson;
+//import com.google.gson.GsonBuilder;
 import com.mysql.cj.x.json.JsonArray;
 //import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -29,7 +30,7 @@ import com.mysql.cj.x.json.JsonArray;
 //import com.google.gson.Gson;
 
 
-@RestController
+@Controller
 public class BillController {
 
 	@RequestMapping(value = "/addBill", method = RequestMethod.GET)
@@ -41,20 +42,49 @@ public class BillController {
 		   return new ModelAndView("searchBill");
 	   }
 
-	 @RequestMapping(value = "findBill", method = RequestMethod.POST, produces={"application/json"})
-		public @ResponseBody String findBill(HttpServletRequest req, ModelMap model) {
-		 	System.out.println(req.getParameter("connectionID"));
-		 	int connectionID=Integer.parseInt(req.getParameter("connectionID"));
-		 	int billID=Integer.parseInt(req.getParameter("billID"));
-		 	int year=Integer.parseInt(req.getParameter("year"));
-		 	int month=Integer.parseInt(req.getParameter("month"));
-		 	Object[] bills=BillDAO.getBill(billID, connectionID, year, month).toArray();
-//		 	ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-		 	String jasonArray="";
-		 	System.out.println(bills[0]);
-	//	 	Gson gson=new GsonBuilder().create();
-		   // String jsonArray=gson.toJson(sentences);
-		 	return jasonArray;
+//	 @RequestMapping(value = "findBill", method = RequestMethod.POST, produces={"application/json"})
+//		public @ResponseBody String findBill(HttpServletRequest req, ModelMap model) {
+//		 	System.out.println(req.getParameter("connectionID"));
+//		 	int connectionID=Integer.parseInt(req.getParameter("connectionID"));
+//		 	int billID=Integer.parseInt(req.getParameter("billID"));
+//		 	int year=Integer.parseInt(req.getParameter("year"));
+//		 	int month=Integer.parseInt(req.getParameter("month"));
+//		 	Object[] bills=BillDAO.getBill(billID, connectionID, year, month).toArray();
+////		 	ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+//		 	String jasonArray="";
+//		 	System.out.println(bills[0]);
+//	//	 	Gson gson=new GsonBuilder().create();
+//		   // String jsonArray=gson.toJson(sentences);
+//		 	return jasonArray;
+//		 	
+//		 	
+//		
+//
+//		}
+	 @RequestMapping(value = "findBill", method = RequestMethod.POST)
+		public  String findBill(HttpServletRequest req, ModelMap model) {
+
+		 int billId = -1;
+		 int connectionID=-1;
+		 int year=-1;
+		 int month=-1;
+		 if(req.getParameter("connectionID").matches("\\d+")){
+			 connectionID=Integer.parseInt(req.getParameter("connectionID"));
+		 }
+		 if(req.getParameter("billID").matches("\\d+")){
+			 billId=Integer.parseInt(req.getParameter("billID"));
+		 }
+		 if(req.getParameter("year").matches("\\d+")){
+			 year=Integer.parseInt(req.getParameter("year"));
+		 }
+		 if(req.getParameter("month").matches("\\d+")){
+			 month=Integer.parseInt(req.getParameter("month"));
+		 }
+			 //System.out.println(req.getParameter("connectionID"));
+		 	
+		 	List<Bill> bills=BillDAO.getBill(billId, connectionID, year, month);
+		 	model.addAttribute("billList",bills);
+		 	return "viewSearchResult";
 		 	
 		 	
 		

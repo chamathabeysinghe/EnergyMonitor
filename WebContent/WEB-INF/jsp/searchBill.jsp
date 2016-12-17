@@ -21,40 +21,40 @@
 	<script>
 
 </script>
-  		<form class="form-horizontal" id="search-form ">
+  		<form class="form-horizontal" id="search-form" action="/EnergyMonitor/findBill" method="post">
   			<div class="form-group form-group-lg">
 				<label class="col-sm-2 control-label">Bill ID</label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" id="billID">
+					<input type="text" class="form-control" id="billID" name="billID">
 				</div>
 			</div>
 			<div class="form-group form-group-lg">
 				<label class="col-sm-2 control-label">Connection ID</label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" id="connectionID">
+					<input type="text" class="form-control" id="connectionID" name="connectionID">
 				</div>
 			</div>
 			<div class="form-group form-group-lg">
 				<label class="col-sm-2 control-label">Month</label>
 				<div class="col-sm-8" >
-					<input type="text" class="form-control"   id="month" >
+					<input type="text" class="form-control"   id="month" name="month" >
 				</div>
 			</div>
 			
 			<div class="form-group form-group-lg">
 				<label class="col-sm-2 control-label">year</label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" id="year">
+					<input type="text" class="form-control" id="year" name="year">
 				</div>
 			</div>
-			
+			<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" id="bth-save"
+						class="btn btn-primary btn-lg" >Find</button>
+				</div>
 			
 		</form>
 		<div >
-				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" id="bth-save"
-						class="btn btn-primary btn-lg" onclick="searchViaAjax()">Save</button>
-				</div>
+				
 			</div>
 			<div id="feedback" class="col-sm-offset-2 col-sm-10"></div>
 
