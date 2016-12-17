@@ -54,6 +54,7 @@ public class WebController {
 	   return "consumerUsage";
    }
    
+
    @RequestMapping(value="/ajaxBillYearChange",method=RequestMethod.POST,produces = "plain/text")
    @ResponseBody
    public String ajaxBillYearChange(@RequestBody String year){
@@ -65,10 +66,36 @@ public class WebController {
    @RequestMapping(value="/consumption",method=RequestMethod.GET)
    public String locationUsage(ModelMap model){
 	   
-	   String s[]=EnergyConsumption.EnergyConsumptionDAO.getEnergyConsumptionRecordByYear();
-	   model.addAttribute("usageList",s);
+	   String totlaUsageByYear[]=EnergyConsumption.EnergyConsumptionDAO.getEnergyConsumptionRecordByYear();
+	   model.addAttribute("usageList",totlaUsageByYear);
+	   
+	   String totlaUsageByTime[]=EnergyConsumption.EnergyConsumptionDAO.getCountryEnergyConsumptionCategorizedByTime();
+	   model.addAttribute("usageListByTime",totlaUsageByTime);
+	   
+	   String totlaUsageByProvince[]=EnergyConsumption.EnergyConsumptionDAO.getCountryEnergyConsumptionCategorizedByProvince();
+	   model.addAttribute("usageListByProvince",totlaUsageByProvince);
+	   
 	   return "electricConsumption";
 	   
    }
+
+
+   
+   
+//   Complaint and Request Handling
+   
+   /*@RequestMapping(value = "/make_complaint", method = RequestMethod.GET)
+   public String make_complaint() {
+      return "make_complaint";
+   }*/
+   @RequestMapping(value = "/view_complaints", method = RequestMethod.GET)
+   public String view_complaints() {
+      return "view_complaints";
+   }
+   @RequestMapping(value = "/make_request", method = RequestMethod.GET)
+   public String make_request() {
+      return "make_request";
+   }
+   
 
 }

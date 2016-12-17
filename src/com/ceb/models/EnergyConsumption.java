@@ -132,6 +132,63 @@ public class EnergyConsumption {
 			return new String[]{yearArray,usageArray};
 		}
 		
+		public static String[] getCountryEnergyConsumptionCategorizedByTime(){
+			String sql="select sum(electricUsage) as totalUsage,if(hour(timeStamp)>6 and hour(timeStamp)<18,'Day','Night') as time from energyconsumption GROUP By hour(timeStamp)>6 and hour(timeStamp)<18";
+			List<String[]> results =
+					DataAccess.getInstance().query(sql, new RowMapper<String[]>(){
+						@Override
+						public String[] mapRow(ResultSet rs, int arg1) throws SQLException {
+							// TODO Auto-generated method stub
+							String[] result=new String[2];
+							
+							result[0]=String.valueOf(rs.getString("time"));
+							result[1]=String.valueOf(rs.getDouble("totalUsage"));
+							
+							return result;
+						}
+						
+					});
+			String timesArray="[";
+			String usageArray="[";
+			for(String s[]:results){
+				timesArray+="'"+s[0]+"',";
+				usageArray+=s[1]+",";
+			}
+			timesArray+="]";
+			usageArray+="]";
+			return new String[]{timesArray,usageArray};
+
+		}
+		
+		public static String[] getCountryEnergyConsumptionCategorizedByProvince(){
+			String sql="SELECT sum(electricUsage) as totalUsage,location.province as province from energyconsumption,location where location.id=energyconsumption.locationID group by location.province";
+			
+			List<String[]> results =
+					DataAccess.getInstance().query(sql, new RowMapper<String[]>(){
+						@Override
+						public String[] mapRow(ResultSet rs, int arg1) throws SQLException {
+							// TODO Auto-generated method stub
+							String[] result=new String[2];
+							
+							result[0]=String.valueOf(rs.getString("province"));
+							result[1]=String.valueOf(rs.getDouble("totalUsage"));
+							
+							return result;
+						}
+						
+					});
+			String provinceArray="[";
+			String usageArray="[";
+			for(String s[]:results){
+				provinceArray+="'"+s[0]+"',";
+				usageArray+=s[1]+",";
+			}
+			provinceArray+="]";
+			usageArray+="]";
+			return new String[]{provinceArray,usageArray};
+
+		}
+		
 //		public static List<EnergyConsumption> getEnergyConsumptionRecordsByTimeStamp(int locationID){
 //			String sql="SELECT * FROM EnergyConsumption WHERE locationID=?";
 //			List<EnergyConsumption> resultList=DataAccess.getInstance().query(sql,new Object[]{locationID},new EnergyConsumptionRowMapper());
