@@ -244,31 +244,7 @@ public class EnergyConsumption {
 			}
 			return l;
 		}
-		
-//		public static HashMap<String,String> getEnergyConsumptionExpectedByYearForProvince(String province){
-//			String sql="SELECt sum(electricUsage) as yearUsage,year(timeStamp) as year from energyconsumption,location where location.id=energyconsumption.locationID and location.province=? GROUP by year(timeStamp)";
-//			List<String[]> results =
-//				DataAccess.getInstance().query(sql,new Object[]{province}, new RowMapper<String[]>(){
-//					@Override
-//					public String[] mapRow(ResultSet rs, int arg1) throws SQLException {
-//						// TODO Auto-generated method stub
-//						String[] result=new String[2];
-//						
-//						result[0]=String.valueOf(rs.getInt("year"));
-//						result[1]=String.valueOf(rs.getDouble("yearUsage"));
-//						return result;
-//					}
-//					
-//				});
-//			HashMap<String,String> l=new HashMap<String,String>();
-//			for(String s[]:results){
-//				l.put(s[0], s[1]);
-//				
-//				
-//			}
-//			return l;
-//		}
-		
+				
 		public static double getElectricConsumptionInterceptForYearByProvince(String province){
 			String sql="SELECT  electricUsageIntercept(?)";
 			double d=0;
