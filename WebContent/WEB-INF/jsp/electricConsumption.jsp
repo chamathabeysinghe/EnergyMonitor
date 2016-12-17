@@ -56,7 +56,7 @@
 		              </div>
 		            </div>
 		            <div class="box-body">
-		              <div class="chart">
+		              <div class="chart" id="consumptionChartContainer">
 		                <canvas id="consumptionChart" style="height: 181px; width: 493px;" height="203" width="554"></canvas>
 		              </div>
 		            </div>
@@ -134,7 +134,7 @@
 			              </div>
 			            </div>
 			            <div class="box-body">
-			              <div class="chart">
+			              <div class="chart consumptionChartProvinceContainer">
 			                <canvas id="consumptionChartProvince" style="height: 200px; width: 493px;" height="200" width="554"></canvas>
 			              </div>
 			            </div>

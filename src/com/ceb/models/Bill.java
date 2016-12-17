@@ -77,6 +77,37 @@ public class Bill {
 		return new String[]{months,usage};
 	}
 	
+public static String[] getBillReport(int connectionID,int year){
+		
+		String monthList[]={"January","February","March","April","May","June","July","August","September","Octomber","November","December"};
+		
+		ArrayList<String> monthArray=new ArrayList<>();
+		ArrayList<Double> billArray=new ArrayList<>();
+		for(String month:monthList){
+			monthArray.add(month);
+			billArray.add(0.0);
+		}
+		
+		String months="[";
+		String usage="[";
+		
+		for(Bill b:BillDAO.getBillsByConnection(connectionID,year)){
+			//usageMap.put(b.getMonth(),b.getUsage());
+			billArray.set(monthArray.indexOf(b.getMonth()), b.getAmount());
+			
+		}
+		
+		for(String month:monthArray){
+			months+="'"+month+"',";
+			usage+=billArray.get(monthArray.indexOf(month))+",";
+		}
+		
+		
+		usage+="]";
+		months+="]";
+		return new String[]{months,usage};
+	}
+	
 	
 	
 	public static class BillDAO{

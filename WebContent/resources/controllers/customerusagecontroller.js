@@ -11,9 +11,10 @@ function yearSelect(){
 		data : year,
 		dataType : 'text',
 		timeout : 100000,
-		success : function(data) {
+		success : function(dataReturn) {
 			console.log(dataSet);
-			console.log("SUCCESS: ", data);
+			console.log("SUCCESS: ", dataReturn);
+			var data=dataReturn.split("::")[0];
 			var result=(data.replace("[","")).replace("]","");
 			console.log(result);
 			
@@ -23,6 +24,16 @@ function yearSelect(){
 			dataSet=myArray;
 			drawBillUsageCharts();
 			
+			var dataAmount=dataReturn.split("::")[1];
+			var resultAmount=(dataAmount.replace("[","")).replace("]","");
+			console.log(resultAmount);
+			
+			var myArrayAmount = resultAmount.split(",");
+			for(var i=0; i<myArrayAmount.length; i++) { myArrayAmount[i] = +myArrayAmount[i]; } 
+			console.log("MyArrayAmount"+myArrayAmount);
+			console.log(myArrayAmount);
+			dataSet2=myArrayAmount;
+			drawBillAmountCharts();			
 		},
 		error : function(e) {
 			console.log("ERROR: ", e);

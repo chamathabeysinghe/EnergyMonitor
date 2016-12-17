@@ -1,5 +1,6 @@
 package com.ceb;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -24,7 +25,10 @@ public class MonitorController {
 	@RequestMapping(value = "/usage", method = RequestMethod.GET)
 	public String consumerUsage(ModelMap model,HttpServletRequest request) {		
 		String results[] = Bill.getUsageRepor(1, 2016);
+		String results2[]=Bill.getBillReport(1, 2016);
 		model.addAttribute("usageList", results);
+		model.addAttribute("billList",results2);
+		
 		return "consumerUsage";
 	}
 	
@@ -46,7 +50,9 @@ public class MonitorController {
 	public String ajaxBillYearChange(@RequestBody String year) {
 		int intYear = Integer.parseInt(year);
 		String results[] = Bill.getUsageRepor(1, intYear);
-		return results[1];
+		String results2[]=Bill.getBillReport(1, intYear);
+
+		return results[1]+"::"+results2[1];
 	}
 
 	@RequestMapping(value = "/consumption", method = RequestMethod.GET)

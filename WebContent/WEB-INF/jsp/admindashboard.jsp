@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AdminLTE 2 | Dashboard</title>
+  <title>Admin | Home</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <jsp:include page="partials/styles.jsp"></jsp:include>
