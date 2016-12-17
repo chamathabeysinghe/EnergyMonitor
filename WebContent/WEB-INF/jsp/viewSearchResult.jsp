@@ -14,14 +14,29 @@
   <jsp:include page="partials/scripts.jsp"></jsp:include>
   
 </head>
-
 <body class="hold-transition skin-blue sidebar-mini">
-	<jsp:include page="partials/header.jsp"></jsp:include>
-	
-	 <div class="page-header text-center">
-  			<h1 >View Bills</h1>
-	</div>
-	<%
+	<div class="wrapper">
+
+		<jsp:include page="partials/header.jsp"></jsp:include>
+		<jsp:include page="partials/sidenav.jsp"></jsp:include>
+
+		<div class="content-wrapper">
+
+
+
+			<section class="content-header">
+
+				<h1>View Bills</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li class="active">View bill</li>
+				</ol>
+				
+			</section>
+
+
+			<section class="content">
+				<%
     	//String result = request.getParameter("usageList");
 		
 
@@ -68,11 +83,30 @@
 	//	out.println("var labelSet="+result[0]+";");
 	//	out.println("console.log(dataSet);");
 	%>
-	
-	
-	
-	
-	
+				
+			</section>
+
+
+		</div>
+
+		<jsp:include page="partials/footer.jsp"></jsp:include>
+
+		<jsp:include page="partials/controllsidebar.jsp"></jsp:include>
+	</div>
+
+	<jsp:include page="partials/scripts.jsp"></jsp:include>
+
+
+	<!-- ChartJS 1.0.1 -->
+	<script src="resources/plugins/chartjs/Chart.min.js"></script>
+	<!-- FastClick -->
+	<script src="resources/plugins/fastclick/fastclick.js"></script>
+	<!-- AdminLTE App -->
+	<script src="resources/dist/js/app.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="resources/dist/js/demo.js"></script>
+	<script src="resources/chartjs/chart.js"></script>
+	<script src="resources/controllers/customerusagecontroller.js"></script>
 
 </body>
 </html>

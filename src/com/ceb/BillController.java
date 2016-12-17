@@ -112,38 +112,6 @@ public class BillController {
 		 	}
 		 	
 		 	
-		 	//System.out.println("working"+data);
-//		 	BufferedReader reader = null;
-//			try {
-//				reader = req.getReader();
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		 	Gson gson = new Gson();
-//		 	Bill bill=gson.fromJson(reader, Bill.class);
-//		 	System.out.println("working"+bill);
-			//AjaxResponseBody result = new AjaxResponseBody();
-
-//			if (isValidSearchCriteria(search)) {
-//				List<User> users = findByUserNameOrEmail(search.getUsername(), search.getEmail());
-//
-//				if (users.size() > 0) {
-//					result.setCode("200");
-//					result.setMsg("");
-//					result.setResult(users);
-//				} else {
-//					result.setCode("204");
-//					result.setMsg("No user!");
-//				}
-//			
-//			} else {
-//				result.setCode("400");
-//				result.setMsg("Search criteria is empty!");
-//			}
-
-			//AjaxResponseBody will be converted into json format and send back to the request.
-		
 
 		}
 	 

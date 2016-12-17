@@ -11,17 +11,29 @@
   <jsp:include page="partials/scripts.jsp"></jsp:include>
   
 </head>
-
 <body class="hold-transition skin-blue sidebar-mini">
-	<jsp:include page="partials/header.jsp"></jsp:include>
-	
-	 <div class="page-header text-center">
-  			<h1 >Add New Bill</h1>
-	</div>
-	<script>
+	<div class="wrapper">
 
-</script>
-  		<form class="form-horizontal" id="save-form ">
+		<jsp:include page="partials/header.jsp"></jsp:include>
+		<jsp:include page="partials/sidenav.jsp"></jsp:include>
+
+		<div class="content-wrapper">
+
+
+
+			<section class="content-header">
+
+				<h1>Add Bill</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li class="active">Add bill</li>
+				</ol>
+				
+			</section>
+
+
+			<section class="content">
+				<form class="form-horizontal" id="save-form ">
 			<div class="form-group form-group-lg">
 				<label class="col-sm-2 control-label">Connection ID</label>
 				<div class="col-sm-8">
@@ -58,13 +70,34 @@
 			<div id="feedback" class="col-sm-offset-2 col-sm-10"></div>
 
 	
-	
-	
-	
-	
-<script>
-	
+				
+			</section>
 
+
+		</div>
+
+		<jsp:include page="partials/footer.jsp"></jsp:include>
+
+		<jsp:include page="partials/controllsidebar.jsp"></jsp:include>
+	</div>
+
+	<jsp:include page="partials/scripts.jsp"></jsp:include>
+
+
+	<!-- ChartJS 1.0.1 -->
+	<script src="resources/plugins/chartjs/Chart.min.js"></script>
+	<!-- FastClick -->
+	<script src="resources/plugins/fastclick/fastclick.js"></script>
+	<!-- AdminLTE App -->
+	<script src="resources/dist/js/app.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="resources/dist/js/demo.js"></script>
+	<script src="resources/chartjs/chart.js"></script>
+	<script src="resources/controllers/customerusagecontroller.js"></script>
+
+</body>
+
+<script>
 	function saveViaAjax() {
 
 		var search = {}
@@ -105,7 +138,7 @@
 		$('#feedback').html(json);
 	}
 </script>
-</body>
+
 </html>
 
 
