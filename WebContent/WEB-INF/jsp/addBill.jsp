@@ -64,7 +64,7 @@
 		<div >
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" id="bth-save"
-						class="btn btn-primary btn-lg" onclick="saveViaAjax()">Save</button>
+						class="btn btn-primary btn-lg" onclick="validate()">Save</button>
 				</div>
 			</div>
 			<div id="feedback" class="col-sm-offset-2 col-sm-10"></div>
@@ -98,6 +98,34 @@
 </body>
 
 <script>
+
+	function validate(){
+		//console.log("validate working");
+		var search = {}
+		search["connectionID"] = $("#connectionID").val();
+		search["month"] = $("#month").val().split("/")[0];
+		search["year"] = $("#month").val().split("/")[1];
+		search["usage"] = $("#usage").val();
+		search["amount"] = $("#amount").val();
+		var check=true;
+		for (var val in search) {
+			//console.log("loop works for "+search[val]);
+			if(!numcheck(search[val])){
+				//console.log("loop check works and fail for "+search[val]);
+				check=false;
+			}
+		}
+		if(check){
+			saveViaAjax();
+		}else{
+			$('#feedback').html("Please check input values again.");
+		}
+		
+	}
+	function numcheck(data){
+		
+		return (data - 0) == data && data.length > 0;
+	}
 	$("#usage").keyup(function(event){
 
 			var units=parseInt($("#usage").val());
@@ -143,7 +171,7 @@
 			},
 			error : function(e) {
 				console.log("ERROR: ", e);
-				display(e);
+				display("Server error occured. Please check data again.");
 			},
 			done : function(e) {
 				console.log("DONE");
