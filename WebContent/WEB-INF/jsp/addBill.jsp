@@ -49,13 +49,13 @@
 			<div class="form-group form-group-lg">
 				<label class="col-sm-2 control-label">Usage</label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" id="usage">
+					<input type="text" class="form-control"  id="usage">
 				</div>
 			</div>
 			<div class="form-group form-group-lg">
 				<label class="col-sm-2 control-label">Amount</label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" id="amount">
+					<input type="text" class="form-control"  id="amount">
 				</div>
 			</div>
 			
@@ -98,6 +98,30 @@
 </body>
 
 <script>
+	$("#usage").keyup(function(event){
+
+			var units=parseInt($("#usage").val());
+			var charge=0.0;
+			if(units!=null){
+				if(units>0 && units<30){
+					charge=2.5*units+30;
+				}else if(units>=30 && units<60){
+					charge=4.85*units+60;
+				}else if(units>=60 && units<90){
+					charge=10*units+90;
+				}else if(units>=90 && units<120){
+					charge=27.75*units+480;
+				}else if(units>=120 && units<180){
+					charge=32*units+480;
+				}else if(units>=180){
+					charge=45*units+540;
+				}
+				$('#amount').val(charge);
+			}else{
+				$('#feedback').html("invalid usage amount");
+			}	
+	});
+	
 	function saveViaAjax() {
 
 		var search = {}
