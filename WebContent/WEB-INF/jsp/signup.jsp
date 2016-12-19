@@ -27,45 +27,45 @@
 				<!-- /.box-header -->
 
 				<!-- form start -->
-				<form:form method="POST" action="/EnergyMonitor/addUser" class="form-horizontal">
+				<form:form class="form-horizontal" id="signup-form" action= "/EnergyMonitor/addUser" method = "post">
 
 					<div class="box-body">
 
 						<div class="form-group">
-							<label for="firstname" class="col-sm-2 control-label">FirstName</label>
+							<label for="firstname" class="col-sm-2 control-label">FirstName*</label>
 							<div class="col-sm-6">
-								<input type="text" class="form-control" id="firstname"
+								<input type="text" class="form-control" id="firstName"
 									placeholder="firstname">
 							</div>
 
 						</div>
 						<div class="form-group">
-							<label for="lastname" class="col-sm-2 control-label">LastName</label>
+							<label for="lastname" class="col-sm-2 control-label">LastName*</label>
 
 							<div class="col-sm-6">
-								<input type="text" class="form-control" id="lastname"
+								<input type="text" class="form-control" id="lastName"
 									placeholder="lastname">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="NamewithInitials" class="col-sm-2 control-label">Namewith Initials</label>
+							<label for="NamewithInitials" class="col-sm-2 control-label">Name with Initials*</label>
 							<div class="col-sm-6">
-								<input type="text" class="form-control" id="NamewithInitials"
+								<input type="text" class="form-control" id="nameWithInitials"
 									placeholder="NamewithInitials">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="Address" class="col-sm-2 control-label">Address</label>
+							<label for="Address" class="col-sm-2 control-label">Address*</label>
 							<div class="col-sm-6">
-								<input type="text" class="form-control" id="Address"
+								<input type="text" class="form-control" id="address"
 									placeholder="address">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="NIC" class="col-sm-2 control-label">NIC</label>
+							<label for="NIC" class="col-sm-2 control-label">NIC*</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" id="NIC"
 									placeholder="xxxxxV">
@@ -74,16 +74,13 @@
 
 
 						<div class="form-group">
-							<label for="Phone Number" class="col-sm-2 control-label">PhoneNumber</label> <span class="col-sm-4"> <input type="number"
-								class="form-control" id="PhoneNumber" placeholder="0xxxxxxxx">
+							<label for="Phone Number" class="col-sm-2 control-label">PhoneNumber*</label> <span class="col-sm-4"> <input type="number"
+								class="form-control" id="phoneNumber" placeholder="0xxxxxxxx">
 
-							</span> <span class="col-sm-4"> <input type="number"
-								class="form-control" id="PhoneNumber2" placeholder="0xxxxxxxx">
-							</span>
 						</div>
 
 						<div class="form-group">
-							<label for="email" class="col-sm-2 control-label">Email</label>
+							<label for="email" class="col-sm-2 control-label">Email*</label>
 
 							<div class="col-sm-6">
 								<input type="email" class="form-control" id="email"
@@ -92,22 +89,22 @@
 						</div>
 
 						<div class="form-group">
-							<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+							<label for="inputPassword3" class="col-sm-2 control-label">Password*</label>
 							<div class="col-sm-6">
-								<input type="password" class="form-control" id="inputPassword3"
-									placeholder="Password">
+								<input type="password" class="form-control" id="inputPassword" placeholder="Password">
 							</div>
 						</div>
 
 					</div>
 					<!-- /.box-body -->
 					<div class="box-footer">
-						<button type="submit" class="btn btn-default">Cancel</button>
-						<input type="submit" value="Submit"/>
+						
+						<button type="submit" class="btn btn-primary" >Submit</button>
 					</div>
 					<!-- /.box-footer -->
-
 				</form:form>
+				<button type="submit" class="btn btn-default">Cancel</button>
+				
 			</div>
 		</div>
 
@@ -131,4 +128,14 @@
 	<script src="resources/controllers/customerusagecontroller.js"></script>
 
 </body>
+
+	<script>
+		function savedata(){
+			console.log("working")
+			
+			var userdata= {}
+			
+			
+		}
+	</script>
 </html>

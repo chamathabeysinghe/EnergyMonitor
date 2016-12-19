@@ -1,16 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.ceb.models.EnergyConsumption"%>
 <%@ page import="java.util.ArrayList"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>confirmation</title>
+<title>Requests & Complaints</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <jsp:include page="partials/styles.jsp"></jsp:include>
 </head>
-
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 
@@ -19,97 +18,101 @@
 
 		<div class="content-wrapper">
 
-			<div class="box box-info">
 
-				<div class="box-header with-border">
-					<h3 class="box-title">User Confirmation</h3>
+
+			<section class="content-header">
+
+				<h1>Requests & Complaints</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li class="active">Requests & Complaints</li>
+				</ol>
+
+			</section>
+
+
+			<section class="content">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title">Consumer Requests</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+								<form role="form">		
+									<div class="panel-group" id="panel-978814">
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978814" href="#panel-request-1">Request #1 - Subject</a>
+											</div>
+											<div id="panel-request-1" class="panel-collapse collapse">
+												<div class="panel-body">
+													Content goes here...
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978814" href="#panel-request-2">Request #2 - Subject</a>
+											</div>
+											<div id="panel-request-2" class="panel-collapse collapse">
+												<div class="panel-body">
+													Content goes here...
+												</div>
+											</div>
+										</div>
+									</div>	
+									</form>							
+							</div>
+							<!-- /.box-body -->
+						</div>
+					</div>
+					
+					<div class="col-md-6">
+						<div class="box box-danger">
+							<div class="box-header with-border">
+								<h3 class="box-title">Consumer Complaints</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+								<form role="form">
+									<div class="panel-group" id="panel-978814">
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978814" href="#panel-complaint-1">Complaint #1 - Subject</a>
+											</div>
+											<div id="panel-complaint-1" class="panel-collapse collapse">
+												<div class="panel-body">
+													Content goes here...
+												</div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978814" href="#panel-complaint-2">Complaint #2 - Subject</a>
+											</div>
+											<div id="panel-complaint-2" class="panel-collapse collapse">
+												<div class="panel-body">
+													Content goes here...
+												</div>
+											</div>
+										</div>
+									</div>	
+									</form>							
+							</div>
+							<!-- /.box-body -->
+						</div>
+					</div>
+					
+					
+					
+					
+					
 				</div>
-				<!-- /.box-header -->
-
-				<!-- form start -->
-				<form:form method="POST" action="/energymonitor/addUser"
-					class="form-horizontal">
-
-					<div class="box-body">
-
-						<div class="form-group">
-							<label for="firstname" class="col-sm-2 control-label">FirstName</label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" id="firstname"
-									placeholder="firstname">
-							</div>
-
-						</div>
-						<div class="form-group">
-							<label for="lastname" class="col-sm-2 control-label">LastName</label>
-
-							<div class="col-sm-6">
-								<input type="text" class="form-control" id="lastname"
-									placeholder="lastname">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="NamewithInitials" class="col-sm-2 control-label">Namewith Initials</label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" id="NamewithInitials"
-									placeholder="NamewithInitials">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="Address" class="col-sm-2 control-label">Address</label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" id="Address"
-									placeholder="address">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="NIC" class="col-sm-2 control-label">NIC</label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" id="NIC"
-									placeholder="xxxxxV">
-							</div>
-						</div>
+			</section>
 
 
-						<div class="form-group">
-							<label for="Phone Number" class="col-sm-2 control-label">PhoneNumber</label> <span class="col-sm-4"> <input type="number"
-								class="form-control" id="PhoneNumber" placeholder="0xxxxxxxx">
-
-							</span> <span class="col-sm-4"> <input type="number"
-								class="form-control" id="PhoneNumber2" placeholder="0xxxxxxxx">
-							</span>
-						</div>
-
-						<div class="form-group">
-							<label for="email" class="col-sm-2 control-label">Email</label>
-
-							<div class="col-sm-6">
-								<input type="email" class="form-control" id="email"
-									placeholder="Email">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-							<div class="col-sm-6">
-								<input type="password" class="form-control" id="inputPassword3"
-									placeholder="Password">
-							</div>
-						</div>
-
-					</div>
-					<!-- /.box-body -->
-					<div class="box-footer">
-						<button type="submit" class="btn btn-default">Cancel</button>
-						<button type="submit" class="btn btn-info pull-right">Submit</button>
-					</div>
-					<!-- /.box-footer -->
-
-				</form:form>
-			</div>
 		</div>
 
 		<jsp:include page="partials/footer.jsp"></jsp:include>

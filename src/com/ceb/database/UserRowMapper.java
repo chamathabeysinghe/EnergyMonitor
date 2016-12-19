@@ -7,13 +7,19 @@ import com.ceb.models.User;
 
 public class UserRowMapper implements RowMapper<User>{
 	
-	public Bill mapRow(ResultSet rs, int rowNum) throws SQLException {
+	public User mapRow(ResultSet rs, int rowNum) throws SQLException {
 		User u =new User();
-		b.setConnectionID(rs.getInt("connectionID"));
-		b.setAmount(rs.getDouble("amount"));
-		b.setMonth(rs.getString("month"));
-		b.setUsage(rs.getDouble("usage"));
-		b.setYear(rs.getInt("year"));
-		return b;
+		
+		u.setFirstName(rs.getString("firstName"));
+		u.setLastName(rs.getString("lastName"));
+		u.setAddress(rs.getString("address"));
+		u.setNameWithInitials(rs.getString("nameWithInitials"));
+		u.setNIC(rs.getString("NIC"));
+		u.setAddress(rs.getString("address"));
+		u.setPhoneNumber(rs.getString("phoneNumber"));
+		u.setEmail(rs.getString("email"));
+		u.setPassword(rs.getString("password"));
+		
+		return u;
 	}
 }

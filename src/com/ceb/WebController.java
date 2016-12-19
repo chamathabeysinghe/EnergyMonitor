@@ -2,6 +2,8 @@ package com.ceb;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +17,7 @@ import com.ceb.database.DataAccess;
 import com.ceb.models.Bill;
 import com.ceb.models.EnergyConsumption;
 import com.ceb.models.User;
+import com.ceb.models.User.userDAO;
 
 import org.springframework.ui.ModelMap;
 
@@ -42,15 +45,43 @@ public class WebController {
    
    @RequestMapping(value = "/signup", method = RequestMethod.GET)
    public ModelAndView signup() {
-	   return new ModelAndView("user", "command", new User());
+	   return new ModelAndView("signup", "command", new User());
    }
    
-   @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-   public String addUser(@ModelAttribute("SpringWeb")User user, 
-   ModelMap model) {
-      
-      return "userConfirmation";
-   }
+   @RequestMapping(value = "/addUser", method = RequestMethod.POST, produces={"plain/text"})
+	public String saveBill(HttpServletRequest req) {
+	   	System.out.println("adduserworking");
+	   	String firstName = (req.getParameter("firstName"));
+	   	String lastName = (req.getParameter("lastName"));
+	   	String nameWithInitials = (req.getParameter("nameWithInitials"));
+	   	String address = (req.getParameter("address"));
+	   	String NIC = (req.getParameter("NIC"));
+	   	String phoneNumber = (req.getParameter("phoneNumber"));
+	   	String email = (req.getParameter("email"));
+	   	String password = (req.getParameter("password"));
+	 	
+	 	User user = new User();
+	 	user.setFirstName(firstName);
+	 	user.setLastName(lastName);
+	 	user.setNameWithInitials(nameWithInitials);
+	 	user.setAddress(address);
+	 	user.setNIC(NIC);
+	 	user.setPhoneNumber(phoneNumber);
+	 	user.setEmail(email);
+	 	user.setPassword(password);
+	 		
+	 	
+	 	boolean u=userDAO.addUser(user);
+	 	if(u){
+	 		return "Data added successfully";
+	 	}else{
+	 		return "Error occured";
+	 	}
+	 	
+	 	
+
+	}
+   
    
    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
    public String dashboard() {
