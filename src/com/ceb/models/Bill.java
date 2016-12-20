@@ -9,7 +9,7 @@ import com.ceb.database.BillRowMapper;
 import com.ceb.database.DataAccess;
 
 public class Bill {
-	
+	private int billID;
 	private double usage;
 	private String month;
 	private int year;
@@ -23,6 +23,9 @@ public class Bill {
 	}
 	public String getMonth() {
 		return month;
+	}
+	public int getYear() {
+		return year;
 	}
 	public void setMonth(String month) {
 		this.month = month;
@@ -40,9 +43,7 @@ public class Bill {
 		this.connectionID = connectionID;
 	}
 	
-	public int getYear() {
-		return year;
-	}
+	
 	public void setYear(int year) {
 		this.year = year;
 	}
@@ -110,6 +111,23 @@ public static String[] getBillReport(int connectionID,int year){
 	
 	
 	
+	
+
+
+
+	public int getBillID() {
+		return billID;
+	}
+	public void setBillID(int billID) {
+		this.billID = billID;
+	}
+
+
+
+
+
+
+
 	public static class BillDAO{
 		public static List<Bill> getAllBills(){
 			String sql="SELECT * FROM Bill";
@@ -127,9 +145,24 @@ public static String[] getBillReport(int connectionID,int year){
 			return resultList;
 		}
 		public static Bill getBillByID(int billID){
-			String sql="SELECT * FROM EnergyConsumption WHERE id=?";
+			String sql="SELECT * FROM Bill WHERE id=?";
 			Bill result=DataAccess.getInstance().queryForObject(sql,new Object[]{billID},new BillRowMapper());
 			return result;
+		}
+		public static List<Bill> getBill(int billID,int connectionID,int year, int month){
+			String sql="SELECT * FROM  Bill WHERE ("+billID+"<0 or id=?) and ("+connectionID+"<0 or connectionID=?) and ("+year+"<0 or year=?) and ("+month+"<0 or month=?) ";
+			List<Bill> resultList=DataAccess.getInstance().query(sql,new Object[]{billID,connectionID,year,month},new BillRowMapper());
+			return resultList;
+		}
+		public static boolean addBill(Bill bill){
+			
+			String sql="INSERT INTO bill VALUES(null,?,?,?,?,?)";
+			Object[] values={bill.getUsage(),bill.getMonth(),bill.getAmount(),bill.getYear(),bill.getConnectionID()};
+			int result=DataAccess.getInstance().update(sql, values);
+			if(result>0){
+				return true;
+			}
+			return false;
 		}
 	}
 	
