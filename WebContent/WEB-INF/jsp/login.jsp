@@ -40,7 +40,7 @@
 
     <form:form action="/EnergyMonitor/postLogin" method="post">
       <div class="form-group has-feedback">
-        <form:input path="name" type="email" class="form-control" placeholder="Email"/>
+        <form:input path="email" type="email" class="form-control" placeholder="Email"/>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">

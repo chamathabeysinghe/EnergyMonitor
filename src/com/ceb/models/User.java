@@ -1,12 +1,18 @@
 package com.ceb.models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
+
+import org.springframework.jdbc.core.RowMapper;
 
 import com.ceb.database.BillRowMapper;
 import com.ceb.database.DataAccess;
 import com.ceb.database.UserRowMapper;
 
 public class User {
+	private int id;
+	private String userType;
 	private String firstName;
 	private String lastName;
 	private String nameWithInitials;
@@ -15,6 +21,24 @@ public class User {
 	private String phoneNumber;
 	private String email;
 	private String password;
+
+	
+	
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -92,14 +116,42 @@ public class User {
 		}
 
 		public static boolean addUser(User user) {
-
-			String sql = "INSERT INTO customer VALUES(null,?,?,?,?,?,?,?,?)";
-			Object[] values = { user.getFirstName(), user.getLastName(), user.getNameWithInitials(),user.getAddress(),user.getNIC(),user.getPhoneNumber(),user.getEmail(),user.getPassword() };
+			String sql ="Insert into user(email,password,userType,firstName,lastName) Values(?,?,?,?,?)";
+			
+//			String sql = "INSERT INTO customer VALUES(null,?,?,?,?,?,?,?,?)";
+			System.out.println(user.getEmail()+"INSIDE THE CONTROLLERRR");
+//			Object[] values = {user.getEmail(), user.getPassword(), "consumer",user.getFirstName(),user.getLastName() };
+			Object[] values = {"chamath", "password", "consumer",user.getFirstName(),user.getLastName() };
 			int result = DataAccess.getInstance().update(sql, values);
 			if (result > 0) {
 				return true;
 			}
 			return false;
+		}
+		
+		public static User logUser(User user){
+			String sql="Select * from user where user.email=? and user.password=?";
+			System.out.println("CONNECTING DATABASE");
+			User loggedUser=DataAccess.getInstance().queryForObject(sql,new Object[]{user.getEmail(),user.getPassword()},new RowMapper<User>(){
+
+				@Override
+				public User mapRow(ResultSet rs, int arg1) throws SQLException {
+					User user=new User();
+					System.out.println(rs.getInt("id"));
+					user.setId(rs.getInt("id"));
+					user.setFirstName(rs.getString("firstName"));
+					user.setLastName(rs.getString("lastName"));
+					user.setUserType(rs.getString("userType"));
+					
+					return user;
+				}
+				
+			});
+			System.out.println("USER LOGGING "+loggedUser.getId());
+			
+			return loggedUser;
+			
+			
 		}
 	}
 
