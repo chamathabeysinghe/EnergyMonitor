@@ -14,14 +14,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ceb.database.ComplaintDAO;
 import com.ceb.database.DataAccess;
 import com.ceb.models.Bill;
+import com.ceb.models.Complaint;
 import com.ceb.models.EnergyConsumption;
 import com.ceb.models.User;
 import com.ceb.models.User.userDAO;
 import com.google.gson.Gson;
 import com.mysql.cj.x.json.JsonArray;
 
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 
 //@Controller
@@ -101,7 +104,12 @@ public class WebController {
       return "make_complaint";
    }*/
    @RequestMapping(value = "/view_complaints", method = RequestMethod.GET)
-   public String view_complaints() {
+   public String view_complaints(Model model) {
+	   List<Complaint> allcomplaints = ComplaintDAO.getAllComplaints();
+	   model.addAttribute("allcomplaints", allcomplaints);
+       for(Complaint complaint: allcomplaints){
+       	 System.out.println("Complaint As : " + complaint.getId() + " " + complaint.getComplaintDetails());
+       }
       return "view_complaints";
    }
    
