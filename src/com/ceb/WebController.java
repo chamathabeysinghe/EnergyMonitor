@@ -48,8 +48,8 @@ public class WebController {
 	   return new ModelAndView("signup", "command", new User());
    }
    
-   @RequestMapping(value = "/addUser", method = RequestMethod.POST, produces={"plain/text"})
-	public String saveBill(HttpServletRequest req) {
+   @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+	public String saveUser(HttpServletRequest req) {
 	   	System.out.println("adduserworking");
 	   	String firstName = (req.getParameter("firstName"));
 	   	String lastName = (req.getParameter("lastName"));
@@ -69,13 +69,14 @@ public class WebController {
 	 	user.setPhoneNumber(phoneNumber);
 	 	user.setEmail(email);
 	 	user.setPassword(password);
-	 		
+	 	
+	 	System.out.println("dsfg");
 	 	
 	 	boolean u=userDAO.addUser(user);
 	 	if(u){
-	 		return "Data added successfully";
+	 		return "dashboard";
 	 	}else{
-	 		return "Error occured";
+	 		return "dashboard";
 	 	}
 	 	
 	 	

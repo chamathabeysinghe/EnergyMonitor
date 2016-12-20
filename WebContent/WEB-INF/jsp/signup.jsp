@@ -103,7 +103,7 @@
 					</div>
 					<!-- /.box-footer -->
 				</form:form>
-				<button type="submit" class="btn btn-default">Cancel</button>
+				<button type="button" class="btn btn-default">Cancel</button>
 				
 			</div>
 		</div>
