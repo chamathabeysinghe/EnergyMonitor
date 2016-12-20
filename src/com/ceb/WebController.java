@@ -104,10 +104,6 @@ public class WebController {
    public String view_complaints() {
       return "view_complaints";
    }
-   @RequestMapping(value = "/make_request", method = RequestMethod.GET)
-   public String make_request() {
-      return "make_request";
-   }
    
 
 }
