@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AdminLTE 2 | Dashboard</title>
+  <title>History | Usage</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <jsp:include page="partials/styles.jsp"></jsp:include>
@@ -37,12 +37,17 @@
 	    	<div class="row">
 	    
 	    	<!-- Should figure out what is the error in this divc -->
-     		 	
-	    		<div class="col-md-6">
-
+     		 	<div class="col-md-4" style="position:relative; display:inline;">
+     		 	<jsp:include page="partials/map.jsp"></jsp:include>
+     		 		
+     		 		
+     		 	</div>
+	    		<div class="col-md-6 col-md-offset-1">
+					<div class="row">
 		          <div class="box box-info">
+		          
 		            <div class="box-header with-border">
-		              <h3 class="box-title">Line Chart</h3>
+		              <h3 class="box-title">Usage</h3>
 		
 		              <div class="box-tools pull-right">
 		                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -51,13 +56,117 @@
 		              </div>
 		            </div>
 		            <div class="box-body">
-		              <div class="chart">
+		              <div class="chart" id="consumptionChartContainer">
 		                <canvas id="consumptionChart" style="height: 181px; width: 493px;" height="203" width="554"></canvas>
 		              </div>
 		            </div>
 		          </div>
+		          </div>
 		          
-		          <div class="box box-danger">
+		          <div class="row">
+		          	<div class="col-md-6">
+				          <div class="box box-danger">
+					            <div class="box-header with-border">
+					              <h3 class="box-title">Day/Night Consumption</h3>
+					
+					              <div class="box-tools pull-right">
+					                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+					                </button>
+					                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+					              </div>
+					            </div>
+					            <div class="box-body">
+					              <canvas id="consumptionByTime" style="height: 169px; width: 338px;" height="152" width="304"></canvas>
+					            </div>
+					            <!-- /.box-body -->
+					     </div>
+				     </div>
+				     <div class="col-md-6">
+				     
+					     <div class="box box-danger">
+					            <div class="box-header with-border">
+					              <h3 class="box-title">Provisional Consumption</h3>
+					
+					              <div class="box-tools pull-right">
+					                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+					                </button>
+					                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+					              </div>
+					            </div>
+					            <div class="box-body">
+					              <canvas id="consumptionByProvince" style="height: 169px; width: 338px;" height="152" width="304"></canvas>
+					            </div>
+					            <!-- /.box-body -->
+					     </div>
+				     </div>
+				     
+				</div>          
+		          
+		        </div>
+	    	
+	    	</div>
+	    	
+	    	<br><br><br>
+	    	
+	    	
+	    	<!-- For the provisional view interfaces -->
+	    	<div class="row hide" id="provisionalView">
+					<section class="content-header">
+
+						<h1>
+							<span id="provinceSummary">Western</span>Province <small>Usage Statics</small>
+						</h1>
+						<br><br>
+						
+						
+					</section>
+
+					<div class="col-md-6">
+	    	
+		    		<div class="box box-info">
+			            <div class="box-header with-border">
+			              <h3 class="box-title">Usage in Province</h3>
+			
+			              <div class="box-tools pull-right">
+			                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+			                </button>
+			                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+			              </div>
+			            </div>
+			            <div class="box-body">
+			              <div class="chart consumptionChartProvinceContainer">
+			                <canvas id="consumptionChartProvince" style="height: 200px; width: 493px;" height="200" width="554"></canvas>
+			              </div>
+			            </div>
+			          </div>
+			         
+			        
+				</div>   
+				
+				<div class="col-md-6">
+	    	
+		    		<div class="box box-info">
+			            <div class="box-header with-border">
+			              <h3 class="box-title">Expected Growth</h3>
+			
+			              <div class="box-tools pull-right">
+			                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+			                </button>
+			                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+			              </div>
+			            </div>
+			            <div class="box-body">
+			              <div class="chart">
+			                <canvas id="expectedGrowthChart" style="height: 200px; width: 493px;" height="200" width="554"></canvas>
+			              </div>
+			            </div>
+			          </div>
+			         
+			        
+				</div>   
+				
+				<div class="col-md-3">
+					 <div class="box box-danger">
 			            <div class="box-header with-border">
 			              <h3 class="box-title">Day/Night Consumption</h3>
 			
@@ -68,32 +177,12 @@
 			              </div>
 			            </div>
 			            <div class="box-body">
-			              <canvas id="consumptionByTime" style="height: 169px; width: 338px;" height="152" width="304"></canvas>
+			              <canvas id="timeChartProvince" style="height: 169px; width: 338px;" height="152" width="304"></canvas>
 			            </div>
 			            <!-- /.box-body -->
-			     </div>
-			     
-			     <div class="box box-danger">
-			            <div class="box-header with-border">
-			              <h3 class="box-title">Provisional Consumption</h3>
-			
-			              <div class="box-tools pull-right">
-			                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-			                </button>
-			                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-			              </div>
-			            </div>
-			            <div class="box-body">
-			              <canvas id="consumptionByProvince" style="height: 169px; width: 338px;" height="152" width="304"></canvas>
-			            </div>
-			            <!-- /.box-body -->
-			     </div>
-					          
-		          
-		        </div>
-	    	
+			     	</div>
+				</div>
 	    	</div>
-	    
 	    </section>
 	    
 	    
@@ -141,7 +230,26 @@
 	
 	
 	<script src="resources/chartjs/consumptionChart.js"></script>
-	<script src="resources/controllers/customerusagecontroller.js"></script>
+	<script src="resources/controllers/electricConsumption.js"></script>
 	
+	
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script type="text/javascript" src="resources/js/jquery.maphilight.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('.map').maphilight();
+		});
+	</script>
+	<script type="text/javascript">
+		$(".province").on("click",function(e){
+			console.log("DFUCK");
+			e.preventDefault();
+			var province=$(this).data("province");
+			selectProvince(province)
+		});
+	</script>
+	
+	
+     
 </body>
 </html>
