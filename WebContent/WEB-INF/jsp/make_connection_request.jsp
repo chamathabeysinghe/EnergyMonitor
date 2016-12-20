@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>AdminLTE 2 | Make Request</title>
+<title>AdminLTE 2 | New Connection Request</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <jsp:include page="partials/styles.jsp"></jsp:include>
@@ -25,10 +25,10 @@
 
 			<section class="content-header">
 
-				<h1>Request Entry</h1>
+				<h1>Request for New Connection</h1>
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li class="active">Make Request</li>
+					<li class="active">Request for New Connection</li>
 				</ol>
 
 			</section>
@@ -39,7 +39,7 @@
 					<div class="col-md-8">
 						<div class="box box-danger">
 							<div class="box-header with-border">
-								<h3 class="box-title">Make Request</h3>
+								<h3 class="box-title">Request for New Connection</h3>
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
