@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.ceb.models.EnergyConsumption"%>
 <%@ page import="java.util.ArrayList"%>
+<%-- <%@ page import=" com.ceb.models.Complaint"%> --%>
+
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
@@ -45,26 +47,13 @@
 								<form:form method="post" action="make_complaint" modelAttribute="complaint">
 
 									
-									<%-- <!-- Display Complaint ID --> 
+									<!-- Display Complaint ID --> 
 									<div class="form-group">
 										<label>Complaint ID</label> 
-										<form:input type="number" class="form-control"
-											id="id" path="id" disabled/>
+										<input type="text" class="form-control"
+											id="id" value="${id}" path="id" disabled/>					
 									</div> 
 									
-									<!-- Display Complaint Date --> 
-									<div class="form-group">
-										<label>Complaint Date</label> 
-										<form:input type="date" class="form-control"
-											id="date" path="date" disabled/>
-									</div> 
-									
-									<!-- Display Complaint Status --> 
-									<div class="form-group">
-										<label>Complaint Date</label> 
-										<form:input type="text" class="form-control"
-											id="status" path="status" disabled/>
-									</div>  --%>
 									
 									<!-- textarea input Complaint Details -->
 									<div class="form-group">
@@ -77,6 +66,13 @@
 										<label>ConnectionID</label> 
 										<form:input type="text" class="form-control"
 											placeholder="1" id="connectionID" path="connectionID" disabled/>
+											<select class="form-control">
+							                    <option>option 1</option>
+							                    <option>option 2</option>
+							                    <option>option 3</option>
+							                    <option>option 4</option>
+							                    <option>option 5</option>
+							                  </select>
 									</div> --%>
 
 									<div class="box-footer">
@@ -93,6 +89,17 @@
 
 
 		</div>
+		
+		<%-- <script type="text/javascript">
+									<% 
+										Object o=request.getAttribute("complaint"); 
+										Complaint c = (Complaint)o;
+										
+										Object id = request.getAttribute("id");
+										int int_id = Integer.valueOf((String) id);
+										c.setId(int_id);
+									%>
+		</script> --%>
 
 		<jsp:include page="partials/footer.jsp"></jsp:include>
 
