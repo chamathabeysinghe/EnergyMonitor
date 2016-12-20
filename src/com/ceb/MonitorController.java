@@ -44,7 +44,28 @@ public class MonitorController {
 		
 		return "admindashboard";
 	}
-
+	
+	@RequestMapping(value = "/customer", method = RequestMethod.GET)
+	public String consumerDashboard(ModelMap model,HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		int id=1;
+		try{
+			id=(Integer)(session.getAttribute("userID"));
+		}
+		catch(NullPointerException e){
+			
+		}
+		model.addAttribute("complaints",ModelUtility.ModelUtilityDAO.getComplainCount(id));
+		model.addAttribute("newConnection",ModelUtility.ModelUtilityDAO.getConnectionRequestCount(id));
+		model.addAttribute("changeConnection",ModelUtility.ModelUtilityDAO.getConnectionChangeCount(id));
+		model.addAttribute("customerCount",(int)ModelUtility.ModelUtilityDAO.remainingBalance(id));
+		
+//		HttpSession session = request.getSession(false);
+//		int id=(Integer)(session.getAttribute("userID"));
+		
+		return "consumerDasboard";
+	}
+	
 	@RequestMapping(value = "/ajaxBillYearChange", method = RequestMethod.POST, produces = "plain/text")
 	@ResponseBody
 	public String ajaxBillYearChange(@RequestBody String year) {
