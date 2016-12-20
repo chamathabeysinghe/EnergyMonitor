@@ -17,4 +17,6 @@ public class BillRowMapper implements RowMapper<Bill>{
 		b.setYear(rs.getInt("year"));
 		return b;
 	}
+	
+	
 }
