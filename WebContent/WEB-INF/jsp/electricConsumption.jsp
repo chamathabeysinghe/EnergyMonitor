@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AdminLTE 2 | Dashboard</title>
+  <title>History | Usage</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <jsp:include page="partials/styles.jsp"></jsp:include>
@@ -47,7 +47,7 @@
 		          <div class="box box-info">
 		          
 		            <div class="box-header with-border">
-		              <h3 class="box-title">Line Chart</h3>
+		              <h3 class="box-title">Usage</h3>
 		
 		              <div class="box-tools pull-right">
 		                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -56,7 +56,7 @@
 		              </div>
 		            </div>
 		            <div class="box-body">
-		              <div class="chart">
+		              <div class="chart" id="consumptionChartContainer">
 		                <canvas id="consumptionChart" style="height: 181px; width: 493px;" height="203" width="554"></canvas>
 		              </div>
 		            </div>
@@ -125,7 +125,7 @@
 	    	
 		    		<div class="box box-info">
 			            <div class="box-header with-border">
-			              <h3 class="box-title">Line Chart</h3>
+			              <h3 class="box-title">Usage in Province</h3>
 			
 			              <div class="box-tools pull-right">
 			                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -134,7 +134,7 @@
 			              </div>
 			            </div>
 			            <div class="box-body">
-			              <div class="chart">
+			              <div class="chart consumptionChartProvinceContainer">
 			                <canvas id="consumptionChartProvince" style="height: 200px; width: 493px;" height="200" width="554"></canvas>
 			              </div>
 			            </div>

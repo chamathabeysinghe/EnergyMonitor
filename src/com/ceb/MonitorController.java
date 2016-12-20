@@ -1,5 +1,6 @@
 package com.ceb;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -24,7 +25,10 @@ public class MonitorController {
 	@RequestMapping(value = "/usage", method = RequestMethod.GET)
 	public String consumerUsage(ModelMap model,HttpServletRequest request) {		
 		String results[] = Bill.getUsageRepor(1, 2016);
+		String results2[]=Bill.getBillReport(1, 2016);
 		model.addAttribute("usageList", results);
+		model.addAttribute("billList",results2);
+		
 		return "consumerUsage";
 	}
 	
@@ -40,13 +44,36 @@ public class MonitorController {
 		
 		return "admindashboard";
 	}
-
+	
+	@RequestMapping(value = "/customer", method = RequestMethod.GET)
+	public String consumerDashboard(ModelMap model,HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		int id=1;
+		try{
+			id=(Integer)(session.getAttribute("userID"));
+		}
+		catch(NullPointerException e){
+			
+		}
+		model.addAttribute("complaints",ModelUtility.ModelUtilityDAO.getComplainCount(id));
+		model.addAttribute("newConnection",ModelUtility.ModelUtilityDAO.getConnectionRequestCount(id));
+		model.addAttribute("changeConnection",ModelUtility.ModelUtilityDAO.getConnectionChangeCount(id));
+		model.addAttribute("customerCount",(int)ModelUtility.ModelUtilityDAO.remainingBalance(id));
+		
+//		HttpSession session = request.getSession(false);
+//		int id=(Integer)(session.getAttribute("userID"));
+		
+		return "consumerDasboard";
+	}
+	
 	@RequestMapping(value = "/ajaxBillYearChange", method = RequestMethod.POST, produces = "plain/text")
 	@ResponseBody
 	public String ajaxBillYearChange(@RequestBody String year) {
 		int intYear = Integer.parseInt(year);
 		String results[] = Bill.getUsageRepor(1, intYear);
-		return results[1];
+		String results2[]=Bill.getBillReport(1, intYear);
+
+		return results[1]+"::"+results2[1];
 	}
 
 	@RequestMapping(value = "/consumption", method = RequestMethod.GET)

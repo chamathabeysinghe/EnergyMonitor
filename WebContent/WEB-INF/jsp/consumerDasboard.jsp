@@ -105,17 +105,17 @@
 							<%
 										//String result = request.getParameter("usageList");
 
-										int consumer =(Integer) request.getAttribute("customerCount");
+										double consumer =(Integer) request.getAttribute("customerCount");
 										
 										out.println(consumer);
 									%>
 							
 							</h3>
 								
-								<p>Consumers</p>
+								<p>Remaining Payments</p>
 							</div>
 							<div class="icon">
-								<i class="ion ion-person-add"></i>
+								<i class="ion ion-card"></i>
 							</div>
 							<a href="#" class="small-box-footer">More info <i
 								class="fa fa-arrow-circle-right"></i></a>

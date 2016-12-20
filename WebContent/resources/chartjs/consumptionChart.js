@@ -62,7 +62,7 @@ function drawConsumptionChart(){
 
     //Create the line chart
     
-    
+   
     var lineChartCanvas = $("#consumptionChart").get(0).getContext("2d");
     lineChart = new Chart(lineChartCanvas);
     var lineChartOptions = areaChartOptions;
@@ -182,6 +182,8 @@ function getRandomColor() {
 
 
 function drawConsumptionChartForProvince(){
+	Chart.defaults.global.showTooltips = false;
+
     // line chart data
     var areaChartData = {
       labels: yearLabel,
@@ -241,7 +243,11 @@ function drawConsumptionChartForProvince(){
 
     //Create the line chart
     
+    $('#consumptionChartProvince').get(0).getContext("2d").clearRect(0,0,$('#consumptionChartProvince').width,$('#consumptionChartProvince').height);
     
+//    context.clearRect(0, 0, canvas.width, canvas.height);
+
+
     var lineChartCanvas = $("#consumptionChartProvince").get(0).getContext("2d");
     lineChart = new Chart(lineChartCanvas);
     var lineChartOptions = areaChartOptions;
@@ -301,6 +307,8 @@ function drawTimeChartForProvince(){
 }
 
 function drawConsumptionChartForPrediction(){
+	Chart.defaults.global.showTooltips = false;
+
     // line chart data
     var areaChartData = {
       labels: predictionLabel,
