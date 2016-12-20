@@ -130,14 +130,14 @@ public class User {
 		}
 		
 		public static User logUser(User user){
-			String sql="Select * from user where user.email=? and user.password=?";
+			String sql="select * from user where user.email='chamath' and user.password='password'";
 			System.out.println("CONNECTING DATABASE");
-			User loggedUser=DataAccess.getInstance().queryForObject(sql,new Object[]{user.getEmail(),user.getPassword()},new RowMapper<User>(){
+			User loggedUser=DataAccess.getInstance().queryForObject(sql,new RowMapper<User>(){
 
 				@Override
 				public User mapRow(ResultSet rs, int arg1) throws SQLException {
 					User user=new User();
-					System.out.println(rs.getInt("id"));
+					
 					user.setId(rs.getInt("id"));
 					user.setFirstName(rs.getString("firstName"));
 					user.setLastName(rs.getString("lastName"));
@@ -147,7 +147,6 @@ public class User {
 				}
 				
 			});
-			System.out.println("USER LOGGING "+loggedUser.getId());
 			
 			return loggedUser;
 			

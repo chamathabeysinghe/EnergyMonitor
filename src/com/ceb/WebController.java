@@ -91,7 +91,7 @@ public class WebController {
    @RequestMapping(value = "/postLogin", method = RequestMethod.POST)
    public String logUser(@ModelAttribute("SpringWeb")User user,ModelMap model) {
 	   System.out.println("Inside th postLoginjsdkfjakls dfjaklfjalkj "+user.getFirstName());
-	  User.userDAO.logUser(user);
+	  User loggedUser=User.userDAO.logUser(user);
       model.addAttribute("name", user.getFirstName());
       return "dashboard";
    }
