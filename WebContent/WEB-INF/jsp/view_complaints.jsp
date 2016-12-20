@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.ceb.models.EnergyConsumption"%>
 <%@ page import="java.util.ArrayList"%>
+<%@ page import=" com.ceb.models.Complaint"%>
+<%@ page import="java.util.List"%>
 
 <!DOCTYPE html>
 <html>
@@ -33,6 +35,13 @@
 
 			<section class="content">
 				<div class="row">
+				<% 
+				Object o=request.getAttribute("allcomplaints"); 
+				/* List<Complaint> allcomplaints = List<Complaint>o; */
+				for(Complaint complaint: (ArrayList<Complaint>)o){
+			       	 out.println("Complaint As : " + complaint.getId() + " " + complaint.getComplaintDetails());
+			    };
+			     %>
 					<div class="col-md-6">
 						<div class="box box-primary">
 							<div class="box-header with-border">
