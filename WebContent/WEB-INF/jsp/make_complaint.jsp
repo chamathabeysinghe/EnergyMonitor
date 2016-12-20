@@ -44,21 +44,40 @@
 							<div class="box-body">
 								<form:form method="post" action="make_complaint" modelAttribute="complaint">
 
-									<!-- IMPORTANT: SUBJECT IS TAKEN AS COMPLAINTDETAILS -->
-									<!-- text input Subject --> 
+									
+									<%-- <!-- Display Complaint ID --> 
 									<div class="form-group">
-										<label>Subject</label> 
+										<label>Complaint ID</label> 
+										<form:input type="number" class="form-control"
+											id="id" path="id" disabled/>
+									</div> 
+									
+									<!-- Display Complaint Date --> 
+									<div class="form-group">
+										<label>Complaint Date</label> 
+										<form:input type="date" class="form-control"
+											id="date" path="date" disabled/>
+									</div> 
+									
+									<!-- Display Complaint Status --> 
+									<div class="form-group">
+										<label>Complaint Date</label> 
 										<form:input type="text" class="form-control"
-											placeholder="Enter ..." id="complaintDetails" path="complaintDetails"/>
-									</div>
-									<!-- / IMPORTANT: SUBJECT IS TAKEN AS COMPLAINTDETAILS -->
-
-									<!-- textarea input Complaint Description -->
+											id="status" path="status" disabled/>
+									</div>  --%>
+									
+									<!-- textarea input Complaint Details -->
 									<div class="form-group">
-										<label>Description</label>
-										<textarea class="form-control" id="description" rows="3">
-									</textarea>
+										<label>Complaint Details</label>
+										<form:textarea class="form-control" placeholder="Enter ..." id="complaintDetails" path="complaintDetails" rows="3"/>
 									</div>
+									
+									<%-- <!-- Display Complaint Status --> 
+									<div class="form-group">
+										<label>ConnectionID</label> 
+										<form:input type="text" class="form-control"
+											placeholder="1" id="connectionID" path="connectionID" disabled/>
+									</div> --%>
 
 									<div class="box-footer">
 										<button type="submit" class="btn btn-primary">Submit</button>
