@@ -15,9 +15,7 @@ public class User {
 	private String userType;
 	private String firstName;
 	private String lastName;
-	private String nameWithInitials;
 	private String NIC;
-	private String address;
 	private String phoneNumber;
 	private String email;
 	private String password;
@@ -56,14 +54,7 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public String getNameWithInitials() {
-		return nameWithInitials;
-	}
-
-	public void setNameWithInitials(String nameWithInitials) {
-		this.nameWithInitials = nameWithInitials;
-	}
-
+	
 	public String getNIC() {
 		return NIC;
 	}
@@ -71,16 +62,6 @@ public class User {
 	public void setNIC(String nIC) {
 		NIC = nIC;
 	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	
 
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -114,14 +95,24 @@ public class User {
 			return userList;
 
 		}
+		public static User getUserByID(int ID){
+			String sql="SELECT * FROM user WHERE id=?";
+			User result=DataAccess.getInstance().queryForObject(sql,new Object[]{ID},new UserRowMapper());
+			return result;
+		}
+		public static int getUserCount(){
+			String sql="SELECT * FROM user ORDER BY id DESC LIMIT 1;";
+			User result=DataAccess.getInstance().queryForObject(sql,new Object[]{},new UserRowMapper());
+			return result.getId();
+		}
 
 		public static boolean addUser(User user) {
-			String sql ="Insert into user(email,password,userType,firstName,lastName) Values(?,?,?,?,?)";
+			String sql ="Insert into user(email,password,userType,firstName,lastName,NIC,phoneNumber) Values(?,password(?),?,?,?,?,?)";
 			
 //			String sql = "INSERT INTO customer VALUES(null,?,?,?,?,?,?,?,?)";
 			System.out.println(user.getEmail()+"INSIDE THE CONTROLLERRR");
 //			Object[] values = {user.getEmail(), user.getPassword(), "consumer",user.getFirstName(),user.getLastName() };
-			Object[] values = {"chamath", "password", "consumer",user.getFirstName(),user.getLastName() };
+			Object[] values = {user.getEmail(),user.getPassword(),user.getUserType(),user.getFirstName(),user.getLastName(),user.getNIC(),user.getPhoneNumber() };
 			int result = DataAccess.getInstance().update(sql, values);
 			if (result > 0) {
 				return true;
@@ -130,7 +121,7 @@ public class User {
 		}
 		
 		public static User logUser(User user){
-			String sql="Select * from user where user.email=? and user.password=?";
+			String sql="Select * from user where user.email=? and user.password=password(?)";
 			System.out.println("CONNECTING DATABASE "+user.getEmail()+"   "+user.getPassword());
 			User loggedUser=DataAccess.getInstance().queryForObject(sql,new Object[]{user.getEmail(),user.getPassword()},new RowMapper<User>(){
 

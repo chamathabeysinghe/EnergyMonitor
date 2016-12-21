@@ -21,6 +21,8 @@ import com.ceb.database.DataAccess;
 import com.ceb.models.Bill;
 import com.ceb.models.Complaint;
 import com.ceb.models.ConnectionRequest;
+import com.ceb.models.Customer;
+import com.ceb.models.Customer.CustomerDAO;
 import com.ceb.models.EnergyConsumption;
 import com.ceb.models.User;
 import com.ceb.models.User.userDAO;
@@ -70,7 +72,7 @@ public class WebController {
 	      return "redirect: /admin";
 	   }
 	   @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-		public String saveUser(@ModelAttribute("SpringWeb")User userIn,HttpServletRequest req) {
+		public String saveUser(HttpServletRequest req) {
 		   	System.out.println("adduserworking");
 		   	String firstName = (req.getParameter("firstName"));
 		   	String lastName = (req.getParameter("lastName"));
@@ -80,25 +82,29 @@ public class WebController {
 		   	String phoneNumber = (req.getParameter("phoneNumber"));
 		   	String email = (req.getParameter("email"));
 		   	String password = (req.getParameter("password"));
+		   	String userType = (req.getParameter("userType"));
 		 	
 		 	User user = new User();
 		 	user.setFirstName(firstName);
 		 	user.setLastName(lastName);
-		 	user.setNameWithInitials(nameWithInitials);
-		 	user.setAddress(address);
 		 	user.setNIC(NIC);
 		 	user.setPhoneNumber(phoneNumber);
 		 	user.setEmail(email);
 		 	user.setPassword(password);
+		 	user.setUserType(userType);
 		 	
-		 	System.out.println("User email ::::"+email);
-		 	
+		 	System.out.println("User email ::::"+email+ "password "+password+" usertype"+userType);
+		 	Customer cus=new Customer();
+		 	cus.setId(userDAO.getUserCount()+1);
+		 	cus.setName(nameWithInitials);
+		 	cus.setAddress(address);
 		 	boolean u=userDAO.addUser(user);
-		 	if(u){
-		 		return "dashboard";
-		 	}else{
-		 		return "dashboard";
-		 	}
+		 	boolean b=CustomerDAO.addCustomer(cus);
+		 	if (b || u) {
+				return "Data added successfully";
+			} else {
+				return "Error occured";
+			}
 		 	
 		 	
 

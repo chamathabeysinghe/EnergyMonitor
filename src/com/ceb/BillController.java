@@ -226,8 +226,16 @@ public class BillController {
 
 	@RequestMapping(value = "/viewAllBills", method = RequestMethod.POST)
 	public ModelAndView viewAllBills(HttpServletRequest req, ModelMap model) {
-		int connectionID = Integer.parseInt(req.getParameter("connectionID"));
-		List<Bill> bills = BillDAO.getBillsByConnection(connectionID);
+		HttpSession session = req.getSession(false);
+		int id=1;
+		try{
+			id=(Integer)(session.getAttribute("userID"));
+		}
+		catch(NullPointerException e){
+			
+		}
+		
+		List<Bill> bills = BillDAO.getBillsByConnection(id);
 		model.addAttribute("billList", bills);
 		return new ModelAndView("viewAllBills");
 
