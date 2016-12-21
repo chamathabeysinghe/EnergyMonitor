@@ -63,7 +63,7 @@ public class Bill {
 		
 		for(Bill b:BillDAO.getBillsByConnection(connectionID,year)){
 			//usageMap.put(b.getMonth(),b.getUsage());
-			usageArray.set(monthArray.indexOf(b.getMonth()), b.getUsage());
+			usageArray.set(monthArray.indexOf(b.getMonth()), b.getUsage());//should be checked this one
 			
 		}
 		

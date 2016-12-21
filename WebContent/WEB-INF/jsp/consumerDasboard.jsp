@@ -14,7 +14,7 @@
 	<div class="wrapper">
 	   
 	  <jsp:include page="partials/header.jsp"></jsp:include>
-	  <jsp:include page="partials/sidenav.jsp"></jsp:include>
+	  <jsp:include page="partials/consumerSideNav.jsp"></jsp:include>
 	  
 	  <div class="content-wrapper">
 
@@ -140,7 +140,12 @@
 					
 						<form class="lockscreen-credentials">
 							<div class="input-group">
-							<label>Chamath Abeysinghe</label>
+							<label>
+							<%
+								String name=(String)request.getAttribute("userName");
+								out.println(name);
+							%>
+							</label>
 								
 							</div>
 						</form>

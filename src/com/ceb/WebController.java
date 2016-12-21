@@ -58,8 +58,9 @@ public class WebController {
 		  }
 		  HttpSession session = request.getSession(false);
 		  session.setAttribute("userID", loggedUser.getId());
-		  session.setAttribute("userName", loggedUser.getFirstName());
+		  session.setAttribute("userName", loggedUser.getFirstName()+" "+loggedUser.getLastName());
 		  session.setAttribute("user", loggedUser);
+		  session.setMaxInactiveInterval(60*60);
 		  
 		  model.addAttribute("name", user.getFirstName());
 	      return "redirect: /admin";
