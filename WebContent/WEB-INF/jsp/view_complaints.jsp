@@ -89,7 +89,8 @@
 									       	 <div class="panel panel-default">
 												<div class="panel-heading">
 													 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978812" href="#panel-complaint-<% out.println(changeRequest.getId()); %>">Change Request ID: <% out.println(changeRequest.getId()); %></a>
-													<button type="button" class="btn btn-default btn-sm" style="float: right">
+													<%-- <button class="deleteButton" data-chamath="<% out.println(complaint.getId()); %>" data-complaintId="<% out.println(complaint.getId()); %>" class="btn btn-default btn-sm" style="float: right" > --%>
+													<button class="fixedButton" data-ashen="<% out.println(changeRequest.getId()); %>" data-requestId="<% out.println(changeRequest.getId()); %>" class="btn btn-default btn-sm" style="float: right">
 											          <span class="glyphicon glyphicon-cog"></span> Fixed 
 											        </button>
 												</div>
@@ -193,36 +194,35 @@
 
 	    });
 	});
-	/* $('.deleteButton').click(function(event){
-		console.log("DELETE CLICKED")
-		event.preventDefault();
-		console.log($(this).data('complaintId'));
-	}); */
-	/* function done_complaint(){
-		var complaintID=$('#complaintID').val();
-		console.log("Djflksdjflksadjf");
-		console.log("Done Complaint ID "+complaintID);
-		
-		
-		 $.ajax({
-			type : "POST",
-			contentType : "plain/text",
-			url : "/EnergyMonitor/done_complaint",
-			data : complaintID,
-			dataType : 'text',
-			timeout : 100000,
-			success : function(dataReturn) {
-				console.log("DONE");
-			},
-			error : function(e) {
-				console.log("ERROR: ", e);
-				
-			},
-			done : function(e) {
-				console.log("DONE");
-			}
-		});	 
-	} */
+	</script>
+	
+	<script type="text/javascript">
+	$('.fixedButton').each(function () {
+	    var $this = $(this);
+	    $this.on("click", function () {
+	    	var requestID=$(this).data('ashen');
+	    	$.ajax({
+				type : "POST",
+				contentType : "plain/text",
+				url : "/EnergyMonitor/fixed_request",
+				data : requestID,
+				dataType : 'text',
+				timeout : 100000,
+				success : function(dataReturn) {
+					console.log("DONE");
+					location.reload();
+				},
+				error : function(e) {
+					console.log("ERROR: ", e);
+					
+				},
+				done : function(e) {
+					console.log("DONE");
+				}
+			});
+
+	    });
+	}); 
 	</script>
 
 	<!-- ChartJS 1.0.1 -->

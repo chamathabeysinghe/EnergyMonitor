@@ -31,9 +31,14 @@ public class ChangeRequestDAO {
 	}
 	
 	public static List<ChangeRequest> getAllChangeRequests() {
-		String sql = "SELECT * FROM changerequest";
+		String sql = "SELECT * FROM changerequest where status=\"pending\"";
 		List<ChangeRequest> changerequests  = DataAccess.getInstance().query(sql, new BeanPropertyRowMapper<ChangeRequest>(ChangeRequest.class));
 		return changerequests;
 		
+	}
+	public static void updateRequest(int requestID) {  
+		String sql = "UPDATE changerequest SET status='done' WHERE id=?";
+		DataAccess.getInstance().update(sql,requestID); 
+	
 	}
 }
