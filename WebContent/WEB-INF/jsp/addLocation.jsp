@@ -58,6 +58,10 @@
 											<option value="Eastern">Eastern</option>
 											<option value="Central">Central</option>
 											<option value="Norhtern">Northern</option>
+											<option value="Norhtern">North Central</option>
+											<option value="Norhtern">Uwa</option>
+											<option value="Norhtern">Sabaragamuwa</option>
+											
 										</form:select>
 									</div>
 

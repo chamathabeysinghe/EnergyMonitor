@@ -7,7 +7,7 @@ public class ModelUtility {
 	public static class ModelUtilityDAO {
 		
 		public static int getComplainCount(){
-			String sql="SELECT  count(*) from complaint where status='processing'";
+			String sql="SELECT  count(*) from complaint where status='pending'";
 			int i=DataAccess.getInstance().queryForObject(sql, Integer.class);			
 			return i;
 		}
