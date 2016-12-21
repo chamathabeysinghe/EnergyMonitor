@@ -14,12 +14,16 @@
       <!-- search form -->
 
     
+    
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li><a href="/EnergyMonitor/admin"><i class="fa fa-home"></i> <span>Home</span></a></li>
         <li><a href="/EnergyMonitor/admin"><i class="fa fa-line-chart"></i> <span>Analyze</span></a></li>
-        <li><a href="/EnergyMonitor/admin"><i class="fa fa-home"></i> <span>Home</span></a></li>
-        <li><a href="/EnergyMonitor/admin"><i class="fa fa-home"></i> <span>Home</span></a></li>
+        <li><a href="/EnergyMonitor/admin"><i class="fa fa-credit-card-alt"></i> <span>Handle Requests</span></a></li>
+        <li><a href="/EnergyMonitor/admin"><i class="fa fa-home"></i> <span>Search Bills</span></a></li>
+        <li><a href="/EnergyMonitor/admin"><i class="fa fa-credit-card-alt"></i> <span>Register Payment</span></a></li>
+        <li><a href="/EnergyMonitor/admin"><i class="fa fa-home"></i> <span>User Account Creation</span></a></li>
+        
         
         
         <li class="header">LABELS</li>

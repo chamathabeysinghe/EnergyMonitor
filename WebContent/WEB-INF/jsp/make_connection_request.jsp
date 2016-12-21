@@ -2,10 +2,13 @@
 <%@ page import="com.ceb.models.EnergyConsumption"%>
 <%@ page import="java.util.ArrayList"%>
 
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>AdminLTE 2 | Make Request</title>
+<title>AdminLTE 2 | New Connection Request</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <jsp:include page="partials/styles.jsp"></jsp:include>
@@ -22,10 +25,10 @@
 
 			<section class="content-header">
 
-				<h1>Request Entry</h1>
+				<h1>Request for New Connection</h1>
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li class="active">Make Request</li>
+					<li class="active">Request for New Connection</li>
 				</ol>
 
 			</section>
@@ -36,38 +39,46 @@
 					<div class="col-md-8">
 						<div class="box box-danger">
 							<div class="box-header with-border">
-								<h3 class="box-title">Make Request</h3>
+								<h3 class="box-title">Request for New Connection</h3>
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
-								<form role="form">
+								<form:form method="post" action="make_connection_request" modelAttribute="connectionRequest">
 
-									<!-- select Request Type -->
+									
+									<!-- Display ConnectionRequest ID --> 
 									<div class="form-group">
-										<label>Request Type</label> <select class="form-control">
-											<option>Change Location</option>
-											<option>Change Ownership</option>
-										</select>
-									</div>
-
-									<!-- text input Subject -->
+										<label>Request ID</label> 
+										<input type="text" class="form-control"
+											id="id" value="${id}" path="id" disabled/>					
+									</div> 
+									
+									
+									<!-- textarea input ConnectionRequest Details -->
 									<div class="form-group">
-										<label>Subject</label> <input type="text" class="form-control"
-											placeholder="Enter ..." id="subject">
+										<label>Request Details</label>
+										<form:textarea class="form-control" placeholder="Enter ..." id="newConnectionDetails" path="newConnectionDetails" rows="3"/>
 									</div>
-
-									<!-- textarea input Complaint Description -->
+									
+									<%-- <!-- Display Complaint Status --> 
 									<div class="form-group">
-										<label>Description</label>
-										<textarea class="form-control" id="description" rows="3">
-									</textarea>
-									</div>
+										<label>ConnectionID</label> 
+										<form:input type="text" class="form-control"
+											placeholder="1" id="connectionID" path="connectionID" disabled/>
+											<select class="form-control">
+							                    <option>option 1</option>
+							                    <option>option 2</option>
+							                    <option>option 3</option>
+							                    <option>option 4</option>
+							                    <option>option 5</option>
+							                  </select>
+									</div> --%>
 
 									<div class="box-footer">
 										<button type="submit" class="btn btn-primary">Submit</button>
 									</div>
 
-								</form>
+								</form:form>
 							</div>
 							<!-- /.box-body -->
 						</div>

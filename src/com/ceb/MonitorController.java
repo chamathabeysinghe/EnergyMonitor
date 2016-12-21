@@ -17,10 +17,35 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ceb.models.Bill;
 import com.ceb.models.EnergyConsumption;
 import com.ceb.models.ModelUtility;
+import com.ceb.models.User;
 import com.google.gson.Gson;
 
 @Controller
 public class MonitorController {
+	
+	public boolean authenticateAdmin(HttpServletRequest request) {
+		try {
+			HttpSession session = request.getSession(false);
+			User loggedUser;
+			loggedUser = (User) session.getAttribute("user");
+			if (loggedUser.getUserType().equalsIgnoreCase("admin")) {
+				return true;
+			}
+			return false;
+		} catch (NullPointerException e) {
+			return false;
+		}
+		
+	}
+	public boolean authenticateCustomer(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+
+		User loggedUser = (User) session.getAttribute("user");
+		if(loggedUser.getUserType().equalsIgnoreCase("customer")){
+			return true;
+		}
+		return false;
+	}
 
 	@RequestMapping(value = "/usage", method = RequestMethod.GET)
 	public String consumerUsage(ModelMap model,HttpServletRequest request) {		
@@ -34,14 +59,19 @@ public class MonitorController {
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String adminDashboard(ModelMap model,HttpServletRequest request) {
+
+		if(!authenticateAdmin(request)){
+			System.out.println("Not Authenticated");
+			return "redirect: /login";
+		}
+		System.out.println("Authenticated");
+		HttpSession session = request.getSession(false);
+		User loggedUser=(User)session.getAttribute("user");
+		model.addAttribute("userName",loggedUser.getFirstName());
 		model.addAttribute("complaints",ModelUtility.ModelUtilityDAO.getComplainCount());
 		model.addAttribute("newConnection",ModelUtility.ModelUtilityDAO.getConnectionRequestCount());
 		model.addAttribute("changeConnection",ModelUtility.ModelUtilityDAO.getConnectionChangeCount());
 		model.addAttribute("customerCount",ModelUtility.ModelUtilityDAO.getCustomerCount());
-		
-//		HttpSession session = request.getSession(false);
-//		int id=(Integer)(session.getAttribute("userID"));
-		
 		return "admindashboard";
 	}
 	

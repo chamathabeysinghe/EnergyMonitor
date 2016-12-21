@@ -13,26 +13,26 @@ public class ModelUtility {
 		}
 		
 		public static int getConnectionRequestCount(){
-			String sql="SELECT  count(*) from newconnectionrequest where status='processing'";
+			String sql="SELECT  count(*) from newconnectionrequest where status='pending'";
 			int i=DataAccess.getInstance().queryForObject(sql, Integer.class);			
 			return i;
 		}
 		
 		public static int getConnectionChangeCount(){
-			String sql="SELECT  count(*) from changerequest where status='processing'";
+			String sql="SELECT  count(*) from changerequest where status='pending'";
 			int i=DataAccess.getInstance().queryForObject(sql, Integer.class);			
 			return i;
 		}
 		
 		
 		public static int getComplainCount(int customerID){
-			String sql="SELECT  count(*) from complaint,connection where status='processing' and connection.id=complaint.connectionID and connection.customerID=?";
+			String sql="SELECT  count(*) from complaint,connection where status='pending' and connection.id=complaint.connectionID and connection.customerID=?";
 			int i=DataAccess.getInstance().queryForObject(sql,new Object[]{customerID}, Integer.class);			
 			return i;
 		}
 		
 		public static int getConnectionRequestCount(int customerID){
-			String sql="SELECT  count(*) from newconnectionrequest where status='processing' and customerID=?";
+			String sql="SELECT  count(*) from newconnectionrequest where status='pending' and customerID=?";
 			int i=DataAccess.getInstance().queryForObject(sql,new Object[]{customerID} ,Integer.class);			
 			return i;
 		}
