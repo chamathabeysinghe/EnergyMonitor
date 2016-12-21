@@ -1,15 +1,15 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <title>Find BILL</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <jsp:include page="partials/styles.jsp"></jsp:include>
-  <jsp:include page="partials/scripts.jsp"></jsp:include>
-  
+<title>Find BILL</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<jsp:include page="partials/styles.jsp"></jsp:include>
+<jsp:include page="partials/scripts.jsp"></jsp:include>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -23,55 +23,54 @@
 
 			<section class="content-header">
 
-				<h1>Find Bill</h1>
-				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li class="active">Find bill</li>
-				</ol>
-				
+			<h1>Find Bill</h1>
+			<ol class="breadcrumb">
+				<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+				<li class="active">Find bill</li>
+			</ol>
+
 			</section>
 
 
 			<section class="content">
-			<form class="form-horizontal" id="search-form" action="/EnergyMonitor/findBill" method="post">
-  			<div class="form-group form-group-lg">
-				<label class="col-sm-2 control-label">Bill ID</label>
-				<div class="col-sm-8">
-					<input type="text" class="form-control" id="billID" name="billID">
+			<form class="form-horizontal" id="search-form"
+				action="/EnergyMonitor/findBill" method="post">
+				<div class="form-group form-group-lg">
+					<label class="col-sm-2 control-label">Bill ID</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="billID" name="billID">
+					</div>
 				</div>
-			</div>
-			<div class="form-group form-group-lg">
-				<label class="col-sm-2 control-label">Connection ID</label>
-				<div class="col-sm-8">
-					<input type="text" class="form-control" id="connectionID" name="connectionID">
+				<div class="form-group form-group-lg">
+					<label class="col-sm-2 control-label">Connection ID</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="connectionID"
+							name="connectionID">
+					</div>
 				</div>
-			</div>
-			<div class="form-group form-group-lg">
-				<label class="col-sm-2 control-label">Month</label>
-				<div class="col-sm-8" >
-					<input type="text" class="form-control"   id="month" name="month" >
+				<div class="form-group form-group-lg">
+					<label class="col-sm-2 control-label">Month</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="month" name="month">
+					</div>
 				</div>
-			</div>
-			
-			<div class="form-group form-group-lg">
-				<label class="col-sm-2 control-label">year</label>
-				<div class="col-sm-8">
-					<input type="text" class="form-control" id="year" name="year">
+
+				<div class="form-group form-group-lg">
+					<label class="col-sm-2 control-label">year</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="year" name="year">
+					</div>
 				</div>
-			</div>
-			<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" id="bth-save"
-						class="btn btn-primary btn-lg" >Find</button>
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" id="bth-save" class="btn btn-primary btn-lg">Find</button>
 				</div>
-			
-		</form>
-		<div >
-				
-			</div>
+
+			</form>
+			<div></div>
 			<div id="feedback" class="col-sm-offset-2 col-sm-10"></div>
 
-	
-				
+
+
 			</section>
 
 
@@ -101,12 +100,10 @@
 
 
 
-	
-	
-	
-<script>
-	
 
+
+
+<script>
 	function searchViaAjax() {
 
 		var search = {}
@@ -118,8 +115,13 @@
 		$.ajax({
 			type : "POST",
 			url : "/EnergyMonitor/findBill",
-			Accept: "application/json",
-			data : {connectionID:search["connectionID"],month:search["month"],year:search["year"],billID:search["billID"]},
+			Accept : "application/json",
+			data : {
+				connectionID : search["connectionID"],
+				month : search["month"],
+				year : search["year"],
+				billID : search["billID"]
+			},
 			dataType : 'jason',
 			timeout : 100000,
 			success : function(data) {
@@ -143,7 +145,7 @@
 	}
 
 	function display(data) {
-		var json = "<h4>"+JSON.stringify(data, null, 4) +"</h4>";
+		var json = "<h4>" + JSON.stringify(data, null, 4) + "</h4>";
 		$('#feedback').html(json);
 	}
 </script>
