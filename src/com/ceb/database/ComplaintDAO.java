@@ -25,13 +25,22 @@ public class ComplaintDAO {
 	
 	}
 	
+	public static void updateComplaint(int complaintID) {
+		
+		
+	   	    
+		String sql = "UPDATE complaint SET status='done' WHERE id=?";
+		DataAccess.getInstance().update(sql,complaintID); 
+	
+	}
+	
 	public static int getId() {
 		String sql = "SELECT MAX(ID) FROM complaint";
 		return DataAccess.getInstance().queryForInt(sql);
 	}
 	
 	public static List<Complaint> getAllComplaints() {
-		String sql = "SELECT * FROM complaint";
+		String sql = "SELECT * FROM complaint where status=\"pending\"";
 		/*List<Complaint> complaints = new ArrayList<Complaint>();
 		List<Map> rows = DataAccess.getInstance().queryForList(sql);*/
 		List<Complaint> complaints  = DataAccess.getInstance().query(sql, new BeanPropertyRowMapper<Complaint>(Complaint.class));
