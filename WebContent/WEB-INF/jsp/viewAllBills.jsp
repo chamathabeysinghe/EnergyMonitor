@@ -7,7 +7,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>View BILL</title>
+<title>View All Bills</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <jsp:include page="partials/styles.jsp"></jsp:include>
@@ -26,10 +26,10 @@
 
 			<section class="content-header">
 
-			<h1>View Bills</h1>
+			<h1>View all Bills</h1>
 			<ol class="breadcrumb">
 				<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-				<li class="active">View bill</li>
+				<li class="active">View all bills</li>
 			</ol>
 
 			</section>
@@ -50,9 +50,6 @@
  							+ " <div class=card-block>" + "<blockquote class=card-blockquote>"
  							+ " <div class=row>" + "<label class= col-sm-4 label label-primary>Bill ID</label>"
  							+ "<label class= col-sm-8 label>" + bill.getBillID() + "</label>" + " </div>"
- 							+ " <div class=row>"
- 							+ "<label class= col-sm-4 label label-primary>Connection ID</label>"
- 							+ "<label class= col-sm-8 label>" + bill.getConnectionID() + "</label>" + " </div>"
  							+ " <div class=row>"
  							+ "<label class= col-sm-4 label label-primary>Month/Year</label>"
  							+ "<label class= col-sm-8 label>" + bill.getMonth() + " / " + bill.getYear()
@@ -99,3 +96,14 @@
 
 
 
+
+
+<div class="info-box">
+	<span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
+
+	<div class="info-box-content">
+		<span class="info-box-text">Uploads</span> <span
+			class="info-box-number">13,648</span>
+	</div>
+	<!-- /.info-box-content -->
+</div>

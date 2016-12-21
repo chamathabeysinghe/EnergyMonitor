@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>ADD BILL</title>
+<title>ADD Payment</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <jsp:include page="partials/styles.jsp"></jsp:include>
@@ -23,54 +23,62 @@
 
 			<section class="content-header">
 
-			<h1>Add Bill</h1>
 			<ol class="breadcrumb">
 				<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-				<li class="active">Add bill</li>
+				<li class="active">Add Payments</li>
 			</ol>
 
 			</section>
 
 
 			<section class="content">
-			<form class="form-horizontal" id="save-form ">
-				<div class="form-group form-group-lg">
-					<label class="col-sm-2 control-label">Connection ID</label>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="connectionID">
-					</div>
-				</div>
-				<div class="form-group form-group-lg">
-					<label class="col-sm-2 control-label">Month/Year</label>
-					<div class="col-sm-4">
-						<input type="text" class="form-control" id="month">
-					</div>
-				</div>
-				<div class="form-group form-group-lg">
-					<label class="col-sm-2 control-label">Usage</label>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="usage">
-					</div>
-				</div>
-				<div class="form-group form-group-lg">
-					<label class="col-sm-2 control-label">Amount</label>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="amount">
-					</div>
-				</div>
-
-
-			</form>
 			<div>
-				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" id="bth-save" class="btn btn-primary btn-lg"
-						onclick="validate()">Save</button>
+				<!-- general form elements -->
+				<div class="box box-primary">
+					<div class="box-header with-border">
+						<h3 class="box-title">Add Payments</h3>
+					</div>
+					<!-- /.box-header -->
+					<!-- form start -->
+					<form role="form">
+						<div class="box-body">
+							<div class="form-group">
+								<label>Date</label>
+
+								<div class="input-group date">
+									<div class="input-group-addon">
+										<i class="fa fa-calendar"></i>
+									</div>
+									<input type="text" class="form-control pull-right"
+										id="datepicker">
+								</div>
+								<!-- /.input group -->
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Connection ID</label> <input
+									type="text" class="form-control" id="connectionID"
+									placeholder="Enter connection ID">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword1">Amount</label> <input
+									type="text" class="form-control" id="amount"
+									placeholder="enter amount">
+							</div>
+
+
+						</div>
+						<!-- /.box-body -->
+
+
+					</form>
 				</div>
-			</div>
-			<div id="feedback" class="col-sm-offset-2 col-sm-10"></div>
-
-
-
+				<div>
+					<div>
+						<button type="submit" id="bth-save" class="btn btn-primary"
+							onclick="validate()">Save</button>
+					</div>
+				</div>
+				<div id="feedback" class="col-sm-offset-2 col-sm-10"></div>
 			</section>
 
 
@@ -102,9 +110,6 @@
 		//console.log("validate working");
 		var search = {}
 		search["connectionID"] = $("#connectionID").val();
-		search["month"] = $("#month").val().split("/")[0];
-		search["year"] = $("#month").val().split("/")[1];
-		search["usage"] = $("#usage").val();
 		search["amount"] = $("#amount").val();
 		var check = true;
 		for ( var val in search) {
@@ -125,47 +130,20 @@
 
 		return (data - 0) == data && data.length > 0;
 	}
-	$("#usage").keyup(function(event) {
-
-		var units = parseInt($("#usage").val());
-		var charge = 0.0;
-		if (units != null) {
-			if (units > 0 && units < 30) {
-				charge = 2.5 * units + 30;
-			} else if (units >= 30 && units < 60) {
-				charge = 4.85 * units + 60;
-			} else if (units >= 60 && units < 90) {
-				charge = 10 * units + 90;
-			} else if (units >= 90 && units < 120) {
-				charge = 27.75 * units + 480;
-			} else if (units >= 120 && units < 180) {
-				charge = 32 * units + 480;
-			} else if (units >= 180) {
-				charge = 45 * units + 540;
-			}
-			$('#amount').val(charge);
-		} else {
-			$('#feedback').html("invalid usage amount");
-		}
-	});
 
 	function saveViaAjax() {
-
+		//console.log("SUCCESS: ", $("#datepicker").val());
 		var search = {}
 		search["connectionID"] = $("#connectionID").val();
-		search["month"] = $("#month").val().split("/")[0];
-		search["year"] = $("#month").val().split("/")[1];
-		search["usage"] = $("#usage").val();
+		search["date"] = $("#datepicker").val();
 		search["amount"] = $("#amount").val();
 
 		$.ajax({
 			type : "POST",
-			url : "/EnergyMonitor/saveBill",
+			url : "/EnergyMonitor/savePayment",
 			data : {
 				connectionID : search["connectionID"],
-				month : search["month"],
-				year : search["year"],
-				usage : search["usage"],
+				date : search["date"],
 				amount : search["amount"]
 			},
 			dataType : 'text',
@@ -194,6 +172,10 @@
 		var json = "<h4>" + JSON.stringify(data, null, 4) + "</h4>";
 		$('#feedback').html(json);
 	}
+
+	$('#datepicker').datepicker({
+		autoclose : true
+	});
 </script>
 
 </html>
