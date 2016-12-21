@@ -60,11 +60,15 @@ public class MonitorController {
 		User loggedUser=(User)session.getAttribute("user");
 		model.addAttribute("userName",loggedUser.getFirstName()+" "+loggedUser.getLastName());
 		int id=loggedUser.getId();
-		String results[] = Bill.getUsageRepor(3, 2016);
-		String results2[]=Bill.getBillReport(3, 2016);
-		System.out.println(Arrays.toString(results));
+		HashMap<Integer,String> connectionIDs=Bill.BillDAO.getConnectionIDs(1);
+		
+		System.out.println(connectionIDs.keySet().iterator().next());
+		String results[] = Bill.getUsageRepor(connectionIDs.keySet().iterator().next(), 2016);
+		String results2[]=Bill.getBillReport(connectionIDs.keySet().iterator().next(), 2016);
 		model.addAttribute("usageList", results);
 		model.addAttribute("billList",results2);
+		model.addAttribute("connectionIDs",connectionIDs);
+		
 		
 		return "consumerUsage";
 	}
@@ -104,10 +108,13 @@ public class MonitorController {
 	
 	@RequestMapping(value = "/ajaxBillYearChange", method = RequestMethod.POST, produces = "plain/text")
 	@ResponseBody
-	public String ajaxBillYearChange(@RequestBody String year) {
-		int intYear = Integer.parseInt(year);
-		String results[] = Bill.getUsageRepor(1, intYear);
-		String results2[]=Bill.getBillReport(1, intYear);
+	public String ajaxBillYearChange(@RequestBody String data) {
+		
+		int intYear = Integer.parseInt(data.split(":::")[0]);
+		int connectionID = Integer.parseInt(data.split(":::")[1]);
+		
+		String results[] = Bill.getUsageRepor(connectionID, intYear);
+		String results2[]=Bill.getBillReport(connectionID, intYear);
 
 		return results[1]+"::"+results2[1];
 	}

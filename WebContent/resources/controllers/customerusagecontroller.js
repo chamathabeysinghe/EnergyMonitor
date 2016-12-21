@@ -1,6 +1,7 @@
 function yearSelect(){
 	var year=$('#billYearSelect').val();
-	console.log("Year Changed to "+year);
+	var connectionID=$('#billConnection').val();
+	console.log(connectionID+ "Year Changed to "+year);
 	var data={};
 	data["year"]=year;
 	
@@ -8,7 +9,7 @@ function yearSelect(){
 		type : "POST",
 		contentType : "plain/text",
 		url : "/EnergyMonitor/ajaxBillYearChange",
-		data : year,
+		data : year+":::"+connectionID,
 		dataType : 'text',
 		timeout : 100000,
 		success : function(dataReturn) {

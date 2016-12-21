@@ -1,9 +1,13 @@
 package com.ceb.models;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
+import org.springframework.jdbc.core.RowMapper;
 
 import com.ceb.database.BillRowMapper;
 import com.ceb.database.DataAccess;
@@ -164,6 +168,30 @@ public static String[] getBillReport(int connectionID,int year){
 			}
 			return false;
 		}
+		
+		public static HashMap<Integer,String> getConnectionIDs(int customerID){
+			String sql = "SELECT connection.id as 'connectionID',connection.connectionAddress as 'address' from customer,connection where connection.customerID=customer.id and customer.id=?;";
+			List<String[]> results = DataAccess.getInstance().query(sql, new Object[] { customerID },
+					new RowMapper<String[]>() {
+						@Override
+						public String[] mapRow(ResultSet rs, int arg1) throws SQLException {
+							// TODO Auto-generated method stub
+							String[] result = new String[2];
+
+							result[0] = String.valueOf(rs.getInt("connectionID"));
+							result[1] = (rs.getString("address"));
+							return result;
+						}
+
+					});
+			HashMap<Integer, String> l = new HashMap<Integer, String>();
+			for (String s[] : results) {
+				l.put(Integer.parseInt(s[0]), s[1]);
+
+			}
+			return l;
+		}
+		
 	}
 	
 
