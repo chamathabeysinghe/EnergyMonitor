@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ceb.database.ChangeRequestDAO;
 import com.ceb.database.ComplaintDAO;
 import com.ceb.database.ConnectionRequestDAO;
 import com.ceb.database.DataAccess;
 import com.ceb.models.Bill;
+import com.ceb.models.ChangeRequest;
 import com.ceb.models.Complaint;
 import com.ceb.models.ConnectionRequest;
 import com.ceb.models.EnergyConsumption;
@@ -121,6 +123,12 @@ public class WebController {
 	   model.addAttribute("allcomplaints", allcomplaints);
        for(Complaint complaint: allcomplaints){
        	 System.out.println("Complaint As : " + complaint.getId() + " " + complaint.getComplaintDetails());
+       }
+       
+       List<ChangeRequest> allchangerequests = ChangeRequestDAO.getAllChangeRequests();
+	   model.addAttribute("allchangerequests", allchangerequests);
+       for(ChangeRequest changeRequest: allchangerequests){
+       	 System.out.println("Change Request As : " + changeRequest.getId() + " " + changeRequest.getChangeDetails());
        }
        
        List<ConnectionRequest> allconnectionrequests = ConnectionRequestDAO.getAllConnectionRequests();

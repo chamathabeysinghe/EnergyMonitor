@@ -3,6 +3,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import=" com.ceb.models.Complaint"%>
 <%@ page import=" com.ceb.models.ConnectionRequest"%>
+<%@ page import=" com.ceb.models.ChangeRequest"%>
 <%@ page import="java.util.List"%>
 
 <!DOCTYPE html>
@@ -67,6 +68,41 @@
 							<!-- /.box-body -->
 						</div>
 					</div>
+					
+					
+					<div class="col-md-4">
+						<div class="box box-success">
+							<div class="box-header with-border">
+								<h3 class="box-title">Change Requests</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+								<form role="form">
+									<div class="panel-group" id="panel-978812">
+										
+										<% Object oChangeRequests=request.getAttribute("allchangerequests"); 
+										for(ChangeRequest changeRequest: (ArrayList<ChangeRequest>)oChangeRequests){ %>
+									       	 
+									       	 <div class="panel panel-default">
+												<div class="panel-heading">
+													 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978812" href="#panel-complaint-<% out.println(changeRequest.getId()); %>">Change Request ID: <% out.println(changeRequest.getId()); %></a>
+												</div>
+												<div id="panel-complaint-<% out.println(changeRequest.getId()); %>" class="panel-collapse collapse in">
+													<div class="panel-body">
+														<% out.println(changeRequest.getChangeDetails()); %>
+													</div>
+												</div>
+											</div>
+									    <% }; %>
+										
+									</div>	
+									</form>							
+							</div>
+							<!-- /.box-body -->
+						</div>
+					</div>
+					
+					
 					
 					<div class="col-md-4">
 						<div class="box box-danger">
