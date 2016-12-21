@@ -2,6 +2,10 @@ package com.ceb;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,6 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ceb.models.Bill;
 import com.ceb.models.Bill.BillDAO;
+import com.ceb.models.Connection;
+import com.ceb.models.Connection.ConnectionDAO;
+import com.ceb.models.Payment;
+import com.ceb.models.Payment.PaymentDAO;
 //import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.fasterxml.jackson.databind.ObjectWriter;
 //import com.google.gson.Gson;
@@ -36,6 +44,15 @@ public class BillController {
 	@RequestMapping(value = "/addBill", method = RequestMethod.GET)
 	   public ModelAndView addBill() {
 		   return new ModelAndView("addBill");
+	   }
+
+	@RequestMapping(value = "/addPayment", method = RequestMethod.GET)
+	   public ModelAndView addPayment() {
+		   return new ModelAndView("registerPayment");
+	   }
+	@RequestMapping(value = "/addConnection", method = RequestMethod.GET)
+	   public ModelAndView addConnection() {
+		   return new ModelAndView("addNewConnection");
 	   }
 	@RequestMapping(value = "/findBill", method = RequestMethod.GET)
 	   public ModelAndView findBill() {
@@ -111,6 +128,68 @@ public class BillController {
 		 		return "Error occured";
 		 	}
 		 	
+		 	
+
+		}
+	 @RequestMapping(value = "/saveConnection", method = RequestMethod.POST, produces={"plain/text"})
+		public String saveConnection(HttpServletRequest req) {
+		 	String connectionAddress=req.getParameter("connectionAddress");
+		 	int customerID=Integer.parseInt(req.getParameter("customerID"));
+		 	int locationID=Integer.parseInt(req.getParameter("locationID"));
+		 	String category=req.getParameter("category");
+		 	
+		 	Connection con=new Connection();
+		 	con.setAddress(connectionAddress);
+		 	con.setCategory(category);
+		 	con.setCustomerID(customerID);
+		 	con.setLocationID(locationID);
+		 	
+		 	boolean b=ConnectionDAO.addConnection(con);
+		 	if(b){
+		 		return "Data added successfully";
+		 	}else{
+		 		return "Error occured";
+		 	}
+		 	
+		 	
+
+		}
+	 @RequestMapping(value = "/savePayment", method = RequestMethod.POST, produces={"plain/text"})
+		public String savePayment(HttpServletRequest req) {
+		 	int connectionID=Integer.parseInt(req.getParameter("connectionID"));
+		 	double amount=Double.parseDouble(req.getParameter("amount"));
+		 	String date=req.getParameter("date");
+		 	System.out.println("date : "+date+" con"+connectionID+"amount"+amount);
+		 	DateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+		 	Date inputDate=null;
+			try {
+				inputDate = dateFormat.parse(date);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 	date=new SimpleDateFormat("yyyy-mm-dd").format(inputDate);
+		 	System.out.println("date : "+date+" con"+connectionID+"amount"+amount);
+		 	Payment payment=new Payment();
+		 	payment.setAmount(amount);
+		 	payment.setConnectionID(connectionID);
+		 	payment.setDate(date);
+		 	boolean b= PaymentDAO.addPayment(payment);
+		 	if(b){
+		 		return "Data added successfully";
+		 	}else{
+		 		return "Error occured";
+		 	}
+		 	
+		 	
+
+		}
+	 @RequestMapping(value = "/viewAllBills", method = RequestMethod.POST)
+		public ModelAndView viewAllBills(HttpServletRequest req,ModelMap model) {
+		 	int connectionID=Integer.parseInt(req.getParameter("connectionID"));
+		 	List<Bill> bills=BillDAO.getBillsByConnection( connectionID);
+		 	model.addAttribute("billList",bills);
+		 	return new ModelAndView("viewAllBills");
 		 	
 
 		}
