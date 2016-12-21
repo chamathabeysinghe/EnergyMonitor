@@ -16,8 +16,8 @@
     
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-        <li><a href="/EnergyMonitor/admin"><i class="fa fa-home"></i> <span>Home</span></a></li>
-        <li><a href="/EnergyMonitor/admin"><i class="fa fa-line-chart"></i> <span>View Usage</span></a></li>
+        <li><a href="/EnergyMonitor/customer"><i class="fa fa-home"></i> <span>Home</span></a></li>
+        <li><a href="/EnergyMonitor/usage"><i class="fa fa-line-chart"></i> <span>View Usage</span></a></li>
         <li><a href="/EnergyMonitor/admin"><i class="fa fa-line-chart"></i> <span>View Bills</span></a></li>
         <li><a href="/EnergyMonitor/admin"><i class="fa fa-line-chart"></i> <span>View Payments</span></a></li>
         <li class="treeview">

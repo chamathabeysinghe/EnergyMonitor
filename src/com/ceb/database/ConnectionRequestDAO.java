@@ -1,7 +1,11 @@
 package com.ceb.database;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+
+import com.ceb.models.Complaint;
 import com.ceb.models.ConnectionRequest;
 
 public class ConnectionRequestDAO {
@@ -24,4 +28,12 @@ public class ConnectionRequestDAO {
 		String sql = "SELECT MAX(ID) FROM newconnectionrequest";
 		return DataAccess.getInstance().queryForInt(sql);
 	}
+	
+	public static List<ConnectionRequest> getAllConnectionRequests() {
+		String sql = "SELECT * FROM newconnectionrequest";
+		List<ConnectionRequest> connectionRequests  = DataAccess.getInstance().query(sql, new BeanPropertyRowMapper<ConnectionRequest>(ConnectionRequest.class));
+		return connectionRequests;
+		
+	}
+	
 }

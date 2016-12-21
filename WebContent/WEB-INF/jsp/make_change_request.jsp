@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>AdminLTE 2 | New Connection Request</title>
+<title>AdminLTE 2 | New Change Request </title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <jsp:include page="partials/styles.jsp"></jsp:include>
@@ -25,10 +25,10 @@
 
 			<section class="content-header">
 
-				<h1>Request for New Connection</h1>
+				<h1>New Change Request</h1>
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li class="active">Request for New Connection</li>
+					<li class="active">New Change Request</li>
 				</ol>
 
 			</section>
@@ -39,14 +39,14 @@
 					<div class="col-md-8">
 						<div class="box box-danger">
 							<div class="box-header with-border">
-								<h3 class="box-title">Request for New Connection</h3>
+								<h3 class="box-title">New Change Request</h3>
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
-								<form:form method="post" action="make_connection_request" modelAttribute="connectionRequest">
+								<form:form method="post" action="make_change_request" modelAttribute="changeRequest">
 
 									
-									<!-- Display ConnectionRequest ID --> 
+									<!-- Display ChangeRequest ID --> 
 									<div class="form-group">
 										<label>Request ID</label> 
 										<input type="text" class="form-control"
@@ -54,10 +54,10 @@
 									</div> 
 									
 									
-									<!-- textarea input ConnectionRequest Details -->
+									<!-- textarea input ChangeRequest Details -->
 									<div class="form-group">
 										<label>Request Details</label>
-										<form:textarea class="form-control" placeholder="Enter ..." id="newConnectionDetails" path="newConnectionDetails" rows="3"/>
+										<form:textarea class="form-control" placeholder="Enter ..." id="changeDetails" path="changeDetails" rows="3"/>
 									</div>
 									
 									<%-- <!-- Display Complaint Status --> 
