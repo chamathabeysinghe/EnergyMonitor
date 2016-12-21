@@ -17,9 +17,21 @@
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li><a href="/EnergyMonitor/admin"><i class="fa fa-home"></i> <span>Home</span></a></li>
+        <li><a href="/EnergyMonitor/admin"><i class="fa fa-line-chart"></i> <span>View Usage</span></a></li>
         <li><a href="/EnergyMonitor/admin"><i class="fa fa-line-chart"></i> <span>View Bills</span></a></li>
-        <li><a href="/EnergyMonitor/admin"><i class="fa fa-home"></i> <span>Requests</span></a></li>
-        
+        <li><a href="/EnergyMonitor/admin"><i class="fa fa-line-chart"></i> <span>View Payments</span></a></li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Requests</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu" style="display: block;">
+            <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Make Complaint</a></li>
+            <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Connection Change</a></li>
+          </ul>
+        </li>
         
         
         <li class="header">LABELS</li>

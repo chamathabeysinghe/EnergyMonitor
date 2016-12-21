@@ -140,7 +140,10 @@
 					
 						<form class="lockscreen-credentials">
 							<div class="input-group">
-							<label>Chamath Abeysinghe</label>
+							<label><%
+								String name=(String)request.getAttribute("userName");
+								out.println(name);
+							%></label>
 								
 							</div>
 						</form>

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -39,7 +40,7 @@ import org.springframework.ui.ModelMap;
 @Controller
 public class WebController {
 
-	 @RequestMapping(value = "/login", method = RequestMethod.GET)
+	   @RequestMapping(value = "/login", method = RequestMethod.GET)
 	   public ModelAndView user() {
 	      return new ModelAndView("login", "command", new User());
 	   }
@@ -49,14 +50,22 @@ public class WebController {
 		   return new ModelAndView("signup", "command", new User());
 	   }
 	   @RequestMapping(value = "/postLogin", method = RequestMethod.POST)
-	   public String logUser(@ModelAttribute("SpringWeb")User user,ModelMap model) {
+	   public String logUser(@ModelAttribute("SpringWeb")User user,ModelMap model,HttpServletRequest request) {
 		   System.out.println("Inside th postLoginjsdkfjakls dfjaklfjalkj "+user.getFirstName());
-		  User.userDAO.logUser(user);
-	      model.addAttribute("name", user.getFirstName());
-	      return "dashboard";
+		  User loggedUser=User.userDAO.logUser(user);
+		  if(loggedUser==null){
+			  System.out.println("Incorrect Loging");
+		  }
+		  HttpSession session = request.getSession(false);
+		  session.setAttribute("userID", loggedUser.getId());
+		  session.setAttribute("userName", loggedUser.getFirstName());
+		  session.setAttribute("user", loggedUser);
+		  
+		  model.addAttribute("name", user.getFirstName());
+	      return "redirect: /admin";
 	   }
 	   @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-		public String saveUser(HttpServletRequest req) {
+		public String saveUser(@ModelAttribute("SpringWeb")User userIn,HttpServletRequest req) {
 		   	System.out.println("adduserworking");
 		   	String firstName = (req.getParameter("firstName"));
 		   	String lastName = (req.getParameter("lastName"));
@@ -77,7 +86,7 @@ public class WebController {
 		 	user.setEmail(email);
 		 	user.setPassword(password);
 		 	
-		 	System.out.println("dsfg");
+		 	System.out.println("User email ::::"+email);
 		 	
 		 	boolean u=userDAO.addUser(user);
 		 	if(u){

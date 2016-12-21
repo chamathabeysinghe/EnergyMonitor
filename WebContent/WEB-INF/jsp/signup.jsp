@@ -30,21 +30,19 @@
 				<form:form class="form-horizontal" id="signup-form" action= "/EnergyMonitor/addUser" method = "post">
 
 					<div class="box-body">
-
 						<div class="form-group">
 							<label for="firstname" class="col-sm-2 control-label">FirstName*</label>
 							<div class="col-sm-6">
-								<input type="text" class="form-control" id="firstName"
+								<input type="text" class="form-control" id="firstName" path="firstName"
 									placeholder="firstname">
 							</div>
 
 						</div>
 						<div class="form-group">
-							<label for="lastname" class="col-sm-2 control-label">LastName*</label>
+							<label for="lastname" class="col-sm-2 control-label">Last Name*</label>
 
 							<div class="col-sm-6">
-								<input type="text" class="form-control" id="lastName"
-									placeholder="lastname">
+								<input type="text" class="form-control" id="lastName" placeholder="lastname">
 							</div>
 						</div>
 
