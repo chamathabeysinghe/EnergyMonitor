@@ -53,6 +53,9 @@
 									       	 <div class="panel panel-default">
 												<div class="panel-heading">
 													 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978813" href="#panel-complaint-<% out.println(connectionrequest.getId()); %>">Connection Request ID: <% out.println(connectionrequest.getId()); %></a>
+													<button type="button" class="btn btn-default btn-sm" style="float: right">
+											          <span class="glyphicon glyphicon-new-window"></span> Create 
+											        </button>
 												</div>
 												<div id="panel-complaint-<% out.println(connectionrequest.getId()); %>" class="panel-collapse collapse in">
 													<div class="panel-body">
@@ -86,6 +89,9 @@
 									       	 <div class="panel panel-default">
 												<div class="panel-heading">
 													 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978812" href="#panel-complaint-<% out.println(changeRequest.getId()); %>">Change Request ID: <% out.println(changeRequest.getId()); %></a>
+													<button type="button" class="btn btn-default btn-sm" style="float: right">
+											          <span class="glyphicon glyphicon-cog"></span> Change 
+											        </button>
 												</div>
 												<div id="panel-complaint-<% out.println(changeRequest.getId()); %>" class="panel-collapse collapse in">
 													<div class="panel-body">
@@ -121,6 +127,9 @@
 									       	 <div class="panel panel-default">
 												<div class="panel-heading">
 													 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978814" href="#panel-complaint-<% out.println(complaint.getId()); %>">Complaint ID: <% out.println(complaint.getId()); %></a>
+													<button type="button" class="btn btn-default btn-sm" style="float: right">
+											          <span class="glyphicon glyphicon-ok"></span> Done 
+											        </button>
 												</div>
 												<div id="panel-complaint-<% out.println(complaint.getId()); %>" class="panel-collapse collapse in">
 													<div class="panel-body">
