@@ -36,21 +36,15 @@
 							<label for="firstname" class="col-sm-2 control-label">FirstName*</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" id="firstName"
-<<<<<<< HEAD
-									placeholder="firstname">
-=======
+
 									path="firstName" placeholder="firstname">
->>>>>>> thulana
 							</div>
 
 						</div>
 						<div class="form-group">
-<<<<<<< HEAD
-							<label for="lastname" class="col-sm-2 control-label">LastName*</label>
-=======
+
 							<label for="lastname" class="col-sm-2 control-label">Last
 								Name*</label>
->>>>>>> thulana
 
 							<div class="col-sm-6">
 								<input type="text" class="form-control" id="lastName"
