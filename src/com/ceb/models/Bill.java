@@ -67,7 +67,8 @@ public class Bill {
 		
 		for(Bill b:BillDAO.getBillsByConnection(connectionID,year)){
 			//usageMap.put(b.getMonth(),b.getUsage());
-			usageArray.set(monthArray.indexOf(b.getMonth()), b.getUsage());//should be checked this one
+			System.out.println(b.getMonth());
+			usageArray.set(Integer.parseInt(b.getMonth())-1, b.getUsage());//should be checked this one
 			
 		}
 		
@@ -98,7 +99,7 @@ public static String[] getBillReport(int connectionID,int year){
 		
 		for(Bill b:BillDAO.getBillsByConnection(connectionID,year)){
 			//usageMap.put(b.getMonth(),b.getUsage());
-			billArray.set(monthArray.indexOf(b.getMonth()), b.getAmount());
+			billArray.set(Integer.parseInt(b.getMonth())-1, b.getAmount());
 			
 		}
 		
@@ -189,6 +190,7 @@ public static String[] getBillReport(int connectionID,int year){
 						}
 
 					});
+			System.out.println("DAO  "+results+customerID);
 			HashMap<Integer, String> l = new HashMap<Integer, String>();
 			for (String s[] : results) {
 				l.put(Integer.parseInt(s[0]), s[1]);

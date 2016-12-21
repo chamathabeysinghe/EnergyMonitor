@@ -18,14 +18,15 @@
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li><a href="/EnergyMonitor/admin"><i class="fa fa-home"></i> <span>Home</span></a></li>
-        <li><a href="/EnergyMonitor/admin"><i class="fa fa-line-chart"></i> <span>Analyze</span></a></li>
+        <li><a href="/EnergyMonitor/consumption"><i class="fa fa-line-chart"></i> <span>Analyze</span></a></li>
         <li><a href="/EnergyMonitor/view_complaints"><i class="fa fa-credit-card-alt"></i> <span>Handle Requests</span></a></li>
         <li><a href="/EnergyMonitor/findBill"><i class="fa fa-home"></i> <span>Search Bills</span></a></li>
         <li><a href="/EnergyMonitor/addPayment"><i class="fa fa-credit-card-alt"></i> <span>Register Payment</span></a></li>
         <li><a href="/EnergyMonitor/signup"><i class="fa fa-home"></i> <span>User Account Creation</span></a></li>
                 <li><a href="/EnergyMonitor/addLocation"><i class="fa fa-home"></i> <span>Creation Locations</span></a></li>
-        
-        
+        <li><a href="/EnergyMonitor/addBill"><i class="fa fa-home"></i> <span>Add Bill</span></a></li>
+        <li><a href="/EnergyMonitor/addConnection"><i class="fa fa-home"></i> <span>Add Connection</span></a></li>
+      
         
         <li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>About Us</span></a></li>

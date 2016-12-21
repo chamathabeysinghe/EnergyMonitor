@@ -25,7 +25,7 @@
 
 			<section class="content-header">
 
-				<h1>New Change Request</h1>
+				<h1>Add Location</h1>
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
 					<li class="active">New Change Request</li>

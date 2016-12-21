@@ -1,4 +1,7 @@
 package com.ceb;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ceb.database.ConnectionRequestDAO;
 import com.ceb.models.ConnectionRequest;
+import com.ceb.models.User;
 
 @Controller
 public class ConnectionRequestController {
@@ -25,8 +29,11 @@ public class ConnectionRequestController {
         return "make_connection_request";
     }
 	@RequestMapping(value = "/make_connection_request", method = RequestMethod.POST)
-	public String complaintSubmit(@ModelAttribute ConnectionRequest connectionRequest,BindingResult result) {
-		ConnectionRequestDAO.saveConnectionRequest(connectionRequest);
+	public String complaintSubmit(@ModelAttribute ConnectionRequest connectionRequest,BindingResult result,HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		User loggedUser=(User)session.getAttribute("user");
+		int id=loggedUser.getId();
+		ConnectionRequestDAO.saveConnectionRequest(connectionRequest,id);
 		return "make_connection_request";
     }
 }

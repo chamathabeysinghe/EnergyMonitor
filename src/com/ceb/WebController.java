@@ -72,7 +72,8 @@ public class WebController {
 		  session.setMaxInactiveInterval(60*60);
 		  
 		  model.addAttribute("name", user.getFirstName());
-	      return "redirect: /admin";
+		  System.out.println("DFDLKJFLD");
+	      return "redirect: /customer";
 	   }
 	   @RequestMapping(value = "/addUser", method = RequestMethod.POST)
 		public String saveUser(HttpServletRequest req) {
@@ -96,21 +97,23 @@ public class WebController {
 		 	user.setPassword(password);
 		 	user.setUserType(userType);
 		 	
+		 	
 		 	System.out.println("User email ::::"+email+ "password "+password+" usertype"+userType);
-		 	Customer cus=new Customer();
-		 	cus.setId(userDAO.getUserCount()+1);
-		 	cus.setName(nameWithInitials);
-		 	cus.setAddress(address);
+		 	
 		 	boolean u=userDAO.addUser(user);
-		 	boolean b=CustomerDAO.addCustomer(cus);
-		 	if (b || u) {
+		 	if(user.getUserType().equalsIgnoreCase("Customer")){
+		 		Customer cus=new Customer();
+			 	cus.setId(userDAO.getUserCount());
+			 	cus.setName(nameWithInitials);
+			 	cus.setAddress(address);
+			 	boolean b=CustomerDAO.addCustomer(cus);
+		 	}
+		 	if ( u) {
 				return "Data added successfully";
 			} else {
 				return "Error occured";
 			}
 		 	
-		 	
-
 		}
    
    

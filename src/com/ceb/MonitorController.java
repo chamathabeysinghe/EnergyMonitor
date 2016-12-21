@@ -53,16 +53,14 @@ public class MonitorController {
 
 	@RequestMapping(value = "/usage", method = RequestMethod.GET)
 	public String consumerUsage(ModelMap model,HttpServletRequest request) {		
-		if(!authenticateAdmin(request)){
-			return "redirect: /login";
-		}
+		
 		HttpSession session = request.getSession(false);
 		User loggedUser=(User)session.getAttribute("user");
 		model.addAttribute("userName",loggedUser.getFirstName()+" "+loggedUser.getLastName());
 		int id=loggedUser.getId();
-		HashMap<Integer,String> connectionIDs=Bill.BillDAO.getConnectionIDs(1);
+		HashMap<Integer,String> connectionIDs=Bill.BillDAO.getConnectionIDs(id);
 		
-		System.out.println(connectionIDs.keySet().iterator().next());
+		System.out.println(connectionIDs);
 		String results[] = Bill.getUsageRepor(connectionIDs.keySet().iterator().next(), 2016);
 		String results2[]=Bill.getBillReport(connectionIDs.keySet().iterator().next(), 2016);
 		model.addAttribute("usageList", results);
@@ -76,9 +74,7 @@ public class MonitorController {
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String adminDashboard(ModelMap model,HttpServletRequest request) {
 
-		if(!authenticateAdmin(request)){
-			return "redirect: /login";
-		}
+		
 		HttpSession session = request.getSession(false);
 		User loggedUser=(User)session.getAttribute("user");
 		model.addAttribute("userName",loggedUser.getFirstName()+" "+loggedUser.getLastName());
@@ -91,9 +87,7 @@ public class MonitorController {
 	
 	@RequestMapping(value = "/customer", method = RequestMethod.GET)
 	public String consumerDashboard(ModelMap model,HttpServletRequest request) {
-		if(!authenticateAdmin(request)){
-			return "redirect: /login";
-		}
+		
 		HttpSession session = request.getSession(false);
 		User loggedUser=(User)session.getAttribute("user");
 		model.addAttribute("userName",loggedUser.getFirstName()+" "+loggedUser.getLastName());
@@ -122,9 +116,7 @@ public class MonitorController {
 	@RequestMapping(value = "/consumption", method = RequestMethod.GET)
 	public String locationUsage(ModelMap model,HttpServletRequest request) {
 		
-		if(!authenticateAdmin(request)){
-			return "redirect: /login";
-		}
+		
 		HttpSession session = request.getSession(false);
 		User loggedUser=(User)session.getAttribute("user");
 		model.addAttribute("userName",loggedUser.getFirstName()+" "+loggedUser.getLastName());

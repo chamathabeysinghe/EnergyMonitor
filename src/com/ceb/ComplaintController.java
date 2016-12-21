@@ -31,8 +31,11 @@ public class ComplaintController {
         return "make_complaint";
     }
 	@RequestMapping(value = "/make_complaint", method = RequestMethod.POST)
-	public String complaintSubmit(@ModelAttribute Complaint complaint,BindingResult result) {
-		ComplaintDAO.saveNewComplaint(complaint);
+	public String complaintSubmit(@ModelAttribute Complaint complaint,BindingResult result,HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		User loggedUser=(User)session.getAttribute("user");
+		int id=loggedUser.getId();
+		ComplaintDAO.saveNewComplaint(complaint,1);
 		return "make_complaint";
     }
 	@RequestMapping(value = "/done_complaint", method = RequestMethod.POST,produces = "plain/text")

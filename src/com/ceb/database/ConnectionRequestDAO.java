@@ -10,7 +10,7 @@ import com.ceb.models.ConnectionRequest;
 
 public class ConnectionRequestDAO {
 	
-	public static void saveConnectionRequest(ConnectionRequest connectionRequest) {
+	public static void saveConnectionRequest(ConnectionRequest connectionRequest,int userID) {
 		
 		System.out.println(connectionRequest.getNewConnectionDetails());
 		
@@ -20,7 +20,7 @@ public class ConnectionRequestDAO {
 	    
 		String sql = "INSERT INTO newconnectionrequest (date, status, newConnectionDetails, customerID)"
                 + " VALUES (?, ?, ?, ?)";
-		DataAccess.getInstance().update(sql, date, "pending", connectionRequest.getNewConnectionDetails(), 1); 
+		DataAccess.getInstance().update(sql, date, "pending", connectionRequest.getNewConnectionDetails(), userID); 
 	
 	}
 	

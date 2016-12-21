@@ -11,7 +11,7 @@ import com.mysql.cj.api.jdbc.Statement;
 
 public class ComplaintDAO {
 	
-	public static void saveNewComplaint(Complaint complaint) {
+	public static void saveNewComplaint(Complaint complaint,int customerID) {
 		
 		System.out.println(complaint.getComplaintDetails());
 		
@@ -21,7 +21,7 @@ public class ComplaintDAO {
 	    
 		String sql = "INSERT INTO complaint (date, status, complaintDetails, connectionID)"
                 + " VALUES (?, ?, ?, ?)";
-		DataAccess.getInstance().update(sql, date, "pending", complaint.getComplaintDetails(), 1); 
+		DataAccess.getInstance().update(sql, date, "pending", complaint.getComplaintDetails(), customerID); 
 	
 	}
 	
