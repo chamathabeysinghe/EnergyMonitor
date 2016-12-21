@@ -16,13 +16,17 @@ import com.ceb.models.Complaint;
 public class ComplaintController {
 	@RequestMapping(value = "/make_complaint", method = RequestMethod.GET)
     public String makeComplaintForm(Model model) {
-        model.addAttribute("complaint", new Complaint());
+		int id = ComplaintDAO.getId() + 1; 
+		System.out.println(id);
+		Complaint complaint = new Complaint();
+		complaint.setId(id); 
+        model.addAttribute("complaint", complaint);
+        model.addAttribute("id", id);
         return "make_complaint";
     }
 	@RequestMapping(value = "/make_complaint", method = RequestMethod.POST)
-	public String complaintSubmit(@ModelAttribute Complaint complaint, BindingResult result) {
-        ComplaintDAO.saveNewComplaint(complaint);
+	public String complaintSubmit(@ModelAttribute Complaint complaint,BindingResult result) {
+		ComplaintDAO.saveNewComplaint(complaint);
 		return "make_complaint";
     }
-
 }

@@ -130,7 +130,7 @@ function drawProvinceChart(){
     var pieChart = new Chart(pieChartCanvas);
     var PieData = [  ];
     
-    
+    console.log(dataSetByProvince);
     for(var i=0;i<dataSetByProvince.length;i++){
     	var colors=getRandomColor();
     	var o={
