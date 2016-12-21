@@ -18,7 +18,7 @@
 	<div class="wrapper">
 
 		<jsp:include page="partials/header.jsp"></jsp:include>
-		<jsp:include page="partials/sidenav.jsp"></jsp:include>
+		<jsp:include page="partials/consumerSideNav.jsp"></jsp:include>
 
 		<div class="content-wrapper">
 

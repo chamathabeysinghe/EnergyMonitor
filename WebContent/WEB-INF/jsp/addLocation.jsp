@@ -28,7 +28,7 @@
 				<h1>Add Location</h1>
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li class="active">New Change Request</li>
+					<li class="active">Add Location</li>
 				</ol>
 
 			</section>

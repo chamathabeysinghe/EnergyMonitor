@@ -224,7 +224,7 @@ public class BillController {
 
 	}
 
-	@RequestMapping(value = "/viewAllBills", method = RequestMethod.POST)
+	@RequestMapping(value = "/viewAllBills", method = RequestMethod.GET)
 	public ModelAndView viewAllBills(HttpServletRequest req, ModelMap model) {
 		HttpSession session = req.getSession(false);
 		int id=1;

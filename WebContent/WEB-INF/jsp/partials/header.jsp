@@ -24,9 +24,9 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="resources/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs">User</span>
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu hide">
               <!-- User image -->
               <li class="user-header">
                 <img src="resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
@@ -37,7 +37,7 @@
                 </p>
               </li>
               <!-- Menu Body -->
-              <li class="user-body">
+              <li class="user-body hide">
                 <div class="row">
                   <div class="col-xs-4 text-center">
                     <a href="#">Followers</a>
@@ -63,7 +63,7 @@
             </ul>
           </li>
           <!-- Control Sidebar Toggle Button -->
-          <li>
+          <li class="hide">
             <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
           </li>
         </ul>

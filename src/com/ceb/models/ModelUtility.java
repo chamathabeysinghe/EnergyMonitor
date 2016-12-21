@@ -38,7 +38,7 @@ public class ModelUtility {
 		}
 		
 		public static int getConnectionChangeCount(int customerID){
-			String sql="SELECT  count(*) from changerequest,connection where status='processing' and connection.id=changeRequest.connectionID and connection.customerID=?";
+			String sql="SELECT  count(*) from changerequest,connection where status='pending' and connection.id=changeRequest.connectionID and connection.customerID=?";
 			int i=DataAccess.getInstance().queryForObject(sql,new Object[]{customerID} , Integer.class);			
 			return i;
 		}
@@ -52,8 +52,9 @@ public class ModelUtility {
 		}
 		
 		public static double remainingBalance(int customerID){
-			String sql="select (A.BillTotal-B.PayementTotal) from (SELECT COALESCE(SUM(bill.amount),0) as BillTotal from bill,connection where bill.connectionID=connection.id and connection.customerID=?) as A,(SELECT COALESCE(SUM(payment.amount),0) as PayementTotal from payment,connection where payment.connectionID=connection.id and connection.customerID=?) as B";
-			double i=DataAccess.getInstance().queryForObject(sql,new Object[]{customerID,customerID}, Double.class);			
+//			String sql="select (A.BillTotal-B.PayementTotal) from (SELECT COALESCE(SUM(bill.amount),0) as BillTotal from bill,connection where bill.connectionID=connection.id and connection.customerID=?) as A,(SELECT COALESCE(SUM(payment.amount),0) as PayementTotal from payment,connection where payment.connectionID=connection.id and connection.customerID=?) as B";
+			String sql="select remaining from remainingbalance where id=?";
+			double i=DataAccess.getInstance().queryForObject(sql,new Object[]{customerID}, Double.class);			
 
 			return i;
 		}

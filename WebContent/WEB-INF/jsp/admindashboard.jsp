@@ -134,7 +134,7 @@
 
 					<div class="lockscreen-item">
 						<div class="lockscreen-image">
-							<img src="resources/dist/img/user1-128x128.jpg" alt="User Image">
+							<img src="https://cdn3.iconfinder.com/data/icons/rcons-user-action/32/boy-512.png">
 						</div>
 						
 					
@@ -150,11 +150,7 @@
 
 					</div>
 					<br><br>
-					<div class="lockscreen-footer text-center">
-						Copyright © 2014-2016 <b><a href="http://almsaeedstudio.com"
-							class="text-black">Almsaeed Studio</a></b><br> All rights
-						reserved
-					</div>
+					
 				</div>
 
 			</section>

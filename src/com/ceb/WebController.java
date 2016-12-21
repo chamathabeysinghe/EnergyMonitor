@@ -73,7 +73,13 @@ public class WebController {
 		  
 		  model.addAttribute("name", user.getFirstName());
 		  System.out.println("DFDLKJFLD");
-	      return "redirect: /customer";
+		  if(loggedUser.getUserType().equalsIgnoreCase("customer")){
+			  return "redirect: /customer";
+		  }
+		  else{
+			  return "redirect: /admin";
+		  }
+	      
 	   }
 	   @RequestMapping(value = "/addUser", method = RequestMethod.POST)
 		public String saveUser(HttpServletRequest req) {

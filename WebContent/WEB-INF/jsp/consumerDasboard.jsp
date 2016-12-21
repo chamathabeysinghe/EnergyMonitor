@@ -152,11 +152,7 @@
 
 					</div>
 					<br><br>
-					<div class="lockscreen-footer text-center">
-						Copyright © 2014-2016 <b><a href="http://almsaeedstudio.com"
-							class="text-black">Almsaeed Studio</a></b><br> All rights
-						reserved
-					</div>
+					
 				</div>
 
 			</section>
