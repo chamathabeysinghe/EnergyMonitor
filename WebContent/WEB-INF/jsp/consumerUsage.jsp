@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import ="com.ceb.models.EnergyConsumption" %>
 <%@ page import ="java.util.ArrayList" %>
-
+<%@ page import ="java.util.HashMap" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +23,10 @@
 	    <section class="content-header">
 		      
 		      <h1>
-		        Consumer Name
+		        <%
+								String name=(String)request.getAttribute("userName");
+								out.println(name);
+							%>
 		        <small>Usage</small>
 		      </h1>
 		      <ol class="breadcrumb">
@@ -70,6 +73,16 @@
 	                    <option value="2014">2014 Electricity Bills</option>
 	                    <option value="2013">2013 Electricity Bills</option>
 	                    <option value="2012">2012 Electricity Bills</option>
+	                  </select>
+	                  <select id="billConnection" class="form-control selectpicker" data-style="btn-success" onchange='yearSelect()'>
+	                  	<%
+	                  		HashMap<Integer,String> map=(HashMap<Integer,String>)request.getAttribute("connectionIDs");
+	                  		
+	                  		for(int x:map.keySet()){
+	                  			out.println("<option value='"+x+"'>"+map.get(x)+"</option>");
+	                  		}
+	                  	%>
+	                    
 	                  </select>
 	                </div>
 		          <div class="box box-info">

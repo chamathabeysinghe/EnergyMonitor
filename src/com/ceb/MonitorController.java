@@ -38,21 +38,37 @@ public class MonitorController {
 		
 	}
 	public boolean authenticateCustomer(HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-
-		User loggedUser = (User) session.getAttribute("user");
-		if(loggedUser.getUserType().equalsIgnoreCase("customer")){
-			return true;
+		try {
+			HttpSession session = request.getSession(false);
+			User loggedUser;
+			loggedUser = (User) session.getAttribute("user");
+			if (loggedUser.getUserType().equalsIgnoreCase("customer")) {
+				return true;
+			}
+			return false;
+		} catch (NullPointerException e) {
+			return false;
 		}
-		return false;
 	}
 
 	@RequestMapping(value = "/usage", method = RequestMethod.GET)
 	public String consumerUsage(ModelMap model,HttpServletRequest request) {		
-		String results[] = Bill.getUsageRepor(1, 2016);
-		String results2[]=Bill.getBillReport(1, 2016);
+		if(!authenticateAdmin(request)){
+			return "redirect: /login";
+		}
+		HttpSession session = request.getSession(false);
+		User loggedUser=(User)session.getAttribute("user");
+		model.addAttribute("userName",loggedUser.getFirstName()+" "+loggedUser.getLastName());
+		int id=loggedUser.getId();
+		HashMap<Integer,String> connectionIDs=Bill.BillDAO.getConnectionIDs(1);
+		
+		System.out.println(connectionIDs.keySet().iterator().next());
+		String results[] = Bill.getUsageRepor(connectionIDs.keySet().iterator().next(), 2016);
+		String results2[]=Bill.getBillReport(connectionIDs.keySet().iterator().next(), 2016);
 		model.addAttribute("usageList", results);
 		model.addAttribute("billList",results2);
+		model.addAttribute("connectionIDs",connectionIDs);
+		
 		
 		return "consumerUsage";
 	}
@@ -61,13 +77,11 @@ public class MonitorController {
 	public String adminDashboard(ModelMap model,HttpServletRequest request) {
 
 		if(!authenticateAdmin(request)){
-			System.out.println("Not Authenticated");
 			return "redirect: /login";
 		}
-		System.out.println("Authenticated");
 		HttpSession session = request.getSession(false);
 		User loggedUser=(User)session.getAttribute("user");
-		model.addAttribute("userName",loggedUser.getFirstName());
+		model.addAttribute("userName",loggedUser.getFirstName()+" "+loggedUser.getLastName());
 		model.addAttribute("complaints",ModelUtility.ModelUtilityDAO.getComplainCount());
 		model.addAttribute("newConnection",ModelUtility.ModelUtilityDAO.getConnectionRequestCount());
 		model.addAttribute("changeConnection",ModelUtility.ModelUtilityDAO.getConnectionChangeCount());
@@ -77,38 +91,45 @@ public class MonitorController {
 	
 	@RequestMapping(value = "/customer", method = RequestMethod.GET)
 	public String consumerDashboard(ModelMap model,HttpServletRequest request) {
+		if(!authenticateAdmin(request)){
+			return "redirect: /login";
+		}
 		HttpSession session = request.getSession(false);
-		int id=1;
-		try{
-			id=(Integer)(session.getAttribute("userID"));
-		}
-		catch(NullPointerException e){
-			
-		}
+		User loggedUser=(User)session.getAttribute("user");
+		model.addAttribute("userName",loggedUser.getFirstName()+" "+loggedUser.getLastName());
+		int id=loggedUser.getId();
+		model.addAttribute("userName",loggedUser.getFirstName()+" "+loggedUser.getLastName());
 		model.addAttribute("complaints",ModelUtility.ModelUtilityDAO.getComplainCount(id));
 		model.addAttribute("newConnection",ModelUtility.ModelUtilityDAO.getConnectionRequestCount(id));
 		model.addAttribute("changeConnection",ModelUtility.ModelUtilityDAO.getConnectionChangeCount(id));
-		model.addAttribute("customerCount",(int)ModelUtility.ModelUtilityDAO.remainingBalance(id));
-		
-//		HttpSession session = request.getSession(false);
-//		int id=(Integer)(session.getAttribute("userID"));
-		
+		model.addAttribute("customerCount",(int)ModelUtility.ModelUtilityDAO.remainingBalance(id));		
 		return "consumerDasboard";
 	}
 	
 	@RequestMapping(value = "/ajaxBillYearChange", method = RequestMethod.POST, produces = "plain/text")
 	@ResponseBody
-	public String ajaxBillYearChange(@RequestBody String year) {
-		int intYear = Integer.parseInt(year);
-		String results[] = Bill.getUsageRepor(1, intYear);
-		String results2[]=Bill.getBillReport(1, intYear);
+	public String ajaxBillYearChange(@RequestBody String data) {
+		
+		int intYear = Integer.parseInt(data.split(":::")[0]);
+		int connectionID = Integer.parseInt(data.split(":::")[1]);
+		
+		String results[] = Bill.getUsageRepor(connectionID, intYear);
+		String results2[]=Bill.getBillReport(connectionID, intYear);
 
 		return results[1]+"::"+results2[1];
 	}
 
 	@RequestMapping(value = "/consumption", method = RequestMethod.GET)
-	public String locationUsage(ModelMap model) {
+	public String locationUsage(ModelMap model,HttpServletRequest request) {
+		
+		if(!authenticateAdmin(request)){
+			return "redirect: /login";
+		}
+		HttpSession session = request.getSession(false);
+		User loggedUser=(User)session.getAttribute("user");
+		model.addAttribute("userName",loggedUser.getFirstName()+" "+loggedUser.getLastName());
 
+		
 		String totlaUsageByYear[] = EnergyConsumption.EnergyConsumptionDAO.getEnergyConsumptionRecordByYear();
 		model.addAttribute("usageList", totlaUsageByYear);
 
@@ -119,6 +140,7 @@ public class MonitorController {
 		String totlaUsageByProvince[] = EnergyConsumption.EnergyConsumptionDAO
 				.getCountryEnergyConsumptionCategorizedByProvince();
 		model.addAttribute("usageListByProvince", totlaUsageByProvince);
+		System.out.println(Arrays.toString(totlaUsageByProvince));
 		return "electricConsumption";
 	}
 
