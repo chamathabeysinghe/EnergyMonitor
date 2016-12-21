@@ -90,7 +90,7 @@
 												<div class="panel-heading">
 													 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978812" href="#panel-complaint-<% out.println(changeRequest.getId()); %>">Change Request ID: <% out.println(changeRequest.getId()); %></a>
 													<button type="button" class="btn btn-default btn-sm" style="float: right">
-											          <span class="glyphicon glyphicon-cog"></span> Change 
+											          <span class="glyphicon glyphicon-cog"></span> Fixed 
 											        </button>
 												</div>
 												<div id="panel-complaint-<% out.println(changeRequest.getId()); %>" class="panel-collapse collapse in">
@@ -109,6 +109,7 @@
 					</div>
 					
 					
+																		
 					
 					<div class="col-md-4">
 						<div class="box box-danger">
@@ -117,7 +118,7 @@
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
-								<form role="form">
+								<form role="post">
 									<div class="panel-group" id="panel-978814">
 										
 										<% Object oComplaints=request.getAttribute("allcomplaints"); 
@@ -127,7 +128,8 @@
 									       	 <div class="panel panel-default">
 												<div class="panel-heading">
 													 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978814" href="#panel-complaint-<% out.println(complaint.getId()); %>">Complaint ID: <% out.println(complaint.getId()); %></a>
-													<button type="button" class="btn btn-default btn-sm" style="float: right">
+													
+													<button class="deleteButton" data-chamath="<% out.println(complaint.getId()); %>" data-complaintId="<% out.println(complaint.getId()); %>" class="btn btn-default btn-sm" style="float: right" >
 											          <span class="glyphicon glyphicon-ok"></span> Done 
 											        </button>
 												</div>
@@ -163,6 +165,65 @@
 
 	<jsp:include page="partials/scripts.jsp"></jsp:include>
 
+
+	<script type="text/javascript">
+	$('.deleteButton').each(function () {
+	    var $this = $(this);
+	    $this.on("click", function () {
+	    	var complaintID=$(this).data('chamath');
+	    	$.ajax({
+				type : "POST",
+				contentType : "plain/text",
+				url : "/EnergyMonitor/done_complaint",
+				data : complaintID,
+				dataType : 'text',
+				timeout : 100000,
+				success : function(dataReturn) {
+					console.log("DONE");
+					location.reload();
+				},
+				error : function(e) {
+					console.log("ERROR: ", e);
+					
+				},
+				done : function(e) {
+					console.log("DONE");
+				}
+			});
+
+	    });
+	});
+	/* $('.deleteButton').click(function(event){
+		console.log("DELETE CLICKED")
+		event.preventDefault();
+		console.log($(this).data('complaintId'));
+	}); */
+	/* function done_complaint(){
+		var complaintID=$('#complaintID').val();
+		console.log("Djflksdjflksadjf");
+		console.log("Done Complaint ID "+complaintID);
+		
+		
+		 $.ajax({
+			type : "POST",
+			contentType : "plain/text",
+			url : "/EnergyMonitor/done_complaint",
+			data : complaintID,
+			dataType : 'text',
+			timeout : 100000,
+			success : function(dataReturn) {
+				console.log("DONE");
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+				
+			},
+			done : function(e) {
+				console.log("DONE");
+			}
+		});	 
+	} */
+	</script>
 
 	<!-- ChartJS 1.0.1 -->
 	<script src="resources/plugins/chartjs/Chart.min.js"></script>
