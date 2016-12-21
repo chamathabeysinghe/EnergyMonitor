@@ -53,7 +53,7 @@
 									       	 <div class="panel panel-default">
 												<div class="panel-heading">
 													 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978813" href="#panel-complaint-<% out.println(connectionrequest.getId()); %>">Connection Request ID: <% out.println(connectionrequest.getId()); %></a>
-													<button type="button" class="btn btn-default btn-sm" style="float: right">
+													<button type="button" class="btn btn-default btn-sm" style="float: right" onclick="location.href='/EnergyMonitor/addConnection'">
 											          <span class="glyphicon glyphicon-new-window"></span> Create 
 											        </button>
 												</div>
