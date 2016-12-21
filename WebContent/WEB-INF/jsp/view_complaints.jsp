@@ -2,6 +2,7 @@
 <%@ page import="com.ceb.models.EnergyConsumption"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import=" com.ceb.models.Complaint"%>
+<%@ page import=" com.ceb.models.ConnectionRequest"%>
 <%@ page import="java.util.List"%>
 
 <!DOCTYPE html>
@@ -38,32 +39,28 @@
 					<div class="col-md-6">
 						<div class="box box-primary">
 							<div class="box-header with-border">
-								<h3 class="box-title">Consumer Requests</h3>
+								<h3 class="box-title">New Connection Requests</h3>
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
 								<form role="form">		
-									<div class="panel-group" id="panel-978814">
-										<div class="panel panel-default">
-											<div class="panel-heading">
-												 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978814" href="#panel-request-1">Request #1 - Subject</a>
-											</div>
-											<div id="panel-request-1" class="panel-collapse collapse">
-												<div class="panel-body">
-													Content goes here...
+									<div class="panel-group" id="panel-978813">
+									
+										<% Object oConnectionRequests=request.getAttribute("allconnectionrequests");
+										for(ConnectionRequest connectionrequest: (ArrayList<ConnectionRequest>)oConnectionRequests){ %>
+									       	 
+									       	 <div class="panel panel-default">
+												<div class="panel-heading">
+													 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978813" href="#panel-complaint-<% out.println(connectionrequest.getId()); %>">Connection Request ID: <% out.println(connectionrequest.getId()); %></a>
+												</div>
+												<div id="panel-complaint-<% out.println(connectionrequest.getId()); %>" class="panel-collapse collapse in">
+													<div class="panel-body">
+														<% out.println(connectionrequest.getNewConnectionDetails()); %>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="panel panel-default">
-											<div class="panel-heading">
-												 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978814" href="#panel-request-2">Request #2 - Subject</a>
-											</div>
-											<div id="panel-request-2" class="panel-collapse collapse">
-												<div class="panel-body">
-													Content goes here...
-												</div>
-											</div>
-										</div>
+									    <% }; %>
+									    
 									</div>	
 									</form>							
 							</div>
@@ -80,30 +77,10 @@
 							<div class="box-body">
 								<form role="form">
 									<div class="panel-group" id="panel-978814">
-										<!-- <div class="panel panel-default">
-											<div class="panel-heading">
-												 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978814" href="#panel-complaint-1">Complaint #1 - Subject</a>
-											</div>
-											<div id="panel-complaint-1" class="panel-collapse collapse">
-												<div class="panel-body">
-													Content goes here...
-												</div>
-											</div>
-										</div>
-										<div class="panel panel-default">
-											<div class="panel-heading">
-												 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978814" href="#panel-complaint-2">Complaint #2 - Subject</a>
-											</div>
-											<div id="panel-complaint-2" class="panel-collapse collapse">
-												<div class="panel-body">
-													Content goes here...
-												</div>
-											</div>
-										</div> -->
 										
-										<% Object o=request.getAttribute("allcomplaints"); 
+										<% Object oComplaints=request.getAttribute("allcomplaints"); 
 										/* List<Complaint> allcomplaints = List<Complaint>o; */
-										for(Complaint complaint: (ArrayList<Complaint>)o){ %>
+										for(Complaint complaint: (ArrayList<Complaint>)oComplaints){ %>
 									       	 
 									       	 <div class="panel panel-default">
 												<div class="panel-heading">

@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ceb.database.ComplaintDAO;
+import com.ceb.database.ConnectionRequestDAO;
 import com.ceb.database.DataAccess;
 import com.ceb.models.Bill;
 import com.ceb.models.Complaint;
+import com.ceb.models.ConnectionRequest;
 import com.ceb.models.EnergyConsumption;
 import com.ceb.models.User;
 import com.ceb.models.User.userDAO;
@@ -105,11 +107,19 @@ public class WebController {
    }*/
    @RequestMapping(value = "/view_complaints", method = RequestMethod.GET)
    public String view_complaints(Model model) {
+	   
 	   List<Complaint> allcomplaints = ComplaintDAO.getAllComplaints();
 	   model.addAttribute("allcomplaints", allcomplaints);
        for(Complaint complaint: allcomplaints){
        	 System.out.println("Complaint As : " + complaint.getId() + " " + complaint.getComplaintDetails());
        }
+       
+       List<ConnectionRequest> allconnectionrequests = ConnectionRequestDAO.getAllConnectionRequests();
+	   model.addAttribute("allconnectionrequests", allconnectionrequests);
+       for(ConnectionRequest connectionrequest: allconnectionrequests){
+       	 System.out.println("Connection Request As : " + connectionrequest.getId() + " " + connectionrequest.getNewConnectionDetails());
+       }
+       
       return "view_complaints";
    }
    
