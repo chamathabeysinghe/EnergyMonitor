@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AdminLTE 2 | Dashboard</title>
+  <title>Consumer | Usage Summary</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <jsp:include page="partials/styles.jsp"></jsp:include>
@@ -74,7 +74,7 @@
 	                </div>
 		          <div class="box box-info">
 		            <div class="box-header with-border">
-		              <h3 class="box-title">Line Chart</h3>
+		              <h3 class="box-title">Usage</h3>
 		
 		              <div class="box-tools pull-right">
 		                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -88,6 +88,26 @@
 		              </div>
 		            </div>
 		          </div>
+		          
+		          
+		           <div class="box box-info">
+		            <div class="box-header with-border">
+		              <h3 class="box-title">Bill Report</h3>
+		
+		              <div class="box-tools pull-right">
+		                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+		                </button>
+		                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+		              </div>
+		            </div>
+		            <div class="box-body">
+		              <div class="chart">
+		                <canvas id="billChart" style="height: 181px; width: 493px;" height="203" width="554"></canvas>
+		              </div>
+		            </div>
+		          </div>
+		        
+		        
 		        </div>
 	    	
 	    	</div>
@@ -120,9 +140,13 @@
 		
 		
 		Object value=request.getAttribute("usageList");
+		Object valueAmount=request.getAttribute("billList");
 		String result[]=(String[])value;
+		String resultAmount[]=(String[])valueAmount;
 		out.println("var dataSet="+result[1]+";");
+		out.println("var dataSet2="+resultAmount[1]+";");
 		out.println("var labelSet="+result[0]+";");
+		
 		out.println("console.log(dataSet);");
 	%>
 	</script>

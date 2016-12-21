@@ -1,5 +1,6 @@
 package com.ceb;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ import com.ceb.database.DataAccess;
 import com.ceb.models.Bill;
 import com.ceb.models.EnergyConsumption;
 import com.ceb.models.User;
+import com.google.gson.Gson;
+import com.mysql.cj.x.json.JsonArray;
 
 import org.springframework.ui.ModelMap;
 
@@ -47,38 +50,7 @@ public class WebController {
       return "dashboard";
    }
    
-   @RequestMapping(value="/usage",method=RequestMethod.GET)
-   public String consumerUsage(ModelMap model){
-	   String results[]=Bill.getUsageRepor(1,2016);
-	   model.addAttribute("usageList",results);
-	   return "consumerUsage";
-   }
    
-
-   @RequestMapping(value="/ajaxBillYearChange",method=RequestMethod.POST,produces = "plain/text")
-   @ResponseBody
-   public String ajaxBillYearChange(@RequestBody String year){
-	   int intYear=Integer.parseInt(year);
-	   String results[]=Bill.getUsageRepor(1,intYear);
-	   return results[1];
-   }
-   
-   @RequestMapping(value="/consumption",method=RequestMethod.GET)
-   public String locationUsage(ModelMap model){
-	   
-	   String totlaUsageByYear[]=EnergyConsumption.EnergyConsumptionDAO.getEnergyConsumptionRecordByYear();
-	   model.addAttribute("usageList",totlaUsageByYear);
-	   
-	   String totlaUsageByTime[]=EnergyConsumption.EnergyConsumptionDAO.getCountryEnergyConsumptionCategorizedByTime();
-	   model.addAttribute("usageListByTime",totlaUsageByTime);
-	   
-	   String totlaUsageByProvince[]=EnergyConsumption.EnergyConsumptionDAO.getCountryEnergyConsumptionCategorizedByProvince();
-	   model.addAttribute("usageListByProvince",totlaUsageByProvince);
-	   
-	   return "electricConsumption";
-	   
-   }
-
 
    
    

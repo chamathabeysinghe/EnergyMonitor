@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="com.ceb.models.EnergyConsumption"%>
 <%@ page import="java.util.ArrayList"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
 <html>
@@ -40,13 +42,16 @@
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
-								<form role="form">
+								<form:form method="post" action="make_complaint" modelAttribute="complaint">
 
-									<!-- text input Subject -->
+									<!-- IMPORTANT: SUBJECT IS TAKEN AS COMPLAINTDETAILS -->
+									<!-- text input Subject --> 
 									<div class="form-group">
-										<label>Subject</label> <input type="text" class="form-control"
-											placeholder="Enter ..." id="subject">
+										<label>Subject</label> 
+										<form:input type="text" class="form-control"
+											placeholder="Enter ..." id="complaintDetails" path="complaintDetails"/>
 									</div>
+									<!-- / IMPORTANT: SUBJECT IS TAKEN AS COMPLAINTDETAILS -->
 
 									<!-- textarea input Complaint Description -->
 									<div class="form-group">
@@ -59,7 +64,7 @@
 										<button type="submit" class="btn btn-primary">Submit</button>
 									</div>
 
-								</form>
+								</form:form>
 							</div>
 							<!-- /.box-body -->
 						</div>
