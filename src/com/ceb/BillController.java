@@ -40,6 +40,29 @@ import com.mysql.cj.x.json.JsonArray;
 
 @RestController
 public class BillController {
+	public boolean authenticateAdmin(HttpServletRequest request) {
+		try {
+			HttpSession session = request.getSession(false);
+			User loggedUser;
+			loggedUser = (User) session.getAttribute("user");
+			if (loggedUser.getUserType().equalsIgnoreCase("admin")) {
+				return true;
+			}
+			return false;
+		} catch (NullPointerException e) {
+			return false;
+		}
+		
+	}
+	public boolean authenticateCustomer(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+
+		User loggedUser = (User) session.getAttribute("user");
+		if(loggedUser.getUserType().equalsIgnoreCase("customer")){
+			return true;
+		}
+		return false;
+	}
 
 	@RequestMapping(value = "/addBill", method = RequestMethod.GET)
 	   public ModelAndView addBill() {
