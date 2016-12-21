@@ -143,6 +143,11 @@ public static String[] getBillReport(int connectionID,int year){
 			List<Bill> resultList=DataAccess.getInstance().query(sql,new Object[]{connectionID},new BillRowMapper());
 			return resultList;
 		}
+		public static List<Bill> getBillsByCustomer(int id){
+			String sql="select bill.id,  bill.usage,  bill.month, bill.amount, bill.year, bill.connectionID from bill,customer,connection where (bill.connectionID,customer.id)=(connection.id,connection.customerID) and customer.id =?;";
+			List<Bill> resultList=DataAccess.getInstance().query(sql,new Object[]{id},new BillRowMapper());
+			return resultList;
+		}
 		public static List<Bill> getBillsByConnection(int connectionID,int year){
 			String sql="SELECT * FROM Bill WHERE connectionID=? and year=?";
 			List<Bill> resultList=DataAccess.getInstance().query(sql,new Object[]{connectionID,year},new BillRowMapper());

@@ -27,7 +27,8 @@
 				<!-- /.box-header -->
 
 				<!-- form start -->
-				<form:form class="form-horizontal" id="signup-form" action= "/EnergyMonitor/addUser" method = "post">
+				<form:form class="form-horizontal" id="signup-form"
+					 method="post">
 
 					<div class="box-body">
 
@@ -35,12 +36,21 @@
 							<label for="firstname" class="col-sm-2 control-label">FirstName*</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" id="firstName"
+<<<<<<< HEAD
 									placeholder="firstname">
+=======
+									path="firstName" placeholder="firstname">
+>>>>>>> thulana
 							</div>
 
 						</div>
 						<div class="form-group">
+<<<<<<< HEAD
 							<label for="lastname" class="col-sm-2 control-label">LastName*</label>
+=======
+							<label for="lastname" class="col-sm-2 control-label">Last
+								Name*</label>
+>>>>>>> thulana
 
 							<div class="col-sm-6">
 								<input type="text" class="form-control" id="lastName"
@@ -49,7 +59,8 @@
 						</div>
 
 						<div class="form-group">
-							<label for="NamewithInitials" class="col-sm-2 control-label">Name with Initials*</label>
+							<label for="NamewithInitials" class="col-sm-2 control-label">Name
+								with Initials*</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" id="nameWithInitials"
 									placeholder="NamewithInitials">
@@ -74,9 +85,9 @@
 
 
 						<div class="form-group">
-							<label for="Phone Number" class="col-sm-2 control-label">PhoneNumber*</label> <span class="col-sm-4"> <input type="number"
+							<label for="Phone Number" class="col-sm-2 control-label">PhoneNumber*</label>
+							<span class="col-sm-4"> <input type="number"
 								class="form-control" id="phoneNumber" placeholder="0xxxxxxxx">
-
 						</div>
 
 						<div class="form-group">
@@ -87,24 +98,38 @@
 									placeholder="Email">
 							</div>
 						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">User Type</label>
+							<div class="col-sm-6">
+								<select class="form-control" id="userType">
+									<option>Customer</option>
+									<option>Admin</option>
+								</select>
+							</div>
+
+						</div>
+
 
 						<div class="form-group">
 							<label for="inputPassword3" class="col-sm-2 control-label">Password*</label>
 							<div class="col-sm-6">
-								<input type="password" class="form-control" id="inputPassword" placeholder="Password">
+								<input type="password" class="form-control" id="inputPassword"
+									placeholder="Password">
 							</div>
 						</div>
 
 					</div>
 					<!-- /.box-body -->
-					<div class="box-footer">
-						
-						<button type="submit" class="btn btn-primary" >Submit</button>
-					</div>
+
 					<!-- /.box-footer -->
 				</form:form>
-				<button type="button" class="btn btn-default">Cancel</button>
-				
+				<div class="box-footer">
+
+					<button type="submit" class="btn btn-primary" onclick="saveViaAjax()">Submit</button>
+				</div>
+				<div id="feedback" class="col-sm-offset-2 col-sm-10"></div>
+
+
 			</div>
 		</div>
 
@@ -129,13 +154,66 @@
 
 </body>
 
-	<script>
-		function savedata(){
-			console.log("working")
-			
-			var userdata= {}
-			
-			
-		}
-	</script>
+<script>
+	function saveViaAjax() {
+		//console.log("SUCCESS: ", $("#datepicker").val());
+		var search = {}
+		search["firstName"] = $("#firstName").val();
+		search["lastName"] = $("#lastName").val();
+		search["nameWithInitials"] = $("#nameWithInitials").val();
+		search["address"] = $("#address").val();
+		search["NIC"] = $("#NIC").val();
+		search["phoneNumber"] = $("#phoneNumber").val();
+		search["email"] = $("#email").val();
+		search["password"] = $("#inputPassword").val();
+		search["userType"] = $("#userType").find(":selected").text();
+		
+
+		$.ajax({
+			type : "POST",
+			url : "/EnergyMonitor/addUser",
+			data : {
+				firstName: search["firstName"],
+				lastName: search["lastName"],
+				nameWithInitials: search["nameWithInitials"],
+				address: search["address"],
+				NIC:search["NIC"],
+				phoneNumber:search["phoneNumber"],
+				email:search["email"],
+				password:search["password"],
+				userType:search["userType"]
+			},
+			dataType : 'text',
+			timeout : 100000,
+			success : function(data) {
+				console.log("SUCCESS: ", data);
+				display(data);
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+				display("Server error occured. Please check data again.");
+			},
+			done : function(e) {
+				console.log("DONE");
+				enableSaveButton(true);
+			}
+		});
+
+	}
+
+	function enableSaveButton(flag) {
+		$("#btn-save").prop("disabled", flag);
+	}
+
+	function display(data) {
+		var json = "<h4>" + JSON.stringify(data, null, 4) + "</h4>";
+		$('#feedback').html(json);
+	}
+	function savedata() {
+		console.log("working")
+
+		var userdata = {}
+
+	}
+</script>
 </html>
