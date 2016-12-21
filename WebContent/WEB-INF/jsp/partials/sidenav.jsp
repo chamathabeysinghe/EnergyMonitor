@@ -23,6 +23,7 @@
         <li><a href="/EnergyMonitor/findBill"><i class="fa fa-home"></i> <span>Search Bills</span></a></li>
         <li><a href="/EnergyMonitor/addPayment"><i class="fa fa-credit-card-alt"></i> <span>Register Payment</span></a></li>
         <li><a href="/EnergyMonitor/signup"><i class="fa fa-home"></i> <span>User Account Creation</span></a></li>
+                <li><a href="/EnergyMonitor/addLocation"><i class="fa fa-home"></i> <span>Creation Locations</span></a></li>
         
         
         

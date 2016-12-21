@@ -1,5 +1,10 @@
 package com.ceb.models;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import com.ceb.database.DataAccess;
+
 public class Location {
 	private int locationID;
 	private String region;
@@ -9,6 +14,7 @@ public class Location {
 		return region;
 	}
 	public void setRegion(String region) {
+		System.out.println(region);
 		this.region = region;
 	}
 	public String getProvince() {
@@ -24,6 +30,13 @@ public class Location {
 		this.locationID=locationID;
 	}
 	
-	
+	public static class LocationDAO{
+		public static void saveNewLocation(Location location) {
+			
+			String sql = "INSERT INTO location (region, province) VALUES (?, ?)";
+			DataAccess.getInstance().update(sql, location.getRegion(), location.getProvince()); 
+		
+		}
+	}
 	
 }
