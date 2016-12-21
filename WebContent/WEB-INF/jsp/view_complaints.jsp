@@ -35,13 +35,6 @@
 
 			<section class="content">
 				<div class="row">
-				<% 
-				Object o=request.getAttribute("allcomplaints"); 
-				/* List<Complaint> allcomplaints = List<Complaint>o; */
-				for(Complaint complaint: (ArrayList<Complaint>)o){
-			       	 out.println("Complaint As : " + complaint.getId() + " " + complaint.getComplaintDetails());
-			    };
-			     %>
 					<div class="col-md-6">
 						<div class="box box-primary">
 							<div class="box-header with-border">
@@ -87,7 +80,7 @@
 							<div class="box-body">
 								<form role="form">
 									<div class="panel-group" id="panel-978814">
-										<div class="panel panel-default">
+										<!-- <div class="panel panel-default">
 											<div class="panel-heading">
 												 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978814" href="#panel-complaint-1">Complaint #1 - Subject</a>
 											</div>
@@ -106,7 +99,24 @@
 													Content goes here...
 												</div>
 											</div>
-										</div>
+										</div> -->
+										
+										<% Object o=request.getAttribute("allcomplaints"); 
+										/* List<Complaint> allcomplaints = List<Complaint>o; */
+										for(Complaint complaint: (ArrayList<Complaint>)o){ %>
+									       	 
+									       	 <div class="panel panel-default">
+												<div class="panel-heading">
+													 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-978814" href="#panel-complaint-<% out.println(complaint.getId()); %>">Complaint ID: <% out.println(complaint.getId()); %></a>
+												</div>
+												<div id="panel-complaint-<% out.println(complaint.getId()); %>" class="panel-collapse collapse in">
+													<div class="panel-body">
+														<% out.println(complaint.getComplaintDetails()); %>
+													</div>
+												</div>
+											</div>
+									    <% }; %>
+										
 									</div>	
 									</form>							
 							</div>
